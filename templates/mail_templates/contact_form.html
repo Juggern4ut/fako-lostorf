@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kontaktanfrage</title>
+	<style type="text/css">
+		*{
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<table style="width: 100%;">
+		<tr>
+			<td>&nbsp;</td>
+			<td style="width: 500px;">
+				<h1>Kontaktanfrage</h1>
+				<p>Auf der Webseite vom Fasnachtsverein Lostorf wurde eine Kontaktanfrage mit den folgenden Daten ausgefüllt:</p>
+				<table>
+					<tr>
+						<td>Zeitpunkt</td>
+						<td>{{timestamp}}</td>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<td>{{name}}</td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td>{{mail}}</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong><b>{{subject}}</b></strong></td>
+					</tr>
+					<tr>
+						<td colspan="2">{{message}}</td>
+					</tr>
+				</table>
+				<p>Freundliche Grüsse<br>Fasnachtsverein Lostorf</p>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+body,html {
+	font-family:arial;
+	font-size:12px;
+}
+
+h1 {
+	font-size: 22px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3 {
+	font-size: 14px;
+}
+
+p,
+td,
+td p,
+th,
+th p,
+a,
+blockquote,
+li {
+	font-size:12px;
+}
+
+td,tr {
+	vertical-align: top;
+}
+
+p {
+	padding:5px 0px;
+	margin:0px;
+}
