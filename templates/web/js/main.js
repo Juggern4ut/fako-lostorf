@@ -1,7 +1,4 @@
 $(document).ready(function(){
-
-	setCountdown();
-
 	$('.slickSlider').slick({
 		dots: false,
 		arrows: false,
@@ -57,35 +54,18 @@ $(document).ready(function(){
 			$(".form-status").slideDown();
 		});
 	});
+
+	setMainMinHeight();
 });
 
-function setCountdown(){
-	var end = new Date('11/11/2018 10:11 AM');
-	var _second = 1000;
-	var _minute = _second * 60;
-	var _hour = _minute * 60;
-	var _day = _hour * 24;
-	var timer;
+$(window).resize(function(){
+	setMainMinHeight();
+});
 
-	var a = setInterval(function(){
-		var now = new Date();
-		var distance = end - now;
-		if (distance < 0) {
-			clearInterval(timer);
-			document.getElementById('countdown').innerHTML = 'EXPIRED!';
-			return;
-		}
-		var days = Math.floor(distance / _day);
-		var hours = ("0" + Math.floor((distance % _day) / _hour)).slice(-2);
-		var minutes = ("0" + Math.floor((distance % _hour) / _minute)).slice(-2);
-		var seconds = ("0" + Math.floor((distance % _minute) / _second)).slice(-2);;
-
-		//var formattedNumber = ("0" + myNumber).slice(-2);
-
-		//$("#countdown").html("<div>" + weeks + "<span>" + 'Wochen</span></div>');
-		$("#countdown").html("<div>" + days + "<span>" + ':</span></div>');
-		$("#countdown").html($("#countdown").html() + "<div>" + hours + "<span>" + ':</span></div>');
-		$("#countdown").html($("#countdown").html() + "<div>" + minutes + "<span>" + ':</span></div>');
-		$("#countdown").html($("#countdown").html() + "<div>" + seconds + "<span>" + '</span></div>');
-	}, 1000);
+function setMainMinHeight(){
+	var windowHeight = window.innerHeight;
+	var headerHeight = $("header").innerHeight();
+	var footerHeight = $("footer").innerHeight();
+	var mainPadding = parseInt($("main").css("padding-top"))*2;
+	$("main").css({"min-height":windowHeight-(headerHeight+footerHeight+mainPadding)+"px"});
 }

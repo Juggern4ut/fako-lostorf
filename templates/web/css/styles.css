@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Yantramanav:300,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
 /* GLOBAL */
 *{
@@ -6,38 +7,17 @@
 	padding: 0px;
 	text-decoration: none;
 	border-collapse: collapse;
-	font-family: 'Yantramanav', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 }
 
-b, strong, h1, h2, h3, h4, h5{
-	font-weight: 700;
+strong, b{
+	font-weight: 400;
 }
 
 body{
-	background-color: #e8e8e8;
-}
-
-div#countdown{
-	position: absolute;
-	top: 25px;
-	right: 5px;
-	transform: rotate(25deg);
-}
-
-div#countdown div {
-    display: inline-block;
-    color: #bf0000;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-div#countdown div:nth-of-type(2){
-	color: #c7b82e;
-}
-
-div#countdown div:nth-of-type(3){
-	color: #47aa3f;
+	background-color: #fefefe;
+	color: #454545;
 }
 
 section.program{
@@ -45,19 +25,12 @@ section.program{
 }
 
 /* HEADER */
-header h1{
-	margin-bottom: 20px;
-	color: #ff0;
-	text-shadow: 0 0 7px rgba(0,0,0,.5);
-	transform: rotate(-10deg);
-	letter-spacing: -2px;
-	width: calc(100% - 30px);
-	font-size: 40px;
-	max-width: 300px;
-}
-
-header{
+header > section{
+	height: 300px;
+	background-size: cover;
+	background-position: center center;
 	border-bottom: 1px solid #888;
+	border-top: 1px solid #888;
 }
 
 header div#mobile-nav-burger{
@@ -96,8 +69,9 @@ header.open div#mobile-nav-burger span:nth-child(3){
 	top: -9px;
 	transform: rotate(-135deg);
 }
+
 header nav{
-	text-align: center;
+	text-align: right;
 }
 
 header #mobile-logo{
@@ -246,33 +220,39 @@ header nav ul li.open > a.hasSubnav{
 }
 
 header nav ul li a{
+	color: inherit;
 	display: block;
-	padding: 50px;
-	color: #000;
-	transition: .4s ease-out;
-	font-size: 24px;
+	padding: 10px 20px;
+	transition: background-color .2s ease-out;
+	font-size: 21px;
+	font-weight: 100;
 }
 
 header nav ul li a:hover{
-	background-color: #ddd;
+	background-color: #f0f0f0;
 }
 
 /* MAIN */
 main{
-	background-color: #DEDEDE;
-	padding: 10px 20px;
+	max-width: 770px;
+	padding: 10px 15px;
 	width: calc(100% - 40px);
-	min-height: calc(100vh - 184px)
+	margin: 0px auto;
+	line-height: 1.6;
+}
+
+main a{
+	color: #0077aa;
+}
+
+main h1{
+	font-weight: 100;
+	font-size: 34px;
 }
 
 main div#program {
 	margin: 0px auto;
 	max-width: 1240px;
-}
-
-main article:not(.news){
-	padding: 10px 0px;
-	display: flex;
 }
 
 main article:not(.news) section:not(.program){
@@ -298,10 +278,6 @@ main p{
 	font-size: 17px;
 }
 
-main article:last-of-type{
-	border-bottom: 0px;
-}
-
 main article img{
 	max-width: 100%;
 	height: auto;
@@ -311,29 +287,19 @@ main article ul{
 	padding-left: 22px;
 }
 
-main section article{
-	height: 230px;
-	background-position: center;
-	background-size: cover;
-	vertical-align: top;
-	padding: 0px;
-	border: none;
-}
-
 main > div#news{
 	width: calc(100% - 40px);
 	max-width: 1280px;
 	margin: auto;
 	padding: 20px;
-
 }
 
 article.news h3 {
-    font-size: 1.86667em;
-    color: #484848;
-    text-transform: uppercase;
-    padding: 10px;
-    cursor: pointer;
+	font-size: 1.86667em;
+	color: #484848;
+	text-transform: uppercase;
+	padding: 10px;
+	cursor: pointer;
 	transition: .2s ease-out;
 	position: relative;
 	padding-right: 60px;
@@ -416,12 +382,6 @@ footer{
 footer a{
 	text-decoration: underline;
 	color: #FFF;
-}
-
-@media(max-width: 1200px){
-	header nav ul li a{
-		padding: 50px 35px;
-	}
 }
 
 @media(max-width: 1024px){

@@ -270,7 +270,7 @@
 						$imageError = false;
 						for($i = 0; $i < count($_FILES["image_".$res["short"]]["name"]); $i++){
 							try{
-								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$_FILES["image_".$res["short"]]["name"][$i], 1000, 1000);
+								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$_FILES["image_".$res["short"]]["name"][$i], 1920, 1080);
 								$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
 								$stmt2->bind_param("iis", $id, $res["lang_id"], $_FILES["image_".$res["short"]]["name"][$i]);
 								$stmt2->execute();

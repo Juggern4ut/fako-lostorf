@@ -78,6 +78,8 @@
 		setcookie("news_read", 0, time() + (86400 * 30), "/");
 	}
 
+	$contents = $navigation->getContent($activeId);
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -142,7 +144,6 @@
 			<nav>
 				<ul>
 					<?php
-						$count = 1;
 						foreach ($navigationPoints as $nav) {
 							if($nav["is_invisible"] != 1){
 								$class = "";
@@ -191,35 +192,26 @@
 										echo "<a href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."\">".$nav["title"]."</a>";
 									}
 								echo "</li>";
-								if($count == 3){
-									echo "<a href=\"/\"><img class=\"nav-logo\" src=\"/templates/web/img/logo.png\"/></a>";
-								}
-								$count++;
 							}
 						}
 					?>
 				</ul>
 			</nav>
+			<?php $image = $contents[0]["images"][0]; ?>
+			<section style="background-image: url('/<?php echo $image; ?>');"></section>
 		</header>
 		<main>
 			<?php
-
-				$contents = $navigation->getContent($activeId);
 				//DEFAULT CONTENT
 				if($primaryId != 30 && $primaryId != 24 && $primaryId != 29){
-					foreach ($contents as $content) {
-						echo "<article>";
-							echo "<section class=\"slickSlider\">";
-								foreach ($content["images"] as $image) {
-									echo "<div style=\"background-image: url(/".$image.");\"></div>";
-								}
-							echo "</section>";
-							echo "<section>";
-								$form = $navigation->getContactForm();
-								echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
-							echo "</section>";
-						echo "</article>";
-					}
+					echo "<section>";
+						foreach ($contents as $content) {
+							echo "<article>";
+									$form = $navigation->getContactForm();
+									echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
+							echo "</article>";
+						}
+					echo "</section>";
 				//NEWS
 				}elseif($primaryId == 30){
 					echo "<div id='news'>";
@@ -245,7 +237,6 @@
 							}
 						echo "</section>";
 					}
-
 				//PROGRAMM
 				}elseif($primaryId == 29){
 					echo "<div id='program'>";
