@@ -142,6 +142,7 @@
 			</div>
 			<a id="mobile-logo" href="/"><img src="/templates/web/img/logo.png" /></a>
 			<nav>
+				<a class="nav-title" href="/">Fasnachtsverein Lostorf</a>
 				<ul>
 					<?php
 						foreach ($navigationPoints as $nav) {
@@ -198,8 +199,6 @@
 				</ul>
 			</nav>
 			<?php $image = $contents[0]["images"][0]; ?>
-
-			<!--<section style="background-image: url('/<?php echo $image; ?>');"></section>-->
 			<section>
 				<?php
 					foreach ($contents[0]["images"] as $image) {

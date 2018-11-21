@@ -190,27 +190,25 @@ header nav ul li ul{
 	position: absolute;
 	width: 290px;
 	display: none;
-	background-color: #BBB;
-	top: 133px;
-	left: 0px;
+	background-color: #fefefe;
+    top: 46px;
+    left: 0px;
 	z-index: 1;
 	width: 100%;
 	border-bottom: 1px solid #888;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    text-align: left;
 }
 
 header nav ul li.open > ul{
-	display: grid;
+	display: block;
+    text-align: right;
 }
 
 header nav ul li ul li a {
-    padding: 5px;
     font-size: 20px;
 }
 
 header nav ul li ul li ul {
-    top: 37px;
+	top: 45px;
 }
 
 header nav ul li a.hasSubnav{
@@ -235,8 +233,19 @@ header nav ul li a{
 	font-weight: 100;
 }
 
-header nav ul li a:hover{
+header nav ul li a:hover, header nav ul li.active > a{
 	background-color: #f0f0f0;
+}
+
+header nav a.nav-title{
+	font-size: 21px;
+	font-weight: 300;
+	color: inherit;
+	padding: 10px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
 }
 
 /* MAIN */
@@ -246,6 +255,9 @@ main{
 	width: calc(100% - 40px);
 	margin: 0px auto;
 	line-height: 1.6;
+}
+
+main p{
 	text-align: justify;
 }
 
@@ -278,6 +290,12 @@ main article section.slickSlider div{
 	height: 100%;
 	background-size: cover;
 	background-position: center;
+}
+
+main section.gallery article {
+	height: 200px;
+	background-position: center center;
+	background-size: cover;
 }
 
 main p{
@@ -356,7 +374,6 @@ form#contact-form label{
 	margin-bottom: 10px;
 	padding: 10px;
 	resize: none;
-	max-width: 550px;
 }
 
 form#contact-form textarea{
@@ -370,6 +387,11 @@ form#contact-form input[type="submit"], form#contact-form label {
     font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 0px;
+    transition: .2s ease-out;
+}
+
+form#contact-form input[type="submit"]:hover{
+	background-color: #555;
 }
 
 form#contact-form label{
@@ -390,7 +412,7 @@ footer a{
 	color: #FFF;
 }
 
-@media(max-width: 768px){
+@media(max-width: 1024px){
 
 	main {
 		min-height: calc(100vh - 124px);
@@ -415,9 +437,9 @@ footer a{
 		left: -400px;
 		width: 400px;
 		z-index: 4;
-		transition: .4s ease-out;
+		transition: left .4s ease-out;
 		height: 100%;
-		background-color: #BFBFBF;
+		background-color: #fefefe;
 	}
 
 	header nav ul{
@@ -438,14 +460,9 @@ footer a{
 		position: static;
 	}
 
-	header nav ul li.open a{
+	header nav ul li.open > a{
 		background-color: #ddd;
 	}
-
-	header nav ul li.open ul{
-		border-top: 1px solid #888;
-	}
-
 
 	header.open nav{
 		left: 0px;
@@ -469,13 +486,16 @@ footer a{
 	}
 
 	header nav ul li ul li a {
-		padding: 5px;
 		font-size: 21px;
 		padding-left: 50px;
 	}
 
+	header nav ul li ul li ul li a {
+		padding-left: 70px;
+	}
+
 	header nav ul li ul li a:hover{
-		background-color: #888;
+		background-color: #f0f0f0;
 	}
 
 	main article:not(.news){
@@ -484,5 +504,13 @@ footer a{
 
 	main article:not(.news) section:not(.program){
 		min-height: auto;
+	}
+
+	header nav a.nav-title{
+		display: none;
+	}
+
+	header nav ul li ul{
+		border-bottom: 0px;
 	}
 }

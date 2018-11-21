@@ -61,7 +61,24 @@ $(document).ready(function(){
 
 $(window).resize(function(){
 	setMainMinHeight();
+	if(window.innerWidth < 1024){
+		$("header nav").css({"height":$("html").height()-73+"px"});
+	}else{
+		$("header nav").css({"height":"auto"});
+	}
 });
+
+$(window).scroll(function(){
+	setMobileNavTop();
+});
+
+function setMobileNavTop(){
+	if(window.innerWidth < 1024){
+		var scrollTop = $(window).scrollTop();
+		var navTop = 73;
+		$("header nav").css({"top":navTop-scrollTop+"px"});
+	}
+}
 
 function setMainMinHeight(){
 	var windowHeight = window.innerHeight;
