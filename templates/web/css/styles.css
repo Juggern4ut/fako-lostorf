@@ -175,15 +175,17 @@ span#unread_news {
 	background-color: #bf0000;
 	color: #FFF;
 	border-radius: 30px;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	display: block;
 	position: absolute;
-	top: 32px;
-	right: 22px;
-	line-height: 32px;
+	top: 5px;
+	right: -3px;
+	line-height: 20px;
 	font-weight: bold;
 	transform: rotate(20deg);
+	text-align: center;
+	font-size: 13px;
 }
 
 header nav ul li ul{
@@ -512,5 +514,10 @@ footer a{
 
 	header nav ul li ul{
 		border-bottom: 0px;
+	}
+
+	span#unread_news {
+		right: auto;
+		left: 15px;
 	}
 }

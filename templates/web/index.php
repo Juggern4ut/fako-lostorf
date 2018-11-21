@@ -84,7 +84,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title><?php echo $pageTitle; ?></title>
+		<title><?php echo $pageTitle; ?> - Fasnachtsverein Lostorf</title>
 
 		<!-- GENERAL META -->
 		<meta http-equiv="content-language" content="ch-de" />

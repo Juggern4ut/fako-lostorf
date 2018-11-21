@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 21. Nov 2018 um 08:37
--- Server-Version: 10.1.34-MariaDB
--- PHP-Version: 7.2.7
+-- Host: localhost
+-- Generation Time: Nov 21, 2018 at 03:26 PM
+-- Server version: 5.7.24-0ubuntu0.16.04.1
+-- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `fakolost_fasnacht`
+-- Database: `fako_lostorf`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_article`
+-- Table structure for table `cms_article`
 --
 
 CREATE TABLE `cms_article` (
@@ -38,7 +36,7 @@ CREATE TABLE `cms_article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_article`
+-- Dumping data for table `cms_article`
 --
 
 INSERT INTO `cms_article` (`article_id`, `navigation_fk`, `sort`, `is_active`, `is_deleted`, `timestamp`) VALUES
@@ -77,7 +75,7 @@ INSERT INTO `cms_article` (`article_id`, `navigation_fk`, `sort`, `is_active`, `
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_article_content`
+-- Table structure for table `cms_article_content`
 --
 
 CREATE TABLE `cms_article_content` (
@@ -90,21 +88,21 @@ CREATE TABLE `cms_article_content` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `cms_article_content`
+-- Dumping data for table `cms_article_content`
 --
 
 INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`, `article_title`, `text`, `timestamp`) VALUES
-(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf&nbsp;</h1>\n<p>Sch&ouml;n, dass Sie bei uns reinschauen.&nbsp;</p>\n<p>Auf dieser Homepage halten wir Sie &uuml;ber unsere Aktivit&auml;ten auf dem Laufenden.</p>', '2018-01-15 15:41:03'),
-(3, 2, 1, 'Noch ein Artikel, mit titel', '<p>Das ist ein weiterer Artikel mit einer &Auml;nderung</p>\r\n<p><a href=\"../media/userdocuments/changesDev.txt\" target=\"_blank\">Ein Link auf eine Datei</a></p>', '2018-07-30 09:14:40'),
-(13, 7, 1, 'Kontakt', '<p>Das ist der Inhalt des Kontakt-dingens</p>\r\n<p><img src=\"../media/richtext/converse_shoes.jpg\" alt=\"\" width=\"320\" height=\"201\" /></p>', '2018-07-31 14:25:00'),
-(15, 8, 1, 'Anfahrt', '<p>Schauen Sie auf einen Besuch vorbei</p>\r\n<ul>\r\n<li>Auto:&nbsp;Unsere Anlagen sind mit dem Auto leider nicht zug&auml;nglich.</li>\r\n<li>&Ouml;ffentlicher Verkehr:&nbsp;Ein Bus f&auml;hrt jede Woche am Montag morgen um 02:10 Uhr im Industriegebiet.</li>\r\n<li>Zu Fuss: &Uuml;berqueren Sie die A1 und schwimmen Sie danach in der Aare gegen die Str&ouml;mung bis Sie unsere Firma auf der linken Seite hinter dem 2 Meter hohen Zaun erkennen k&ouml;nnen.</li>\r\n</ul>\r\n<p><img src=\"../media/richtext/583ae652e02ba71e008b6557-750.jpg\" alt=\"\" width=\"320\" height=\"240\" /></p>', '2018-07-31 14:26:50'),
+(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf</h1>\n<p>Herzlich willkommen auf der offiziellen Webseite des Fasnachtsvereins Lostorf. Sch&ouml;n, dass Sie bei uns reinschauen.</p>\n<p>Auf unsere Webseite k&ouml;nnen Sie unter anderem alle Fotos unserer bisherigen Anl&auml;sse ansehen oder uns mithilfe des <a href="kontakt">Kontaktformulares</a>&nbsp;direkt eure Anfragen stellen.</p>\n<p>Desweiteren k&ouml;nnen Sie <a href="news">News</a>&nbsp;&uuml;ber unseren Verein sowie auch das aktuelle <a href="programm">Programm</a> einsehen, oder ein wenig etwas &uuml;ber die <a href="verein">Entstehung des Vereins</a> lesen.</p>', '2018-01-15 15:41:03'),
+(3, 2, 1, 'Noch ein Artikel, mit titel', '<p>Das ist ein weiterer Artikel mit einer &Auml;nderung</p>\r\n<p><a href="../media/userdocuments/changesDev.txt" target="_blank">Ein Link auf eine Datei</a></p>', '2018-07-30 09:14:40'),
+(13, 7, 1, 'Kontakt', '<p>Das ist der Inhalt des Kontakt-dingens</p>\r\n<p><img src="../media/richtext/converse_shoes.jpg" alt="" width="320" height="201" /></p>', '2018-07-31 14:25:00'),
+(15, 8, 1, 'Anfahrt', '<p>Schauen Sie auf einen Besuch vorbei</p>\r\n<ul>\r\n<li>Auto:&nbsp;Unsere Anlagen sind mit dem Auto leider nicht zug&auml;nglich.</li>\r\n<li>&Ouml;ffentlicher Verkehr:&nbsp;Ein Bus f&auml;hrt jede Woche am Montag morgen um 02:10 Uhr im Industriegebiet.</li>\r\n<li>Zu Fuss: &Uuml;berqueren Sie die A1 und schwimmen Sie danach in der Aare gegen die Str&ouml;mung bis Sie unsere Firma auf der linken Seite hinter dem 2 Meter hohen Zaun erkennen k&ouml;nnen.</li>\r\n</ul>\r\n<p><img src="../media/richtext/583ae652e02ba71e008b6557-750.jpg" alt="" width="320" height="240" /></p>', '2018-07-31 14:26:50'),
 (17, 9, 1, 'Neuer Artikel', '<p>Mit Bilder&nbsp;</p>', '2018-08-02 11:54:14'),
-(19, 10, 1, 'Über uns', '<p>Wir sind die Weble AG</p>\r\n<p>Schon seit vielen vielen Stunden bieten wir Dienstleistungen und Produkte zum Verkauf an.</p>\r\n<p>Zu unserem Sortiment geh&ouml;ren viele n&uuml;tzliche Produkte f&uuml;r den Alltag wie zum Beipsiel&nbsp;⍰⍰⍰⍰ oder auch das beliebte&nbsp;⍰⍰⍰⍰⍰⍰⍰⍰⍰</p>\r\n<p><img src=\"../media/richtext/theComaRecut.jpg\" alt=\"\" width=\"150\" height=\"148\" /></p>', '2018-08-07 08:13:14'),
-(21, 11, 1, '404 - Seite nicht gefunden', '<h1>404 - Seite nicht gefunden</h1>\n<p>Die von Ihnen aufgerufene Seite konnte leider nicht gefunden werden.</p>\n<p><a title=\"Home\" href=\"de/home\">Home</a></p>', '2018-08-07 08:54:22'),
+(19, 10, 1, 'Über uns', '<p>Wir sind die Weble AG</p>\r\n<p>Schon seit vielen vielen Stunden bieten wir Dienstleistungen und Produkte zum Verkauf an.</p>\r\n<p>Zu unserem Sortiment geh&ouml;ren viele n&uuml;tzliche Produkte f&uuml;r den Alltag wie zum Beipsiel&nbsp;⍰⍰⍰⍰ oder auch das beliebte&nbsp;⍰⍰⍰⍰⍰⍰⍰⍰⍰</p>\r\n<p><img src="../media/richtext/theComaRecut.jpg" alt="" width="150" height="148" /></p>', '2018-08-07 08:13:14'),
+(21, 11, 1, '404 - Seite nicht gefunden', '<h1>404 - Seite nicht gefunden</h1>\n<p>Die von Ihnen aufgerufene Seite konnte leider nicht gefunden werden.</p>\n<p><a title="Home" href="de/home">Home</a></p>', '2018-08-07 08:54:22'),
 (23, 12, 1, 'Inhalt', '<p>Das ist Inhalt</p>', '2018-08-10 07:39:08'),
-(24, 13, 1, 'Kontakt', '<p><img src=\"../media/richtext/se&ntilde;or weble.png\" alt=\"\" width=\"250\" height=\"348\" /></p>\r\n<p>Hallo, ich bin der CEO der Weble-Studios.</p>\r\n<p>Wenn Sie Fragen zu einem unserer Produkte haben, kontaktieren Sie uns ungeniert mit einer der folgenden M&ouml;glichkeiten, oder schauen Sie bei uns direkt vorbei.</p>\r\n<p><a href=\"mailto:info@weble.ch\">info@weble.ch</a></p>\r\n<p>Tel: +41 79 789 876 123<br />Fax: +41 79 789 876 124</p>\r\n<p>Weble Management<br />Se&ntilde;or Weble<br />CMS-Street 1994<br />2000 PownTown<br /><br /></p>', '2018-08-15 06:57:34'),
-(26, 14, 1, 'Geschichte', '<h1>Geschichte</h1>\n<p>Der \"Fasnachtsverein Lostorf\" wurde am 18. Oktober 2012 um ca. 22.00h im Rest. Wartenfels von Rolf Riesen, Ren&eacute; Knecht, Martin Lehmann und Philipp Baisotti gegr&uuml;ndet. Das Vereinslokal befindet sich an der Bachstrasse 40 in 4654 Lostorf.</p>\n<p>Die Fasnacht ist aus dem kulturellen Leben unserer Gemeinde nicht mehr wegzudenken. Seit Jahrzehnten war es immer ein Anliegen diverser Fako`s, die Dorffasnacht zu aktivieren und ihr neue Impulse zu verleihen. Es wird immer unser Ziel sein, auch mit anderen Fasnachtsgruppen, die zuk&uuml;nftigen n&auml;rrischen Tage ideenreich zu gestalten.</p>\n<p>Ohne die Mithilfe der Bev&ouml;lkerung und der Beh&ouml;rden sind unsere Ziele jedoch nicht realisierbar. Wir freuen uns immer wieder &uuml;ber die aktive Teilnahme vieler Lostorfer an unseren Veranstaltungen. Nur so k&ouml;nnen wir in Lostorf auch in den n&auml;chsten Jahrzehnten tolle Fasnachtstage erleben und geniessen.</p>\n<h2 style=\"text-align: left;\">\"daf&uuml;r m&ouml;chten wir uns bei allen recht herzlich bedanken\"</h2>', '2018-08-21 05:54:50'),
-(28, 15, 1, 'Kontakt', '<h1>Vereinsadresse:</h1>\n<p><strong>Fasnachtsverein Lostorf<br /></strong><strong>Bachstrasse 40<br /></strong><strong>4654 Lostorf<br /></strong><strong>Pr&auml;si: +41796944726</strong></p>\n<h1>Kontaktformular</h1>\n<p>{kontakt_formular}</p>', '2018-08-21 05:56:22'),
+(24, 13, 1, 'Kontakt', '<p><img src="../media/richtext/se&ntilde;or weble.png" alt="" width="250" height="348" /></p>\r\n<p>Hallo, ich bin der CEO der Weble-Studios.</p>\r\n<p>Wenn Sie Fragen zu einem unserer Produkte haben, kontaktieren Sie uns ungeniert mit einer der folgenden M&ouml;glichkeiten, oder schauen Sie bei uns direkt vorbei.</p>\r\n<p><a href="mailto:info@weble.ch">info@weble.ch</a></p>\r\n<p>Tel: +41 79 789 876 123<br />Fax: +41 79 789 876 124</p>\r\n<p>Weble Management<br />Se&ntilde;or Weble<br />CMS-Street 1994<br />2000 PownTown<br /><br /></p>', '2018-08-15 06:57:34'),
+(26, 14, 1, 'Geschichte', '<h1>Geschichte</h1>\n<p>Der "Fasnachtsverein Lostorf" wurde am 18. Oktober 2012 um ca. 22.00h im Rest. Wartenfels von Rolf Riesen, Ren&eacute; Knecht, Martin Lehmann und Philipp Baisotti gegr&uuml;ndet. Das Vereinslokal befindet sich an der Bachstrasse 40 in 4654 Lostorf.</p>\n<p>Die Fasnacht ist aus dem kulturellen Leben unserer Gemeinde nicht mehr wegzudenken. Seit Jahrzehnten war es immer ein Anliegen diverser Fako`s, die Dorffasnacht zu aktivieren und ihr neue Impulse zu verleihen. Es wird immer unser Ziel sein, auch mit anderen Fasnachtsgruppen, die zuk&uuml;nftigen n&auml;rrischen Tage ideenreich zu gestalten.</p>\n<p>Ohne die Mithilfe der Bev&ouml;lkerung und der Beh&ouml;rden sind unsere Ziele jedoch nicht realisierbar. Wir freuen uns immer wieder &uuml;ber die aktive Teilnahme vieler Lostorfer an unseren Veranstaltungen. Nur so k&ouml;nnen wir in Lostorf auch in den n&auml;chsten Jahrzehnten tolle Fasnachtstage erleben und geniessen.</p>\n<h2 style="text-align: left;">"daf&uuml;r m&ouml;chten wir uns bei allen recht herzlich bedanken"</h2>', '2018-08-21 05:54:50'),
+(28, 15, 1, 'Kontakt', '<h1>Vereinsadresse</h1>\n<p>Fasnachtsverein Lostorf<br />Bachstrasse 40<br />4654 Lostorf<br />Pr&auml;si: +41796944726</p>\n<h1>Kontaktformular</h1>\n<p>Haben Sie eine Frage oder ein anderes Anliegen? Treten Sie einfach mit uns in Kontakt indem Sie das unten stehende Formular ausf&uuml;llen und absenden. Wir werden Ihnen danach so schnell wie m&ouml;glich eine Antwort zukommen lassen.</p>\n<p>{kontakt_formular}</p>', '2018-08-21 05:56:22'),
 (30, 16, 1, 'Chesslete 2018', '', '2018-08-21 06:05:27'),
 (32, 17, 1, 'SchlÃ¼sselÃ¼bergabe 2018', '', '2018-08-21 06:35:07'),
 (34, 18, 1, 'Schmudo 2018', '', '2018-08-21 06:37:36'),
@@ -112,12 +110,12 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 (38, 20, 1, 'Neue Homepage', '<p>Seit Heute haben wir eine Neue Homepage</p>', '2018-08-23 20:21:35'),
 (39, 21, 1, 'Impressum', '<h1>Impressum</h1>\n<h3><strong>Vereinsname: Fasnachtsverein Lostorf<br /></strong><strong>Bachstrasse 40<br /></strong><strong>4654 Lostorf</strong></h3>\n<p>&nbsp;</p>', '2018-08-24 11:20:19'),
 (40, 22, 1, 'Beispiel News', '<p>Das sind Beispiel News</p>\r\n<p>Diese haben keinen Inhalt, oder zumindest keinen der Sinn macht...</p>\r\n<p>Bla bla</p>\r\n<p>:D</p>', '2018-08-24 11:37:50'),
-(41, 23, 1, 'Fasnachtsbeginn 11.11.2018', '<p>Wie jedes Jahr beginnt am 11.11 die Fasnacht.&nbsp;</p>\n<p>Wir starten den Betrieb um 16:11 Uhr.&nbsp;</p>', '2018-09-22 09:34:27'),
-(42, 24, 1, 'Hilari 05.01.2019', '<p>Am Samstag 5.1.2019 findet in Lostorf der Hilari statt.</p>\n<p>Wir freuen uns, euch auf dem Gemeindeplatz mit Speis und Trank und guter Musik unterhalten zu k&ouml;nnen.</p>', '2018-09-22 09:37:23'),
-(43, 25, 1, 'Donnerstag 28.02.2019', '<p>Am 28.2.2018 Starten wir den Schmuitzigen Donnerstag um 5.00Uhr mit der Chesslete.</p>\n<p>Anschliessend findet die Kinderfasnacht Statt.</p>\n<p>Um 19.00Uhr Beginnen die Schnitzelb&auml;nke und lassen den Abend miut guter Musik und guter Stimmung Ausklingen.</p>', '2018-09-22 09:38:19'),
-(44, 26, 1, 'Samstag 02.03.2019', '<p>Am Samstag 2.3.2019 um 11.30 Beginnt Der Fasnachtsumzug in Lostorf.</p>\n<p>&nbsp;</p>\n<p>Danach Feiern wir Fasnacht im Festzelt Lostorf.</p>', '2018-09-22 09:43:16'),
+(41, 23, 1, 'Fasnachtsbeginn 11.11.2018', '<p>Wie jedes Jahr beginnt am 11.11 die Fasnacht.&nbsp;<br />Wir starten den Betrieb um 16:11 Uhr.&nbsp;</p>', '2018-09-22 09:34:27'),
+(42, 24, 1, 'Hilari 05.01.2019', '<p>Am Samstag 5.1.2019 findet in Lostorf der Hilari statt.<br />Wir freuen uns, euch auf dem Gemeindeplatz mit Speis und Trank und guter Musik unterhalten zu k&ouml;nnen.</p>', '2018-09-22 09:37:23'),
+(43, 25, 1, 'Donnerstag 28.02.2019', '<p>Am 28.2.2018 Starten wir den Schmuitzigen Donnerstag um 5.00Uhr mit der Chesslete.<br />Anschliessend findet die Kinderfasnacht Statt.<br />Um 19.00Uhr Beginnen die Schnitzelb&auml;nke und lassen den Abend miut guter Musik und guter Stimmung Ausklingen.</p>', '2018-09-22 09:38:19'),
+(44, 26, 1, 'Samstag 02.03.2019', '<p>Am Samstag 2.3.2019 um 11.30 Beginnt Der Fasnachtsumzug in Lostorf.<br />Danach Feiern wir Fasnacht im Festzelt Lostorf.</p>', '2018-09-22 09:43:16'),
 (45, 27, 1, 'Sonntag 03.03.2019', '<p>Am Sonntag Trifft man den Fasnachtsverein Lostorf in Olten am Umzug an.</p>', '2018-09-22 09:44:44'),
-(46, 28, 1, 'Dienstag 05.03.2019', '<p>Am Dienstag 5.3.2019 Findet die Allj&auml;hrige Kinderfasnacht mit Umzug statt.</p>\n<p>&nbsp;</p>\n<p>Der Umzug beginnt um 13.30 mit anschliessendem Festbetrieb im Zelt.</p>', '2018-09-22 09:49:29'),
+(46, 28, 1, 'Dienstag 05.03.2019', '<p>Am Dienstag 5.3.2019 Findet die Allj&auml;hrige Kinderfasnacht mit Umzug statt.<br />Der Umzug beginnt um 13.30 mit anschliessendem Festbetrieb im Zelt.</p>', '2018-09-22 09:49:29'),
 (47, 29, 1, 'Samstag 09.03.2019', '<p>Am Samstag 9.3.2019 schliessen wir die Fasnacht mit dem B&ouml;gverbrennen ab.</p>', '2018-09-22 09:50:42'),
 (48, 30, 1, 'Fasnachtsmotto 2019', '<p>Unser neues Motto f&uuml;r die Fasnacht 2019 Ist bekannt!<br />Zahlreiche Ideeen f&uuml;r ein neues Motto sind bei uns am Dorfm&auml;ret eingegangen.<br />Wir Freuen uns auf eure Ideeen und verkleidungen zum Motto:</p>\n<p><strong>Casino - Las Vegas feeling in Lostorf</strong>&nbsp;</p>\n<p>Wir gratulieren der Gewinnerin vom Wettberwerb,&nbsp;Sara Loosli, und w&uuml;nschen Ihr viel Spass im Kino!!</p>', '2018-09-29 12:15:42'),
 (49, 31, 1, 'Obernarr', '<p>Der diesj&auml;hrige Obernarr in Lostorf ist bekannt.</p>\n<p>WER IST ES WOHL?</p>\n<p>am 11.11 Wird der Obernarr bekannt gegeben.</p>\n<p>Seid dabei!</p>', '2018-09-29 12:19:17'),
@@ -129,7 +127,7 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_article_content_image`
+-- Table structure for table `cms_article_content_image`
 --
 
 CREATE TABLE `cms_article_content_image` (
@@ -142,7 +140,7 @@ CREATE TABLE `cms_article_content_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `cms_article_content_image`
+-- Dumping data for table `cms_article_content_image`
 --
 
 INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_content_fk`, `lang_fk`, `image`, `sort`, `timestamp`) VALUES
@@ -196,7 +194,7 @@ INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_co
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_lang`
+-- Table structure for table `cms_lang`
 --
 
 CREATE TABLE `cms_lang` (
@@ -207,7 +205,7 @@ CREATE TABLE `cms_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_lang`
+-- Dumping data for table `cms_lang`
 --
 
 INSERT INTO `cms_lang` (`lang_id`, `short`, `name`, `timestamp`) VALUES
@@ -216,7 +214,7 @@ INSERT INTO `cms_lang` (`lang_id`, `short`, `name`, `timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_navigation`
+-- Table structure for table `cms_navigation`
 --
 
 CREATE TABLE `cms_navigation` (
@@ -230,7 +228,7 @@ CREATE TABLE `cms_navigation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_navigation`
+-- Dumping data for table `cms_navigation`
 --
 
 INSERT INTO `cms_navigation` (`navigation_id`, `navigation_fk`, `sort`, `is_active`, `is_invisible`, `is_deleted`, `timestamp`) VALUES
@@ -252,29 +250,29 @@ INSERT INTO `cms_navigation` (`navigation_id`, `navigation_fk`, `sort`, `is_acti
 (16, 0, 0, 0, 0, 1, '2018-08-13 08:17:44'),
 (17, 8, 0, 0, 0, 1, '2018-08-13 08:26:38'),
 (18, 1, 0, 0, 1, 1, '2018-08-13 08:43:29'),
-(19, 0, 12, 1, 0, 0, '2018-08-21 05:41:40'),
+(19, 0, 2, 1, 0, 0, '2018-08-21 05:41:40'),
 (20, 0, 14, 1, 0, 0, '2018-08-21 05:42:04'),
-(21, 33, 3, 1, 0, 0, '2018-08-21 05:42:31'),
-(22, 33, 4, 1, 0, 0, '2018-08-21 05:43:10'),
-(23, 33, 5, 1, 0, 0, '2018-08-21 05:43:30'),
-(24, 0, 13, 1, 0, 0, '2018-08-21 05:44:16'),
-(25, 33, 6, 1, 0, 0, '2018-08-21 05:45:11'),
-(26, 33, 7, 1, 0, 0, '2018-08-21 05:45:53'),
-(27, 33, 8, 1, 0, 0, '2018-08-21 05:46:32'),
-(28, 33, 9, 1, 0, 0, '2018-08-21 05:46:59'),
+(21, 33, 5, 1, 0, 0, '2018-08-21 05:42:31'),
+(22, 33, 6, 1, 0, 0, '2018-08-21 05:43:10'),
+(23, 33, 7, 1, 0, 0, '2018-08-21 05:43:30'),
+(24, 0, 3, 1, 0, 0, '2018-08-21 05:44:16'),
+(25, 33, 8, 1, 0, 0, '2018-08-21 05:45:11'),
+(26, 33, 9, 1, 0, 0, '2018-08-21 05:45:53'),
+(27, 33, 10, 1, 0, 0, '2018-08-21 05:46:32'),
+(28, 33, 11, 1, 0, 0, '2018-08-21 05:46:59'),
 (29, 0, 16, 1, 0, 0, '2018-08-23 19:39:17'),
 (30, 0, 15, 1, 0, 0, '2018-08-23 19:39:34'),
 (31, 0, 18, 1, 1, 0, '2018-08-24 11:19:02'),
 (32, 32, 0, 0, 0, 0, '2018-09-22 06:47:52'),
-(33, 24, 2, 1, 0, 0, '2018-09-22 06:49:55'),
-(34, 24, 10, 1, 0, 0, '2018-09-22 06:52:12'),
-(35, 34, 11, 1, 0, 0, '2018-10-01 07:55:46'),
+(33, 24, 4, 1, 0, 0, '2018-09-22 06:49:55'),
+(34, 24, 12, 1, 0, 0, '2018-09-22 06:52:12'),
+(35, 34, 13, 1, 0, 0, '2018-10-01 07:55:46'),
 (36, 0, 0, 0, 0, 1, '2018-11-20 14:04:44');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_navigation_title`
+-- Table structure for table `cms_navigation_title`
 --
 
 CREATE TABLE `cms_navigation_title` (
@@ -289,11 +287,11 @@ CREATE TABLE `cms_navigation_title` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `cms_navigation_title`
+-- Dumping data for table `cms_navigation_title`
 --
 
 INSERT INTO `cms_navigation_title` (`navigation_title_id`, `navigation_fk`, `lang_fk`, `title`, `link`, `description`, `keywords`, `timestamp`) VALUES
-(1, 1, 1, 'Home', 'home', 'Die erste sichtbare Seite beim erstellen eines neuen Weble-Projekts', 'Home, Weble, Testpage, Homepage, Weblecms', '2018-09-22 09:40:17'),
+(1, 1, 1, 'Home', 'home', 'Startseite des Fasnachtsverein Lostorf', 'Home, Fasnacht, Lostorf, Fasnachtsverein, Startseite', '2018-11-21 11:51:40'),
 (3, 2, 1, 'Kontakt', '', '', '', '2018-03-11 16:56:21'),
 (5, 3, 1, 'Anfahrt', '', 'Diese Seite beschreibt den Anfahrtsweg zu der Firma XYZ', 'Anfahrt, Weg, Route, FirmaXYZ, Maps', '2018-08-08 08:06:09'),
 (7, 4, 1, 'Ãœber uns', '', 'Ãœber uns - Weble CMS', 'Ã¼ber uns, weble, cms, about us', '2018-08-15 06:40:47'),
@@ -311,7 +309,7 @@ INSERT INTO `cms_navigation_title` (`navigation_title_id`, `navigation_fk`, `lan
 (31, 16, 1, '123', '', '', '', '2018-08-13 08:17:44'),
 (33, 17, 1, '404.1', '', '', '', '2018-08-13 08:26:38'),
 (35, 18, 1, 'fdsafds', '', '', '', '2018-08-13 08:43:29'),
-(37, 19, 1, 'Verein', 'verein', 'Verein FAKO Lostdorf', 'Verein, Lostdorf, fako', '2018-09-22 09:40:26'),
+(37, 19, 1, 'Verein', 'verein', 'Verein FAKO Lostdorf', 'Verein, Lostdorf, Fasnachtsverein, FaKo, Fasnacht', '2018-11-21 11:52:17'),
 (39, 20, 1, 'Kontakt', 'kontakt', '', '', '2018-09-22 09:40:46'),
 (41, 21, 1, 'Chesslete 2018', 'chesslete-2018', '', '', '2018-10-02 07:50:10'),
 (43, 22, 1, 'SchlÃ¼sselÃ¼bergabe 2018', 'schluesseluebergabe-2018', '', '', '2018-11-20 13:54:25'),
@@ -333,7 +331,7 @@ INSERT INTO `cms_navigation_title` (`navigation_title_id`, `navigation_fk`, `lan
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_password_reset`
+-- Table structure for table `cms_password_reset`
 --
 
 CREATE TABLE `cms_password_reset` (
@@ -347,7 +345,7 @@ CREATE TABLE `cms_password_reset` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_translation`
+-- Table structure for table `cms_translation`
 --
 
 CREATE TABLE `cms_translation` (
@@ -357,7 +355,7 @@ CREATE TABLE `cms_translation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_translation`
+-- Dumping data for table `cms_translation`
 --
 
 INSERT INTO `cms_translation` (`translation_id`, `key`, `timestamp`) VALUES
@@ -436,7 +434,7 @@ INSERT INTO `cms_translation` (`translation_id`, `key`, `timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_translation_text`
+-- Table structure for table `cms_translation_text`
 --
 
 CREATE TABLE `cms_translation_text` (
@@ -448,7 +446,7 @@ CREATE TABLE `cms_translation_text` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `cms_translation_text`
+-- Dumping data for table `cms_translation_text`
 --
 
 INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `lang_fk`, `text`, `timestamp`) VALUES
@@ -597,7 +595,7 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_user`
+-- Table structure for table `cms_user`
 --
 
 CREATE TABLE `cms_user` (
@@ -614,11 +612,11 @@ CREATE TABLE `cms_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_user`
+-- Dumping data for table `cms_user`
 --
 
 INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `permission_level`, `last_login`, `is_active`, `is_disabled`, `timestamp`) VALUES
-(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-21 07:48:43', 1, 0, '2018-01-15 17:11:10'),
+(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-21 15:14:51', 1, 0, '2018-01-15 17:11:10'),
 (3, 1, 'gianreto', '$2y$10$0tulw.VZ7LjjmPGiYxA5guFxMkN9EsdIwozoJTrwfHIj6Nk4Gbx7e', 'gian.vd@gmx.ch', 1, '2018-11-01 20:26:07', 1, 0, '2018-08-20 08:15:37'),
 (4, 1, 'Fabi', '$2y$10$Tm//6beretN3v5q/.9adj.HLB2o6RWqgjSWUv7NMbFqS2UbJrbB5C', '', 0, '2018-11-01 20:42:28', 1, 0, '2018-08-23 20:32:04'),
 (5, 1, 'test', '$2y$10$a3lE/bDKjILIpC59tQ4P5.XbRNmDaBFDIKT1VQbcYqkbz67cKJzk6', 'test@test.com', 0, '2018-09-27 15:42:49', 1, 0, '2018-08-24 12:02:57'),
@@ -627,7 +625,7 @@ INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cms_visit`
+-- Table structure for table `cms_visit`
 --
 
 CREATE TABLE `cms_visit` (
@@ -639,7 +637,7 @@ CREATE TABLE `cms_visit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `cms_visit`
+-- Dumping data for table `cms_visit`
 --
 
 INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `timestamp`) VALUES
@@ -4715,12 +4713,41 @@ INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `tim
 (4088, '66.249.64.27', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', '2018-11-20 10:22:43'),
 (4089, '66.249.64.25', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', '2018-11-20 10:22:43'),
 (4090, '127.0.0.1', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-20 10:44:14'),
-(4091, '127.0.0.1', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 06:45:31');
+(4091, '127.0.0.1', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 06:45:31'),
+(4092, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 09:35:48'),
+(4093, '178.197.236.151', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-21 10:26:01'),
+(4094, '178.197.236.151', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-21 10:35:37'),
+(4095, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 10:36:03'),
+(4096, '178.197.236.151', 1, 'Mozilla/5.0 (Android 8.0.0; Mobile; rv:63.0) Gecko/63.0 Firefox/63.0', '2018-11-21 10:36:48'),
+(4097, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 11:46:20'),
+(4098, '149.154.167.166', 0, 'TelegramBot (like TwitterBot)', '2018-11-21 11:50:33'),
+(4099, '31.13.127.16', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:52:51'),
+(4100, '31.13.127.3', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:52:56'),
+(4101, '31.13.127.14', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:52:56'),
+(4102, '31.13.127.15', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:53:37'),
+(4103, '69.171.251.2', 1, 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1', '2018-11-21 11:54:05'),
+(4104, '31.13.127.5', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:54:06'),
+(4105, '149.154.167.162', 0, 'TelegramBot (like TwitterBot)', '2018-11-21 11:55:24'),
+(4106, '31.13.127.4', 0, 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)', '2018-11-21 11:55:48'),
+(4107, '178.197.228.201', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-21 12:14:26'),
+(4108, '178.197.228.201', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-21 12:18:28'),
+(4109, '178.197.228.56', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8441) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.64 Mobile Safari/537.36', '2018-11-21 12:23:26'),
+(4110, '149.154.167.165', 0, 'TelegramBot (like TwitterBot)', '2018-11-21 12:35:28'),
+(4111, '149.154.167.168', 0, 'TelegramBot (like TwitterBot)', '2018-11-21 12:35:41'),
+(4112, '95.170.73.141', 0, 'checkgzipcompression.com robot', '2018-11-21 12:38:50'),
+(4113, '95.170.73.141', 0, 'checkgzipcompression.com robot', '2018-11-21 12:41:07'),
+(4114, '95.170.73.141', 0, 'checkgzipcompression.com robot', '2018-11-21 12:41:32'),
+(4115, '95.170.73.141', 0, 'checkgzipcompression.com robot', '2018-11-21 12:43:08');
+INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `timestamp`) VALUES
+(4116, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 14:07:28'),
+(4117, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:46'),
+(4118, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:48'),
+(4119, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:50');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_appointment`
+-- Table structure for table `tbl_appointment`
 --
 
 CREATE TABLE `tbl_appointment` (
@@ -4737,7 +4764,7 @@ CREATE TABLE `tbl_appointment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `tbl_appointment`
+-- Dumping data for table `tbl_appointment`
 --
 
 INSERT INTO `tbl_appointment` (`appointment_id`, `name`, `start_date`, `end_date`, `start_time`, `end_time`, `description`, `location`, `all_day`, `timestamp`) VALUES
@@ -4745,12 +4772,13 @@ INSERT INTO `tbl_appointment` (`appointment_id`, `name`, `start_date`, `end_date
 (9, 'Dorfmäret', '2018-09-08', '2018-09-08', '09:00:00', '17:00:00', '<p>D&ouml;rfm&auml;ret Lostorf</p>', '', 1, '2018-09-22 07:36:04'),
 (10, 'Sitzung', '2018-09-13', '2018-09-13', '00:00:00', '00:00:00', '', '', 1, '2018-09-22 07:37:08'),
 (11, 'Sitzung', '2018-09-13', '2018-09-13', '19:00:00', '00:00:00', '<p>Nachbesprechung Dorfm&auml;ret, Auswahl Fasnachtsmotto</p>', '', 0, '2018-09-22 07:38:09'),
-(12, 'Sitzung', '2018-10-04', '2018-10-04', '19:00:00', '00:00:00', '<p>Sitzung</p>', 'Vereinslokal', 1, '2018-09-22 07:40:32');
+(12, 'Sitzung', '2018-10-04', '2018-10-04', '19:00:00', '00:00:00', '<p>Sitzung</p>', 'Vereinslokal', 1, '2018-09-22 07:40:32'),
+(13, 'Testevent', '2018-11-24', '2018-11-24', '00:00:00', '00:00:00', '', 'Vereinslokal', 1, '2018-11-21 12:19:54');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_team`
+-- Table structure for table `tbl_team`
 --
 
 CREATE TABLE `tbl_team` (
@@ -4765,7 +4793,7 @@ CREATE TABLE `tbl_team` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Daten für Tabelle `tbl_team`
+-- Dumping data for table `tbl_team`
 --
 
 INSERT INTO `tbl_team` (`team_id`, `firstname`, `lastname`, `birthday`, `mail`, `is_active`, `sort`, `timestamp`) VALUES
@@ -4779,170 +4807,156 @@ INSERT INTO `tbl_team` (`team_id`, `firstname`, `lastname`, `birthday`, `mail`, 
 (8, 'René', 'Knecht', '0000-00-00', 'r.knecht@kkstahl.ch', 1, 0, '2018-08-24 08:48:07');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `cms_article`
+-- Indexes for table `cms_article`
 --
 ALTER TABLE `cms_article`
   ADD PRIMARY KEY (`article_id`);
 
 --
--- Indizes für die Tabelle `cms_article_content`
+-- Indexes for table `cms_article_content`
 --
 ALTER TABLE `cms_article_content`
   ADD PRIMARY KEY (`article_content_id`);
 
 --
--- Indizes für die Tabelle `cms_article_content_image`
+-- Indexes for table `cms_article_content_image`
 --
 ALTER TABLE `cms_article_content_image`
   ADD PRIMARY KEY (`article_content_image_id`);
 
 --
--- Indizes für die Tabelle `cms_lang`
+-- Indexes for table `cms_lang`
 --
 ALTER TABLE `cms_lang`
   ADD PRIMARY KEY (`lang_id`);
 
 --
--- Indizes für die Tabelle `cms_navigation`
+-- Indexes for table `cms_navigation`
 --
 ALTER TABLE `cms_navigation`
   ADD PRIMARY KEY (`navigation_id`);
 
 --
--- Indizes für die Tabelle `cms_navigation_title`
+-- Indexes for table `cms_navigation_title`
 --
 ALTER TABLE `cms_navigation_title`
   ADD PRIMARY KEY (`navigation_title_id`);
 
 --
--- Indizes für die Tabelle `cms_password_reset`
+-- Indexes for table `cms_password_reset`
 --
 ALTER TABLE `cms_password_reset`
   ADD PRIMARY KEY (`password_reset_id`);
 
 --
--- Indizes für die Tabelle `cms_translation`
+-- Indexes for table `cms_translation`
 --
 ALTER TABLE `cms_translation`
   ADD PRIMARY KEY (`translation_id`);
 
 --
--- Indizes für die Tabelle `cms_translation_text`
+-- Indexes for table `cms_translation_text`
 --
 ALTER TABLE `cms_translation_text`
   ADD PRIMARY KEY (`translation_text_id`);
 
 --
--- Indizes für die Tabelle `cms_user`
+-- Indexes for table `cms_user`
 --
 ALTER TABLE `cms_user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indizes für die Tabelle `cms_visit`
+-- Indexes for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
   ADD PRIMARY KEY (`visit_id`);
 
 --
--- Indizes für die Tabelle `tbl_appointment`
+-- Indexes for table `tbl_appointment`
 --
 ALTER TABLE `tbl_appointment`
   ADD PRIMARY KEY (`appointment_id`);
 
 --
--- Indizes für die Tabelle `tbl_team`
+-- Indexes for table `tbl_team`
 --
 ALTER TABLE `tbl_team`
   ADD PRIMARY KEY (`team_id`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `cms_article`
+-- AUTO_INCREMENT for table `cms_article`
 --
 ALTER TABLE `cms_article`
   MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_article_content`
+-- AUTO_INCREMENT for table `cms_article_content`
 --
 ALTER TABLE `cms_article_content`
   MODIFY `article_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_article_content_image`
+-- AUTO_INCREMENT for table `cms_article_content_image`
 --
 ALTER TABLE `cms_article_content_image`
   MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_lang`
+-- AUTO_INCREMENT for table `cms_lang`
 --
 ALTER TABLE `cms_lang`
   MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_navigation`
+-- AUTO_INCREMENT for table `cms_navigation`
 --
 ALTER TABLE `cms_navigation`
   MODIFY `navigation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_navigation_title`
+-- AUTO_INCREMENT for table `cms_navigation_title`
 --
 ALTER TABLE `cms_navigation_title`
   MODIFY `navigation_title_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_password_reset`
+-- AUTO_INCREMENT for table `cms_password_reset`
 --
 ALTER TABLE `cms_password_reset`
   MODIFY `password_reset_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_translation`
+-- AUTO_INCREMENT for table `cms_translation`
 --
 ALTER TABLE `cms_translation`
   MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_translation_text`
+-- AUTO_INCREMENT for table `cms_translation_text`
 --
 ALTER TABLE `cms_translation_text`
   MODIFY `translation_text_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_user`
+-- AUTO_INCREMENT for table `cms_user`
 --
 ALTER TABLE `cms_user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT für Tabelle `cms_visit`
+-- AUTO_INCREMENT for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4092;
-
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4120;
 --
--- AUTO_INCREMENT für Tabelle `tbl_appointment`
+-- AUTO_INCREMENT for table `tbl_appointment`
 --
 ALTER TABLE `tbl_appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT für Tabelle `tbl_team`
+-- AUTO_INCREMENT for table `tbl_team`
 --
 ALTER TABLE `tbl_team`
   MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

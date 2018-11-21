@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	mobileNavLinks();
+
 	$("header > section").slick({
 		dots: false,
 		arrows: false,
@@ -42,7 +44,6 @@ $(document).ready(function(){
 		$(this).find("input[type=submit]").hide();
 		$(this).append("<label>L&auml;dt...</label>");
 		
-
 		var message = $("#message").val();
 		var name = $("#name").val();
 		var mail = $("#mail").val();
@@ -73,7 +74,7 @@ $(window).scroll(function(){
 });
 
 function setMobileNavTop(){
-	if(window.innerWidth < 1024){
+	if(window.innerWidth <= 1024){
 		var scrollTop = $(window).scrollTop();
 		var navTop = 73;
 		$("header nav").css({"top":navTop-scrollTop+"px"});
@@ -86,4 +87,20 @@ function setMainMinHeight(){
 	var footerHeight = $("footer").innerHeight();
 	var mainPadding = parseInt($("main").css("padding-top"))*2;
 	$("main").css({"min-height":windowHeight-(headerHeight+footerHeight+mainPadding)+"px"});
+}
+
+function mobileNavLinks(){
+	$("nav a").click(function(e){
+		if(window.innerWidth <= 1024){
+			if($(this).hasClass("hasSubnav")){
+				return true;
+			}
+			e.preventDefault();
+			var link = $(this).attr("href");
+			$("header").removeClass("open");
+			setTimeout(function(){
+				window.location.href = link;
+			}, 400);
+		}
+	});
 }
