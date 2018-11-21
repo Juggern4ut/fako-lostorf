@@ -1,11 +1,12 @@
 $(document).ready(function(){
-	$('.slickSlider').slick({
+	$("header > section").slick({
 		dots: false,
 		arrows: false,
+		speed: 2000,
+		fade: true,
+		cssEase: 'linear',
 		autoplay: true,
-		autplayspeed: 5000,
-		draggable: false,
-		speed: 1000,
+		autplayspeed: 6000,
 		pauseOnFocus: false,
 		pauseOnHover: false
 	});

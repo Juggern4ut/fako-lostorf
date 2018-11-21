@@ -198,7 +198,15 @@
 				</ul>
 			</nav>
 			<?php $image = $contents[0]["images"][0]; ?>
-			<section style="background-image: url('/<?php echo $image; ?>');"></section>
+
+			<!--<section style="background-image: url('/<?php echo $image; ?>');"></section>-->
+			<section>
+				<?php
+					foreach ($contents[0]["images"] as $image) {
+						echo "<article style=\"background-image: url('/".$image."');\">&nbsp;</article>";
+					}
+				?>
+			</section>
 		</header>
 		<main>
 			<?php

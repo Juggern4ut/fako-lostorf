@@ -148,7 +148,7 @@
 
 			if(isset($_GET["async"]) && isset($_POST["contact-form"])){
 				$cm = new coreMailer();
-				$recipient = "gian-reto.vd@gmx.ch";
+				$recipient = "me@lmeier.ch";
 
 				$subject = $_POST["subject"];
 				$name = $_POST["name"];
