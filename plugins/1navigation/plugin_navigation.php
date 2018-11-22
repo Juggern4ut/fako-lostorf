@@ -15,10 +15,29 @@
 		public function getContactForm(){
 			ob_start();
 			echo "<form id='contact-form'>";
-				echo "<input id=\"name\" type=\"text\" placeholder=\"Name\" name=\"name\">";
-				echo "<input id=\"mail\" type=\"text\" placeholder=\"E-Mail\" name=\"email\">";
-				echo "<input id=\"subject\" type=\"text\" placeholder=\"Betreff\" name=\"subject\">";
-				echo "<textarea id=\"message\" placeholder=\"Nachricht\"></textarea>";
+				
+				echo "<div class='input-container'>";
+					echo "<input id=\"name\" type=\"text\" placeholder=\"Name\" name=\"name\">";
+					echo "<span class=\"focus-border\"></span>";
+				echo "</div>";
+				
+				echo "<div class='input-container'>";
+					echo "<input id=\"mail\" type=\"text\" placeholder=\"E-Mail\" name=\"email\">";
+					echo "<span class=\"focus-border\"></span>";
+				echo "</div>";
+				
+				echo "<div class='input-container'>";
+					echo "<input id=\"subject\" type=\"text\" placeholder=\"Betreff\" name=\"subject\">";
+					echo "<span class=\"focus-border\"></span>";
+				echo "</div>";
+
+				echo '<div class="input-container">';
+					echo "<textarea id=\"message\" placeholder=\"Nachricht\"></textarea>";
+					echo '<span class="focus-border">';
+						echo '<i></i>';
+					echo '</span>';
+				echo '</div>';
+
 				echo "<input type=\"submit\" value=\"Abschicken\">";
 			echo "</form>";
 			$ret = ob_get_contents();

@@ -283,6 +283,15 @@
 
 					$stmt->execute();
 
+					if($_POST["sortArticleImages_".$res["short"]] != ""){
+						$sortValues = json_decode($_POST["sortArticleImages_".$res["short"]]);
+						foreach ($sortValues as $position => $imageId) {
+							$stmt = $this->db->prepare("UPDATE cms_article_content_image SET sort = ? WHERE article_content_image_id = ?");
+							$stmt->bind_param("ii", $position, $imageId);
+							$stmt->execute();
+						}
+					}
+
 					if($imageError){
 						cms_status($this->cT->get("wrong_filetype"), "#C00", false);
 					}else{
@@ -355,7 +364,6 @@
 							$this->addEditArticle();
 						}else{
 							$this->removeArticleImage();
-							$this->sortArticleImages();
 							$this->setArticleFieldValues();
 						}
 					}
@@ -464,7 +472,7 @@
 								while($stmt->fetch()){
 									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
 								}
-								$form->addImageGallery($images, true);
+								$form->addImageGallery($images, true, 'sortArticleImages_'.$res["short"]);
 							}
 						}
 

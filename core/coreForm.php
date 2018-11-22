@@ -58,8 +58,8 @@
 			$this->_fields[] = array("class"=>"row", "title"=>$value, "type"=>"submit", "name"=>$name);
 		}
 
-		public function addImageGallery($images, $sortable = false){
-			$this->_fields[] = array("class"=>"row", "type"=>"imageGallery", "value"=>$images, "sortable"=>$sortable);
+		public function addImageGallery($images, $sortable = false, $sortName = 'sortImages'){
+			$this->_fields[] = array("class"=>"row", "type"=>"imageGallery", "value"=>$images, "sortable"=>$sortable, "sortName"=>$sortName);
 		}
 
 		private function _renderText($field){
@@ -163,7 +163,7 @@
 		private function _renderImageGallery($field){
 			echo "<td colspan=\"2\">";
 				foreach ($field["value"] as $image) {
-					echo "<div class=\"image-gallery-element\" language=\"".$image["lang"]."\" image_id=\"".$image["id"]."\" onclick=\"cmsRemoveImage('".$image["path"]."', '".$image["id"]."');\" style=\"background-image: url('".$image["path"]."');\"><span></span></div>";
+					echo "<div class=\"image-gallery-element\" sortListName=\"".$field["sortName"]."\" language=\"".$image["lang"]."\" image_id=\"".$image["id"]."\" onclick=\"cmsRemoveImage('".$image["path"]."', '".$image["id"]."');\" style=\"background-image: url('".$image["path"]."');\"><span></span></div>";
 				}
 			echo "</td>";
 		}
@@ -207,6 +207,8 @@
 									if($row["sortable"]){
 										?>
 											<script type="text/javascript">
+												var sortName = '<?php echo $row["sortName"] ?>';
+												$("form.cms-form").append("<input type='hidden' class='"+sortName+"' name='"+sortName+"'>");
 												$("tr.imageGallery td").sortable({
 													update: function( event, ui ) {
 														var sortArray = {};
@@ -216,12 +218,9 @@
 															lang = $(this).attr("language");
 														});
 
-														var url = window.location.href.replace("&async=1", "");
-														console.log(lang);
-														$.post(url+"&async=1&sortImage=1", {"sort":sortArray, "language":lang}, function(data){
-															$("main").html(data);
-																init();
-														});
+														var listName = ui.item.attr("sortlistname");
+
+														$("."+listName).val(JSON.stringify(sortArray));
 													}
 												});
 											</script>

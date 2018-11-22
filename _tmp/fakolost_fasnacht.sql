@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2018 at 03:26 PM
+-- Generation Time: Nov 22, 2018 at 02:00 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -64,7 +64,7 @@ INSERT INTO `cms_article` (`article_id`, `navigation_fk`, `sort`, `is_active`, `
 (26, 29, 4, 0, 0, '2018-09-22 09:43:16'),
 (27, 29, 5, 0, 0, '2018-09-22 09:44:44'),
 (28, 29, 6, 0, 0, '2018-09-22 09:49:29'),
-(29, 29, 7, 1, 0, '2018-09-22 09:50:42'),
+(29, 29, 7, 0, 0, '2018-09-22 09:50:42'),
 (30, 30, 1, 1, 0, '2018-09-29 12:15:42'),
 (31, 30, 2, 1, 0, '2018-09-29 12:19:17'),
 (32, 30, 0, 0, 1, '2018-09-29 12:29:15'),
@@ -92,7 +92,7 @@ CREATE TABLE `cms_article_content` (
 --
 
 INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`, `article_title`, `text`, `timestamp`) VALUES
-(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf</h1>\n<p>Herzlich willkommen auf der offiziellen Webseite des Fasnachtsvereins Lostorf. Sch&ouml;n, dass Sie bei uns reinschauen.</p>\n<p>Auf unsere Webseite k&ouml;nnen Sie unter anderem alle Fotos unserer bisherigen Anl&auml;sse ansehen oder uns mithilfe des <a href="kontakt">Kontaktformulares</a>&nbsp;direkt eure Anfragen stellen.</p>\n<p>Desweiteren k&ouml;nnen Sie <a href="news">News</a>&nbsp;&uuml;ber unseren Verein sowie auch das aktuelle <a href="programm">Programm</a> einsehen, oder ein wenig etwas &uuml;ber die <a href="verein">Entstehung des Vereins</a> lesen.</p>', '2018-01-15 15:41:03'),
+(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf</h1>\n<p>Herzlich willkommen auf der offiziellen Webseite des Fasnachtsvereins Lostorf. Sch&ouml;n, dass Sie bei uns reinschauen.</p>\n<p>Auf unsere Webseite k&ouml;nnen Sie unter anderem alle Fotos unserer bisherigen Anl&auml;sse ansehen oder uns mithilfe des <a href="/de/kontakt">Kontaktformulares</a>&nbsp;direkt eure Anfragen stellen.</p>\n<p>Des Weiteren k&ouml;nnen Sie <a href="/de/news">News</a>&nbsp;&uuml;ber unseren Verein sowie auch das aktuelle <a href="/de/programm">Programm</a> einsehen, oder ein wenig etwas &uuml;ber die <a href="/de/verein">Entstehung des Vereins</a> lesen.</p>', '2018-01-15 15:41:03'),
 (3, 2, 1, 'Noch ein Artikel, mit titel', '<p>Das ist ein weiterer Artikel mit einer &Auml;nderung</p>\r\n<p><a href="../media/userdocuments/changesDev.txt" target="_blank">Ein Link auf eine Datei</a></p>', '2018-07-30 09:14:40'),
 (13, 7, 1, 'Kontakt', '<p>Das ist der Inhalt des Kontakt-dingens</p>\r\n<p><img src="../media/richtext/converse_shoes.jpg" alt="" width="320" height="201" /></p>', '2018-07-31 14:25:00'),
 (15, 8, 1, 'Anfahrt', '<p>Schauen Sie auf einen Besuch vorbei</p>\r\n<ul>\r\n<li>Auto:&nbsp;Unsere Anlagen sind mit dem Auto leider nicht zug&auml;nglich.</li>\r\n<li>&Ouml;ffentlicher Verkehr:&nbsp;Ein Bus f&auml;hrt jede Woche am Montag morgen um 02:10 Uhr im Industriegebiet.</li>\r\n<li>Zu Fuss: &Uuml;berqueren Sie die A1 und schwimmen Sie danach in der Aare gegen die Str&ouml;mung bis Sie unsere Firma auf der linken Seite hinter dem 2 Meter hohen Zaun erkennen k&ouml;nnen.</li>\r\n</ul>\r\n<p><img src="../media/richtext/583ae652e02ba71e008b6557-750.jpg" alt="" width="320" height="240" /></p>', '2018-07-31 14:26:50'),
@@ -102,7 +102,7 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 (23, 12, 1, 'Inhalt', '<p>Das ist Inhalt</p>', '2018-08-10 07:39:08'),
 (24, 13, 1, 'Kontakt', '<p><img src="../media/richtext/se&ntilde;or weble.png" alt="" width="250" height="348" /></p>\r\n<p>Hallo, ich bin der CEO der Weble-Studios.</p>\r\n<p>Wenn Sie Fragen zu einem unserer Produkte haben, kontaktieren Sie uns ungeniert mit einer der folgenden M&ouml;glichkeiten, oder schauen Sie bei uns direkt vorbei.</p>\r\n<p><a href="mailto:info@weble.ch">info@weble.ch</a></p>\r\n<p>Tel: +41 79 789 876 123<br />Fax: +41 79 789 876 124</p>\r\n<p>Weble Management<br />Se&ntilde;or Weble<br />CMS-Street 1994<br />2000 PownTown<br /><br /></p>', '2018-08-15 06:57:34'),
 (26, 14, 1, 'Geschichte', '<h1>Geschichte</h1>\n<p>Der "Fasnachtsverein Lostorf" wurde am 18. Oktober 2012 um ca. 22.00h im Rest. Wartenfels von Rolf Riesen, Ren&eacute; Knecht, Martin Lehmann und Philipp Baisotti gegr&uuml;ndet. Das Vereinslokal befindet sich an der Bachstrasse 40 in 4654 Lostorf.</p>\n<p>Die Fasnacht ist aus dem kulturellen Leben unserer Gemeinde nicht mehr wegzudenken. Seit Jahrzehnten war es immer ein Anliegen diverser Fako`s, die Dorffasnacht zu aktivieren und ihr neue Impulse zu verleihen. Es wird immer unser Ziel sein, auch mit anderen Fasnachtsgruppen, die zuk&uuml;nftigen n&auml;rrischen Tage ideenreich zu gestalten.</p>\n<p>Ohne die Mithilfe der Bev&ouml;lkerung und der Beh&ouml;rden sind unsere Ziele jedoch nicht realisierbar. Wir freuen uns immer wieder &uuml;ber die aktive Teilnahme vieler Lostorfer an unseren Veranstaltungen. Nur so k&ouml;nnen wir in Lostorf auch in den n&auml;chsten Jahrzehnten tolle Fasnachtstage erleben und geniessen.</p>\n<h2 style="text-align: left;">"daf&uuml;r m&ouml;chten wir uns bei allen recht herzlich bedanken"</h2>', '2018-08-21 05:54:50'),
-(28, 15, 1, 'Kontakt', '<h1>Vereinsadresse</h1>\n<p>Fasnachtsverein Lostorf<br />Bachstrasse 40<br />4654 Lostorf<br />Pr&auml;si: +41796944726</p>\n<h1>Kontaktformular</h1>\n<p>Haben Sie eine Frage oder ein anderes Anliegen? Treten Sie einfach mit uns in Kontakt indem Sie das unten stehende Formular ausf&uuml;llen und absenden. Wir werden Ihnen danach so schnell wie m&ouml;glich eine Antwort zukommen lassen.</p>\n<p>{kontakt_formular}</p>', '2018-08-21 05:56:22'),
+(28, 15, 1, 'Kontakt', '<h1>Vereinsadresse</h1>\n<p>Fasnachtsverein Lostorf<br />Bachstrasse 40<br />4654 Lostorf<br />Pr&auml;si: +41796944726</p>\n<h1>Kontaktformular</h1>\n<p>Haben Sie eine Frage oder ein anderes Anliegen? Treten Sie einfach mit uns in Kontakt indem Sie das untenstehende Formular ausf&uuml;llen und absenden. Wir werden Ihnen danach so schnell wie m&ouml;glich eine Antwort zukommen lassen.</p>\n<p>{kontakt_formular}</p>', '2018-08-21 05:56:22'),
 (30, 16, 1, 'Chesslete 2018', '', '2018-08-21 06:05:27'),
 (32, 17, 1, 'SchlÃ¼sselÃ¼bergabe 2018', '', '2018-08-21 06:35:07'),
 (34, 18, 1, 'Schmudo 2018', '', '2018-08-21 06:37:36'),
@@ -117,7 +117,7 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 (45, 27, 1, 'Sonntag 03.03.2019', '<p>Am Sonntag Trifft man den Fasnachtsverein Lostorf in Olten am Umzug an.</p>', '2018-09-22 09:44:44'),
 (46, 28, 1, 'Dienstag 05.03.2019', '<p>Am Dienstag 5.3.2019 Findet die Allj&auml;hrige Kinderfasnacht mit Umzug statt.<br />Der Umzug beginnt um 13.30 mit anschliessendem Festbetrieb im Zelt.</p>', '2018-09-22 09:49:29'),
 (47, 29, 1, 'Samstag 09.03.2019', '<p>Am Samstag 9.3.2019 schliessen wir die Fasnacht mit dem B&ouml;gverbrennen ab.</p>', '2018-09-22 09:50:42'),
-(48, 30, 1, 'Fasnachtsmotto 2019', '<p>Unser neues Motto f&uuml;r die Fasnacht 2019 Ist bekannt!<br />Zahlreiche Ideeen f&uuml;r ein neues Motto sind bei uns am Dorfm&auml;ret eingegangen.<br />Wir Freuen uns auf eure Ideeen und verkleidungen zum Motto:</p>\n<p><strong>Casino - Las Vegas feeling in Lostorf</strong>&nbsp;</p>\n<p>Wir gratulieren der Gewinnerin vom Wettberwerb,&nbsp;Sara Loosli, und w&uuml;nschen Ihr viel Spass im Kino!!</p>', '2018-09-29 12:15:42'),
+(48, 30, 1, 'Fasnachtsmotto 2019', '<p>Unser neues Motto f&uuml;r die Fasnacht 2019 ist bekannt!<br />Zahlreiche Ideen f&uuml;r ein neues Motto sind bei uns am Dorfm&auml;ret eingegangen.<br />Wir freuen uns auf eure Ideen und Verkleidungen zum Motto:</p>\n<p><strong>Casino - Las Vegas-Feeling in Lostorf</strong>&nbsp;</p>\n<p>Wir gratulieren der Gewinnerin vom Wettbewerb,&nbsp;Sarah Loosli, und w&uuml;nschen Ihr viel Spass im Kino!!</p>', '2018-09-29 12:15:42'),
 (49, 31, 1, 'Obernarr', '<p>Der diesj&auml;hrige Obernarr in Lostorf ist bekannt.</p>\n<p>WER IST ES WOHL?</p>\n<p>am 11.11 Wird der Obernarr bekannt gegeben.</p>\n<p>Seid dabei!</p>', '2018-09-29 12:19:17'),
 (50, 32, 1, 'test', '', '2018-09-29 12:29:15'),
 (51, 33, 1, 'Test', '<p>Test</p>', '2018-10-01 09:16:17'),
@@ -135,7 +135,7 @@ CREATE TABLE `cms_article_content_image` (
   `article_content_fk` int(11) NOT NULL,
   `lang_fk` int(11) NOT NULL,
   `image` varchar(500) COLLATE utf8_bin NOT NULL,
-  `sort` int(11) NOT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -175,7 +175,7 @@ INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_co
 (69, 19, 1, 'image (6).jpg', 0, '2018-08-21 06:39:02'),
 (70, 19, 1, 'image (7).jpg', 0, '2018-08-21 06:39:02'),
 (71, 19, 1, 'image.jpg', 0, '2018-08-21 06:39:02'),
-(82, 1, 1, 'image.jpg', 0, '2018-08-24 10:29:40'),
+(82, 1, 1, 'image.jpg', 1, '2018-08-24 10:29:40'),
 (84, 14, 1, '15260284628.jpg', 0, '2018-08-24 10:33:02'),
 (86, 14, 1, '1526028468.jpg', 0, '2018-08-24 10:34:10'),
 (89, 15, 1, 'DJI_0088_000012.jpg', 0, '2018-09-29 13:07:56'),
@@ -470,7 +470,7 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (18, 9, 2, 'Translations', '2018-09-19 12:20:46'),
 (19, 10, 1, 'Einstellungen', '2018-09-19 12:21:03'),
 (20, 10, 2, 'Settings', '2018-09-19 12:21:03'),
-(21, 11, 1, 'Zurück', '2018-09-19 12:22:15'),
+(21, 11, 1, 'ZurÃ¼ck', '2018-09-19 12:22:15'),
 (22, 11, 2, 'Back', '2018-09-19 12:22:16'),
 (27, 14, 1, 'Letzter Login:', '2018-09-19 12:39:31'),
 (28, 14, 2, 'Last login:', '2018-09-19 12:39:31'),
@@ -496,19 +496,19 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (48, 24, 2, 'New password', '2018-09-19 12:58:16'),
 (49, 25, 1, 'Neues Passwort wiederholen', '2018-09-19 12:58:36'),
 (50, 25, 2, 'Repeat new password', '2018-09-19 12:58:36'),
-(51, 26, 1, 'Passwort erfolgreich zurückgesetzt', '2018-09-19 13:01:16'),
+(51, 26, 1, 'Passwort erfolgreich zurÃ¼ckgesetzt', '2018-09-19 13:01:16'),
 (52, 26, 2, 'Password changed sucessfully', '2018-09-19 13:01:16'),
 (53, 27, 1, 'Ein unbekannter Fehler ist aufgetreten', '2018-09-19 13:02:08'),
 (54, 27, 2, 'An unknown error occured', '2018-09-19 13:02:08'),
-(55, 28, 1, 'Die Passwörter stimmen nicht überein oder sind kürzer als 6 Zeichen', '2018-09-19 13:02:50'),
+(55, 28, 1, 'Die PasswÃ¶rter stimmen nicht Ã¼berein oder sind kÃ¼rzer als 6 Zeichen', '2018-09-19 13:02:50'),
 (56, 28, 2, 'The provided passwords don\\\'t match or are less than 6 characters long', '2018-09-19 13:02:50'),
-(57, 29, 1, 'Passwort zurücksetzen', '2018-09-19 13:04:38'),
+(57, 29, 1, 'Passwort zurÃ¼cksetzen', '2018-09-19 13:04:38'),
 (58, 29, 2, 'Reset password', '2018-09-19 13:04:38'),
 (59, 30, 1, 'Benutzer nicht gefunden', '2018-09-19 13:05:35'),
 (60, 30, 2, 'User not found', '2018-09-19 13:05:35'),
 (61, 31, 1, 'Navigation', '2018-09-19 13:14:42'),
 (62, 31, 2, 'Navigation', '2018-09-19 13:14:42'),
-(63, 32, 1, 'Hier können Sie die Seiten und deren Inhalt bearbeiten, welche in dem Frontend dargestellt werden', '2018-09-19 13:15:25'),
+(63, 32, 1, 'Hier kÃ¶nnen Sie die Seiten und deren Inhalt bearbeiten, welche in dem Frontend dargestellt werden', '2018-09-19 13:15:25'),
 (64, 32, 2, 'Edit and manage the pages that will be displayed in the frontend', '2018-09-19 13:15:25'),
 (65, 33, 1, 'Unsichtbar', '2018-09-19 13:17:30'),
 (66, 33, 2, 'Invisible', '2018-09-19 13:17:30'),
@@ -516,7 +516,7 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (68, 34, 2, 'Pages', '2018-09-19 13:18:47'),
 (69, 35, 1, 'Titel', '2018-09-19 13:19:00'),
 (70, 35, 2, 'Title', '2018-09-19 13:19:00'),
-(71, 36, 1, 'Dieser Link ist nicht mehr gültig', '2018-09-19 13:21:55'),
+(71, 36, 1, 'Dieser Link ist nicht mehr gÃ¼ltig', '2018-09-19 13:21:55'),
 (72, 36, 2, 'This link is no longer valid', '2018-09-19 13:21:55'),
 (73, 37, 1, 'Artikel', '2018-09-19 13:23:49'),
 (74, 37, 2, 'Articles', '2018-09-19 13:23:49'),
@@ -530,13 +530,13 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (82, 41, 2, 'Content', '2018-09-19 13:28:31'),
 (83, 42, 1, 'Bearbeiten', '2018-09-19 13:30:38'),
 (84, 42, 2, 'Edit', '2018-09-19 13:30:38'),
-(85, 43, 1, 'Löschen', '2018-09-19 13:30:47'),
+(85, 43, 1, 'LÃ¶schen', '2018-09-19 13:30:47'),
 (86, 43, 2, 'Delete', '2018-09-19 13:30:47'),
 (87, 44, 1, 'Abmelden', '2018-09-19 15:35:42'),
 (88, 44, 2, 'Logout', '2018-09-19 15:35:42'),
 (89, 45, 1, 'Dokumente', '2018-09-19 15:37:10'),
 (90, 45, 2, 'Documents', '2018-09-19 15:37:10'),
-(91, 46, 1, 'Verwalten Sie hier die Dateien welche Sie auf der Webseite einbinden möchten', '2018-09-19 15:37:59'),
+(91, 46, 1, 'Verwalten Sie hier die Dateien welche Sie auf der Webseite einbinden mÃ¶chten', '2018-09-19 15:37:59'),
 (92, 46, 2, 'Manage the files here, that you\\\'d like to include in the frontend', '2018-09-19 15:37:59'),
 (93, 47, 1, 'Datei', '2018-09-19 15:38:39'),
 (94, 47, 2, 'File', '2018-09-19 15:38:39'),
@@ -544,17 +544,17 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (96, 48, 2, 'Files', '2018-09-19 15:39:14'),
 (97, 49, 1, 'Dateiname', '2018-09-19 15:39:20'),
 (98, 49, 2, 'Filename', '2018-09-19 15:39:21'),
-(101, 51, 1, 'Das Element wurde erfolgreich gelöscht', '2018-09-19 15:40:59'),
+(101, 51, 1, 'Das Element wurde erfolgreich gelÃ¶scht', '2018-09-19 15:40:59'),
 (102, 51, 2, 'The item was deleted successfully', '2018-09-19 15:40:59'),
-(103, 52, 1, 'Übersetzungen', '2018-09-19 15:41:50'),
+(103, 52, 1, 'Ãœbersetzungen', '2018-09-19 15:41:50'),
 (104, 52, 2, 'Translations', '2018-09-19 15:41:50'),
 (105, 53, 1, 'Verwalten Sie hier alle ÃœbersetzungsschlÃ¼ssel der Webseite und des Backends', '2018-09-19 15:42:25'),
 (106, 53, 2, 'Manage all the Translationkeys for the webpage and the backend here', '2018-09-19 15:42:25'),
 (107, 54, 1, 'Wert', '2018-09-19 15:43:25'),
 (108, 54, 2, 'Value', '2018-09-19 15:43:25'),
-(109, 55, 1, 'Übersetzung', '2018-09-19 15:44:30'),
+(109, 55, 1, 'Ãœbersetzung', '2018-09-19 15:44:30'),
 (110, 55, 2, 'Translation', '2018-09-19 15:44:30'),
-(113, 57, 1, 'Möchten Sie dieses Element wirklich löschen?', '2018-09-19 15:46:07'),
+(113, 57, 1, 'MÃ¶chten Sie dieses Element wirklich lÃ¶schen?', '2018-09-19 15:46:07'),
 (114, 57, 2, 'Do you really want to delete this item?', '2018-09-19 15:46:07'),
 (115, 58, 1, 'Einstellungen', '2018-09-19 15:56:31'),
 (116, 58, 2, 'Settings', '2018-09-19 15:56:31'),
@@ -574,17 +574,17 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (130, 65, 2, 'Password', '2018-09-19 16:01:16'),
 (131, 66, 1, 'Passwort wiederholen', '2018-09-19 16:01:34'),
 (132, 66, 2, 'Repeat password', '2018-09-19 16:01:34'),
-(133, 67, 1, 'Änderungen erfolgreich gespeichert', '2018-09-19 16:03:51'),
+(133, 67, 1, 'Ã„nderungen erfolgreich gespeichert', '2018-09-19 16:03:51'),
 (134, 67, 2, 'Changes saved successfully', '2018-09-19 16:03:51'),
-(135, 68, 1, 'Eintrag erfolgreich hinzugefügt', '2018-09-19 16:04:59'),
+(135, 68, 1, 'Eintrag erfolgreich hinzugefÃ¼gt', '2018-09-19 16:04:59'),
 (136, 68, 2, 'Entry added successfully', '2018-09-19 16:04:59'),
-(137, 69, 1, 'Sie können sich nicht selbst aus dem System entfernen', '2018-09-19 16:07:16'),
+(137, 69, 1, 'Sie kÃ¶nnen sich nicht selbst aus dem System entfernen', '2018-09-19 16:07:16'),
 (138, 69, 2, 'You cannot delete your own account', '2018-09-19 16:07:16'),
 (139, 70, 1, 'Unterseite von', '2018-09-19 16:09:52'),
 (140, 70, 2, 'Subpage of', '2018-09-19 16:09:52'),
 (141, 71, 1, 'Seitenbeschreibung', '2018-09-19 16:10:23'),
 (142, 71, 2, 'Page description', '2018-09-19 16:10:23'),
-(143, 72, 1, 'Stichwörter (kommagetrennt)', '2018-09-19 16:11:20'),
+(143, 72, 1, 'StichwÃ¶rter (kommagetrennt)', '2018-09-19 16:11:20'),
 (144, 72, 2, 'Keywords (comma separated)', '2018-09-19 16:11:20'),
 (145, 73, 1, 'Social-Media Bild', '2018-09-19 16:12:14'),
 (146, 73, 2, 'Social media image', '2018-09-19 16:12:14'),
@@ -616,11 +616,11 @@ CREATE TABLE `cms_user` (
 --
 
 INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `permission_level`, `last_login`, `is_active`, `is_disabled`, `timestamp`) VALUES
-(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-21 15:14:51', 1, 0, '2018-01-15 17:11:10'),
+(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-22 13:14:54', 1, 0, '2018-01-15 17:11:10'),
 (3, 1, 'gianreto', '$2y$10$0tulw.VZ7LjjmPGiYxA5guFxMkN9EsdIwozoJTrwfHIj6Nk4Gbx7e', 'gian.vd@gmx.ch', 1, '2018-11-01 20:26:07', 1, 0, '2018-08-20 08:15:37'),
-(4, 1, 'Fabi', '$2y$10$Tm//6beretN3v5q/.9adj.HLB2o6RWqgjSWUv7NMbFqS2UbJrbB5C', '', 0, '2018-11-01 20:42:28', 1, 0, '2018-08-23 20:32:04'),
+(4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-22 13:31:24', 1, 0, '2018-08-23 20:32:04'),
 (5, 1, 'test', '$2y$10$a3lE/bDKjILIpC59tQ4P5.XbRNmDaBFDIKT1VQbcYqkbz67cKJzk6', 'test@test.com', 0, '2018-09-27 15:42:49', 1, 0, '2018-08-24 12:02:57'),
-(6, 1, 'FaGi', '$2y$10$8KIjwVKePrVIAZhnP46ZBebdZ/FRjgaGY5xQIycfhdfp2gwX5wTAO', 'FaGi', 1, '2018-11-01 20:38:27', 1, 0, '2018-11-01 19:27:23');
+(6, 1, 'FaGi', '$2y$10$8KIjwVKePrVIAZhnP46ZBebdZ/FRjgaGY5xQIycfhdfp2gwX5wTAO', 'FaGi', 1, '2018-11-01 20:38:27', 1, 1, '2018-11-01 19:27:23');
 
 -- --------------------------------------------------------
 
@@ -4742,7 +4742,19 @@ INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `tim
 (4116, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 14:07:28'),
 (4117, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:46'),
 (4118, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:48'),
-(4119, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:50');
+(4119, '178.197.228.201', 0, 'WhatsApp/2.18.341 A', '2018-11-21 14:07:50'),
+(4120, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 15:42:18'),
+(4121, '2a02:120b:2c09:5820:f4bf:77ed:b86a:3dcc', 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon', '2018-11-21 17:15:53'),
+(4122, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-21 17:15:54'),
+(4123, '178.197.228.201', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-21 18:29:02'),
+(4124, '247.249.52.144', 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; Google Web Preview) Chrome/41.0.2272.118 Safari/537.36', '2018-11-21 20:01:40'),
+(4125, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 07:30:42'),
+(4126, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 07:30:44'),
+(4127, '178.197.234.55', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 07:31:29'),
+(4128, '178.197.234.55', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 07:32:16'),
+(4129, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 09:50:37'),
+(4130, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 11:54:41'),
+(4131, '212.101.25.246', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 12:31:30');
 
 -- --------------------------------------------------------
 
@@ -4769,7 +4781,7 @@ CREATE TABLE `tbl_appointment` (
 
 INSERT INTO `tbl_appointment` (`appointment_id`, `name`, `start_date`, `end_date`, `start_time`, `end_time`, `description`, `location`, `all_day`, `timestamp`) VALUES
 (8, 'Sitzung', '2018-09-06', '2018-09-06', '19:00:00', '00:00:00', '<p>Besprechung f&uuml;r den Dorfm&auml;ret am daraufkommenden Samstag 8.9.2018</p>', '', 0, '2018-09-22 07:35:21'),
-(9, 'Dorfmäret', '2018-09-08', '2018-09-08', '09:00:00', '17:00:00', '<p>D&ouml;rfm&auml;ret Lostorf</p>', '', 1, '2018-09-22 07:36:04'),
+(9, 'DorfmÃ¤ret', '2018-09-08', '2018-09-08', '09:00:00', '17:00:00', '<p>D&ouml;rfm&auml;ret Lostorf</p>', 'Lostorf', 1, '2018-09-22 07:36:04'),
 (10, 'Sitzung', '2018-09-13', '2018-09-13', '00:00:00', '00:00:00', '', '', 1, '2018-09-22 07:37:08'),
 (11, 'Sitzung', '2018-09-13', '2018-09-13', '19:00:00', '00:00:00', '<p>Nachbesprechung Dorfm&auml;ret, Auswahl Fasnachtsmotto</p>', '', 0, '2018-09-22 07:38:09'),
 (12, 'Sitzung', '2018-10-04', '2018-10-04', '19:00:00', '00:00:00', '<p>Sitzung</p>', 'Vereinslokal', 1, '2018-09-22 07:40:32'),
@@ -4906,7 +4918,7 @@ ALTER TABLE `cms_article_content`
 -- AUTO_INCREMENT for table `cms_article_content_image`
 --
 ALTER TABLE `cms_article_content_image`
-  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `cms_lang`
 --
@@ -4946,7 +4958,7 @@ ALTER TABLE `cms_user`
 -- AUTO_INCREMENT for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4120;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4132;
 --
 -- AUTO_INCREMENT for table `tbl_appointment`
 --

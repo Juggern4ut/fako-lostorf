@@ -28,8 +28,8 @@
 
 	if($_SERVER["REQUEST_METHOD"] === "POST"){
 		foreach ($_POST as $key=>$val) {
-			$search = array("'", 'href="media','src="media');
-			$replace = array("\'", 'href="/media','src="/media');
+			$search = array("'");
+			$replace = array("\'");
 			$_POST[$key] = str_replace($search, $replace, $val);
 		}
 	}

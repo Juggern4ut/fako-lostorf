@@ -9,6 +9,7 @@
 	border-collapse: collapse;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
+	outline: none;
 }
 
 strong, b{
@@ -367,19 +368,106 @@ main section.gallery{
 .slick-slider .slick-track, .slick-slider .slick-list { height: 100%; }
 
 /* FORM */
+
+form#contact-form input[type=text]{
+	outline: 0;
+	border: 0;
+    padding: 7px 11px;
+    border-bottom: 1px solid #ccc;
+	font: 15px "Roboto", Arial, sans-serif;
+	color: #333;
+	width: 100%;
+	box-sizing: border-box;
+	letter-spacing: 1px;
+}
+
+form#contact-form .input-container{
+    position: relative;
+}
+
+form#contact-form input[type=text] ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3399FF;
+    transition: 0.4s;
+}
+
+form#contact-form input[type=text]:focus ~ .focus-border {
+    width: 100%;
+}
+
+form#contact-form textarea {
+    font: 15px/24px "Roboto", Arial, sans-serif;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    transition: none;
+    border: 1px solid #ccc;
+    padding: 7px 14px 9px;
+    transition: 0.4s;
+}
+
+form#contact-form textarea:focus ~ .focus-border:before, textarea:focus ~ .focus-border:after {
+	left: 0;
+	width: 100%;
+}
+
+form#contact-form textarea ~ .focus-border:before, textarea ~ .focus-border:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #3399FF;
+    transition: 0.4s;
+}
+
+form#contact-form textarea:focus ~ .focus-border i:before, textarea:focus ~ .focus-border i:after {
+	top: 0;
+	height: 100%;
+}
+
+form#contact-form textarea ~ .focus-border i:before, textarea ~ .focus-border i:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 2px;
+	height: 0;
+	background-color: #3399FF;
+	transition: 0.6s;
+}
+
+form#contact-form textarea ~ .focus-border i:after {
+	left: auto;
+	right: 0;
+}
+
+form#contact-form textarea ~ .focus-border:after {
+	top: auto;
+	bottom: 0px;
+}
+
 form#contact-form input,
 form#contact-form textarea,
 form#contact-form label{
 	display: block;
-    width: calc(100% - 22px);
-    border: 1px solid #ddd;
+	width: calc(100% - 22px);
+	border: 1px solid #ddd;
 	margin-bottom: 10px;
 	padding: 10px;
 	resize: none;
+	font-weight: 300 !important;
 }
 
 form#contact-form textarea{
 	height: 150px;
+	width: 100%;
 }
 
 form#contact-form input[type="submit"], form#contact-form label {

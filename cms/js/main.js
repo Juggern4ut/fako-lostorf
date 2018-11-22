@@ -342,6 +342,8 @@ function richtexteditor(){
 		statusbar : false,
 		menubar : false,
 		a_configuration_option: 400,
+		relative_urls : false,
+		remove_script_host : true,
 		branding: false,
 		file_picker_callback: function(callback, value, meta) {
 			myFileBrowser (callback, value, meta);
