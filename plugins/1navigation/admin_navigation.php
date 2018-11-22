@@ -265,12 +265,17 @@
 						@mkdir("media/navigation/".$id);
 						@mkdir("media/navigation/".$id."/".$res["short"]);
 
+						@mkdir("media/navigation_thumbs/".$id);
+						@mkdir("media/navigation_thumbs/".$id."/".$res["short"]);
+
 						$imageResizer = new coreImageResizer();
 
 						$imageError = false;
 						for($i = 0; $i < count($_FILES["image_".$res["short"]]["name"]); $i++){
 							try{
 								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$_FILES["image_".$res["short"]]["name"][$i], 1920, 1080);
+								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation_thumbs/".$id."/".$res["short"]."/".$_FILES["image_".$res["short"]]["name"][$i], 480, 320);
+								
 								$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
 								$stmt2->bind_param("iis", $id, $res["lang_id"], $_FILES["image_".$res["short"]]["name"][$i]);
 								$stmt2->execute();
@@ -312,7 +317,13 @@
 					$stmt->execute();
 					
 					if(file_exists($file)){
-						unlink($file);
+						if(strpos($_GET["cmsRemoveImage"], "/media/navigation_thumbs/") === 0){
+							@unlink($file);
+							@unlink(str_replace("/navigation_thumbs/", "/navigation/", $file));
+						}else{
+							@unlink($file);
+							@unlink(str_replace("/navigation/", "/navigation_thumbs/", $file));
+						}
 					}
 				}
 			}
@@ -470,7 +481,14 @@
 								$stmt->bind_result($image_id, $image, $sort);
 
 								while($stmt->fetch()){
-									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+									$tmpDir = str_replace("navigation", "navigation_thumbs", $dir);
+
+									if(file_exists($tmpDir."/".$image)){
+										$images[] = array("path"=>"/".$tmpDir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+									}elseif(file_exists($dir."/".$image)){
+										$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+									}
+
 								}
 								$form->addImageGallery($images, true, 'sortArticleImages_'.$res["short"]);
 							}

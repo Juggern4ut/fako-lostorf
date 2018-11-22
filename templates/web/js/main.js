@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	mobileNavLinks();
 
+	$("body").swipebox({selector:'.swipebox'});
+
 	$("header > section").slick({
 		dots: false,
 		arrows: false,

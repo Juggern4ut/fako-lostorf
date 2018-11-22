@@ -101,7 +101,13 @@
 				$stmt2->bind_result($image, $lang_fk);
 
 				while($stmt2->fetch()){	
-					$tmp["images"][] = "media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+					if(file_exists("media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
+						$tmp["images"][] = "media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+					}
+
+					if(file_exists("media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
+						$tmp["images_thumbs"][] = "media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+					}
 				}
 				
 				$stmt2->close();

@@ -116,6 +116,7 @@
 		
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/styles.css">
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/slick.css">
+		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/swipebox.min.css">
 
 		<link rel="icon" href="/favicon.png" type="image/png">
 		<link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -125,6 +126,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/main.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/templates/web/js/jquery.swipebox.min.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 	<body>
@@ -240,7 +242,9 @@
 						echo "<br />";
 						echo "<section class=\"gallery\">";
 							foreach ($content["images"] as $image) {
-								echo "<article style=\"background-image: url('/".$image."')\"></article>";
+								echo "<a href='/".$image."' class='swipebox'>";
+									echo "<article style=\"background-image: url('/".$image."')\"></article>";
+								echo "</a>";
 							}
 						echo "</section>";
 					}

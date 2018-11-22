@@ -538,6 +538,7 @@ nav.open{
 		display: block;
 		max-width: 1240px;
 		margin: 100px auto 100px auto;
+		width: calc(100% - 40px);
 	}
 
 	main h1{
