@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2018 at 02:00 PM
+-- Generation Time: Nov 23, 2018 at 11:29 AM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cms_article` (
   `article_id` int(11) NOT NULL,
   `navigation_fk` int(11) NOT NULL,
-  `sort` int(11) NOT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
   `is_active` tinyint(4) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -220,7 +220,7 @@ INSERT INTO `cms_lang` (`lang_id`, `short`, `name`, `timestamp`) VALUES
 CREATE TABLE `cms_navigation` (
   `navigation_id` int(11) NOT NULL,
   `navigation_fk` int(11) NOT NULL,
-  `sort` int(11) NOT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
   `is_active` tinyint(4) NOT NULL,
   `is_invisible` tinyint(4) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
@@ -267,7 +267,9 @@ INSERT INTO `cms_navigation` (`navigation_id`, `navigation_fk`, `sort`, `is_acti
 (33, 24, 4, 1, 0, 0, '2018-09-22 06:49:55'),
 (34, 24, 12, 1, 0, 0, '2018-09-22 06:52:12'),
 (35, 34, 13, 1, 0, 0, '2018-10-01 07:55:46'),
-(36, 0, 0, 0, 0, 1, '2018-11-20 14:04:44');
+(36, 0, 0, 0, 0, 1, '2018-11-20 14:04:44'),
+(37, 0, 0, 0, 0, 1, '2018-11-23 10:23:19'),
+(38, 24, 0, 1, 0, 0, '2018-11-23 10:24:00');
 
 -- --------------------------------------------------------
 
@@ -326,7 +328,12 @@ INSERT INTO `cms_navigation_title` (`navigation_title_id`, `navigation_fk`, `lan
 (62, 33, 1, 'Fasnacht 2018', 'fasnacht-2018', '', '', '2018-09-22 09:42:59'),
 (63, 34, 1, 'Fasnacht 2019', 'fasnacht-2019', '', '', '2018-09-22 09:43:05'),
 (64, 35, 1, 'Chesslete 2019', 'chesslete-2019', '', '', '2018-10-01 07:55:46'),
-(65, 36, 1, 'Test', 'test', 'Testpage', 'test, page', '2018-11-20 14:04:44');
+(65, 36, 1, 'Test', 'test', 'Testpage', 'test, page', '2018-11-20 14:04:44'),
+(66, 0, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Gallerie der Fasnacht im Jahre 2017', 'Fasnacht, Fasnacht 2017, Lostorf, Fasnachtsverein, Bilder, Gallerie', '2018-11-23 10:20:36'),
+(67, 0, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Fotos des Fasnachtsverein Lostorf der Fasnacht 2017', '', '2018-11-23 10:22:06'),
+(68, 0, 1, 'Test', 'test', '', '', '2018-11-23 10:22:59'),
+(69, 37, 1, 'test', 'test', '', '', '2018-11-23 10:23:20'),
+(70, 38, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Fotogallerie des Fasnachtverein Lostorf der Fasnacht 2017', 'Fasnacht, Fasnacht 2017, Gallerie, Fotos, Bilder, Lostorf, Fasnachtsverein Lostorf, Fasnachtsverein', '2018-11-23 10:24:39');
 
 -- --------------------------------------------------------
 
@@ -616,9 +623,9 @@ CREATE TABLE `cms_user` (
 --
 
 INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `permission_level`, `last_login`, `is_active`, `is_disabled`, `timestamp`) VALUES
-(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-22 13:14:54', 1, 0, '2018-01-15 17:11:10'),
+(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-23 11:19:33', 1, 0, '2018-01-15 17:11:10'),
 (3, 1, 'gianreto', '$2y$10$0tulw.VZ7LjjmPGiYxA5guFxMkN9EsdIwozoJTrwfHIj6Nk4Gbx7e', 'gian.vd@gmx.ch', 1, '2018-11-01 20:26:07', 1, 0, '2018-08-20 08:15:37'),
-(4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-22 13:31:24', 1, 0, '2018-08-23 20:32:04'),
+(4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-22 15:37:24', 1, 0, '2018-08-23 20:32:04'),
 (5, 1, 'test', '$2y$10$a3lE/bDKjILIpC59tQ4P5.XbRNmDaBFDIKT1VQbcYqkbz67cKJzk6', 'test@test.com', 0, '2018-09-27 15:42:49', 1, 0, '2018-08-24 12:02:57'),
 (6, 1, 'FaGi', '$2y$10$8KIjwVKePrVIAZhnP46ZBebdZ/FRjgaGY5xQIycfhdfp2gwX5wTAO', 'FaGi', 1, '2018-11-01 20:38:27', 1, 1, '2018-11-01 19:27:23');
 
@@ -4754,7 +4761,27 @@ INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `tim
 (4128, '178.197.234.55', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 07:32:16'),
 (4129, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 09:50:37'),
 (4130, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 11:54:41'),
-(4131, '212.101.25.246', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 12:31:30');
+(4131, '212.101.25.246', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 12:31:30'),
+(4132, '212.101.25.246', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 14:30:42'),
+(4133, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 14:36:35'),
+(4134, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-22 15:43:17'),
+(4135, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '2018-11-22 17:43:31'),
+(4136, '178.197.234.55', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 17:47:54'),
+(4137, '178.197.228.56', 0, 'WhatsApp/2.18.327 A', '2018-11-22 18:31:15'),
+(4138, '178.197.228.56', 0, 'WhatsApp/2.18.327 A', '2018-11-22 18:31:17'),
+(4139, '178.197.228.56', 0, 'WhatsApp/2.18.327 A', '2018-11-22 18:31:19'),
+(4140, '178.197.228.56', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', '2018-11-22 18:31:22'),
+(4141, '178.197.228.56', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', '2018-11-22 18:32:48'),
+(4142, '178.197.228.56', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', '2018-11-22 18:58:05'),
+(4143, '178.197.235.251', 1, 'Mozilla/5.0 (Linux; Android 8.1.0; CLT-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 19:47:24'),
+(4144, '178.197.234.55', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', '2018-11-22 19:51:16'),
+(4145, '178.197.229.9', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', '2018-11-22 19:51:34'),
+(4146, '51.15.191.81', 0, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0', '2018-11-22 21:08:25'),
+(4147, '212.83.146.233', 0, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0', '2018-11-22 23:09:32'),
+(4148, '62.4.14.198', 0, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0', '2018-11-22 23:09:38'),
+(4149, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '2018-11-23 06:41:24'),
+(4150, '178.197.232.206', 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon', '2018-11-23 07:24:51'),
+(4151, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 10:19:12');
 
 -- --------------------------------------------------------
 
@@ -4928,12 +4955,12 @@ ALTER TABLE `cms_lang`
 -- AUTO_INCREMENT for table `cms_navigation`
 --
 ALTER TABLE `cms_navigation`
-  MODIFY `navigation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `navigation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `cms_navigation_title`
 --
 ALTER TABLE `cms_navigation_title`
-  MODIFY `navigation_title_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `navigation_title_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `cms_password_reset`
 --
@@ -4958,7 +4985,7 @@ ALTER TABLE `cms_user`
 -- AUTO_INCREMENT for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4132;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4152;
 --
 -- AUTO_INCREMENT for table `tbl_appointment`
 --

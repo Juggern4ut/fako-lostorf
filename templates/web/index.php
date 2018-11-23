@@ -222,7 +222,7 @@
 						}
 					echo "</section>";
 				//NEWS
-				}elseif($primaryId == 30){
+				}elseif($primaryId == 30 || $primaryId == 29){
 					echo "<div id='news'>";
 						foreach ($contents as $content) {
 							echo "<article class='news'>";
@@ -248,20 +248,7 @@
 							}
 						echo "</section>";
 					}
-				//PROGRAMM
-				}elseif($primaryId == 29){
-					echo "<div id='program'>";
-						echo "<h1>Fasnachts Programm - 2019</h1>";
-						echo "<p>Das genaue Programm befindet sich derzeit noch in der Planung. Das finale Programm wird gewöhnlich kurz vor Ende Jahr veröffentlicht, bitte besuchen Sie uns wieder.</p>";
-						foreach ($contents as $content) {
-							echo "<section class='program'>";
-								echo "<h2>".$content["title"]."</h2>";
-								echo $content["content"];
-							echo "</section>";
-						}
-					echo "</div>";
 				}
-
 			?>
 		</main>
 		<footer>
