@@ -258,6 +258,7 @@ main{
 	width: calc(100% - 40px);
 	margin: 0px auto;
 	line-height: 1.6;
+	padding-bottom: 100px;
 }
 
 main p{
@@ -345,7 +346,7 @@ article.news h3 span.moreLess{
 }
 
 main > div#news article h3:hover{
-	background-color: #ccc;
+	background-color: #f0f0f0;
 	color: #000;
 }
 
@@ -487,6 +488,10 @@ form#contact-form input[type="submit"]:hover{
 form#contact-form label{
 	width: 298px;
 	text-align: center;
+}
+
+form#contact-form .g-recaptcha {
+    margin-bottom: 8px;
 }
 
 /* FOOTER */

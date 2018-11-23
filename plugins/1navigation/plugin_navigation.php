@@ -38,6 +38,8 @@
 					echo '</span>';
 				echo '</div>';
 
+				echo '<div class="g-recaptcha" data-sitekey="6LfJhXwUAAAAACk-GbDFudHNd3rkhQfuWWN4URBC"></div>';
+
 				echo "<input type=\"submit\" value=\"Abschicken\">";
 			echo "</form>";
 			$ret = ob_get_contents();
@@ -181,10 +183,21 @@
 				$message = $_POST["message"];
 				$from = "fasnacht@losdorf.ch";
 
-				$body = file_get_contents("templates/mail_templates/contact_form.html");
-				$body = str_replace(array("{{timestamp}}","{{name}}","{{mail}}","{{subject}}","{{message}}"), array(date("d.m.Y H:i"), $name, $mail, $subject, $message), $body);
+				$recaptcha = $_POST["grecaptcha"];
+				$secret="6LfJhXwUAAAAAPvaq0E8VpvDklcRycaaPWt0_zBJ";
 
-				$cm->send($recipient, $subject, $body, $from);
+				$verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha}");
+				$captcha_success=json_decode($verify);
+
+				if($captcha_success->success==true) {
+					$body = file_get_contents("templates/mail_templates/contact_form.html");
+					$body = str_replace(array("{{timestamp}}","{{name}}","{{mail}}","{{subject}}","{{message}}"), array(date("d.m.Y H:i"), $name, $mail, $subject, $message), $body);
+
+					$cm->send($recipient, $subject, $body, $from);
+					echo "1";
+				}else{
+					echo "0";
+				}
 			}
 		}
 	}

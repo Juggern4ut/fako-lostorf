@@ -51,11 +51,27 @@ $(document).ready(function(){
 		var mail = $("#mail").val();
 		var subject = $("#subject").val();
 		var message = $("#message").val();
+		var captchaResponse = grecaptcha.getResponse();
 
-		$.post("/?async=1", {"contact-form":"sent", "message":message, "name":name, "mail":mail, "subject":subject}, function(data){
-			$("#contact-form").slideUp();
-			$("#contact-form").after("<h3 style=\"display: none;\" class='form-status'>Ihre Kontaktanfrage wurde erfolgreich versandt.</h3>");
-			$(".form-status").slideDown();
+		$.post("/?async=1", {"contact-form":"sent", "message":message, "name":name, "mail":mail, "subject":subject, "grecaptcha":captchaResponse}, function(data){
+			console.log(data);
+			if(data == 1){
+				$("#contact-form").slideUp();
+				$("#contact-form").after("<h3 style=\"display: none;\" class='form-status'>Ihre Kontaktanfrage wurde erfolgreich versandt.</h3>");
+				$(".form-status").slideDown();
+			}else{
+				$(".g-recaptcha").after("<h3 style=\"display: none;\" class='form-error'>Bitte aktivieren sie das ReCaptcha.</h3>");
+				$(".form-error").slideDown();
+				
+				setTimeout(function(){
+					$(".form-error").slideUp(function(){
+						$(".form-error").remove();
+					});
+				}, 2500);
+
+				$("#contact-form > label").remove();
+				$("#contact-form").append('<input type="submit" value="Abschicken">');
+			}
 		});
 	});
 

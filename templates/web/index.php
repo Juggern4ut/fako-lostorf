@@ -127,7 +127,7 @@
 		<script src="/templates/web/js/main.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/jquery.swipebox.min.js" type="text/javascript" charset="utf-8"></script>
-
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 	<body>
 		<?php
