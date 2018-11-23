@@ -26,8 +26,6 @@ $(document).ready(function(){
 
 	$("main > div#news article h3").click(function(){
 		if($(this).parent().find("section").is(":hidden")){
-			$("main > div#news article section").slideUp();
-			$("main > div#news article h3 span.moreLess").html("» mehr");
 			$(this).parent().find("section").slideDown(200);
 			$(this).find("span.moreLess").html("« weniger");
 		}else{
