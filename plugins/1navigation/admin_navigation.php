@@ -19,7 +19,7 @@
 
 			public function navigation(&$table,$fs,$stage=0,$elements=0) {
 
-				$query = "SELECT n.navigation_id, n.navigation_fk, nt.title, n.is_active, n.is_invisible FROM cms_navigation AS n LEFT JOIN cms_navigation_title AS nt ON n.navigation_id = nt.navigation_fk WHERE n.navigation_fk = '".$fs."' AND nt.lang_fk = '".$this->_userLang."' AND n.is_deleted = 0 ORDER BY sort ASC";
+				$query = "SELECT n.navigation_id, n.navigation_fk, nt.title, n.is_active, n.is_invisible, n.is_errorpage FROM cms_navigation AS n LEFT JOIN cms_navigation_title AS nt ON n.navigation_id = nt.navigation_fk WHERE n.navigation_fk = '".$fs."' AND nt.lang_fk = '".$this->_userLang."' AND n.is_deleted = 0 ORDER BY sort ASC";
 				
 				$q = $this->db->query($query);
 				
@@ -29,8 +29,9 @@
 					$div_end = "</div>";
 					$invisible = $res["is_invisible"] == 1 ? " <i style=\"color: #444; padding-left: 10px;\"> ".$this->cT->get("navigation_invisible")." </i>" : "";
 					$inactive = $res["is_active"] == 0 ? " <i style=\"color: #444; padding-left: 10px;\"> ".$this->cT->get("navigation_inactive")." </i>" : "";
+					$errorpage = $res["is_errorpage"] == 1 ? " <i style=\"color: #A44; padding-left: 10px;\"> ".$this->cT->get("navigation_errorpage")." </i>" : "";
 
-					$table->addRow(array("<a href=\"/?admin=1&module=navigation&articles=".$res["navigation_id"]."\">".$div_start.$res["title"].$invisible.$inactive.$div_end."</a>"), 
+					$table->addRow(array("<a href=\"/?admin=1&module=navigation&articles=".$res["navigation_id"]."\">".$div_start.$res["title"].$invisible.$inactive.$errorpage.$div_end."</a>"), 
 						array(
 							array("link"=>"edit=".$res["navigation_id"], "name"=>$this->cT->get("global_edit")),
 							array("link"=>"rmv=".$res["navigation_id"], "name"=>$this->cT->get("global_remove"), "confirmDialog"=>$this->cT->get("global_confirm_delete"), "async"=>"1")
@@ -104,17 +105,22 @@
 			private function addEditNavigation(){
 				$is_active = isset($_POST["is_active"]) ? 1 : 0;
 				$is_invisible = isset($_POST["is_invisible"]) ? 1 : 0;
+				$is_errorpage = isset($_POST["is_errorpage"]) ? 1 : 0;
 				$child_of = (int)$_POST["child_of"];
 
+				if(isset($_POST["is_errorpage"])){
+					$this->db->query("UPDATE cms_navigation SET is_errorpage = 0");
+				}
+
 				if(isset($_GET["add"])){
-					$stmt = $this->db->prepare("INSERT INTO cms_navigation (is_active, is_deleted, navigation_fk, is_invisible) VALUES (?,'0',?,?)");
-					$stmt->bind_param("iii", $is_active, $child_of, $is_invisible);
+					$stmt = $this->db->prepare("INSERT INTO cms_navigation (is_active, is_deleted, navigation_fk, is_invisible, is_errorpage) VALUES (?,'0',?,?,?)");
+					$stmt->bind_param("iiii", $is_active, $child_of, $is_invisible, $is_errorpage);
 					$stmt->execute();
 					$id = $this->db->insert_id;
 				}else{
 					$id = $_GET["edit"];
-					$stmt = $this->db->prepare("UPDATE cms_navigation SET is_invisible = ?, is_active = ?, navigation_fk = ? WHERE navigation_id = ?");
-					$stmt->bind_param("iiii", $is_invisible, $is_active, $_POST["child_of"], $id);
+					$stmt = $this->db->prepare("UPDATE cms_navigation SET is_invisible = ?, is_active = ?, navigation_fk = ?, is_errorpage = ? WHERE navigation_id = ?");
+					$stmt->bind_param("iiiii", $is_invisible, $is_active, $_POST["child_of"], $is_errorpage, $id);
 					$stmt->execute();
 				}
 
@@ -175,10 +181,10 @@
 			}
 
 			private function setNavigationFieldValues(){
-				$stmt = $this->db->prepare("SELECT nt.title, nt.lang_fk, n.is_active, n.navigation_fk, n.is_invisible, nt.description, nt.keywords FROM cms_navigation_title AS nt LEFT JOIN cms_navigation AS n ON nt.navigation_fk = n.navigation_id WHERE nt.navigation_fk = ?");
+				$stmt = $this->db->prepare("SELECT nt.title, nt.lang_fk, n.is_active, n.navigation_fk, n.is_invisible, nt.description, nt.keywords, n.is_errorpage FROM cms_navigation_title AS nt LEFT JOIN cms_navigation AS n ON nt.navigation_fk = n.navigation_id WHERE nt.navigation_fk = ?");
 				$stmt->bind_param("i", $_GET["edit"]);
 				$stmt->execute();
-				$stmt->bind_result($title, $lang, $active, $nav_fk, $invisible, $description, $keywords);
+				$stmt->bind_result($title, $lang, $active, $nav_fk, $invisible, $description, $keywords, $errorpage);
 				while($stmt->fetch()){
 					$_POST["title_".$lang] = $title;
 					$_POST["description_".$lang] = $description;
@@ -186,6 +192,7 @@
 					$_POST["child_of"] = $nav_fk;
 					$_POST["is_active"] = $active == 1 ? "1" : null;
 					$_POST["is_invisible"] = $invisible == 1 ? "1" : null;
+					$_POST["is_errorpage"] = $errorpage == 1 ? "1" : null;
 				}
 			}
 
@@ -413,6 +420,7 @@
 
 						$form->addCheckbox("Aktiv", "is_active");
 						$form->addCheckbox($this->cT->get("navigation_invisible"), "is_invisible");
+						$form->addCheckbox($this->cT->get("navigation_errorpage"), "is_errorpage");
 						$form->addSelect($this->cT->get("navigation_child_of"), "child_of", $pages);
 
 						while($res = $q->fetch_assoc()){

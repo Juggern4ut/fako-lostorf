@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2018 at 11:29 AM
+-- Generation Time: Nov 23, 2018 at 02:27 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -84,7 +84,7 @@ CREATE TABLE `cms_article_content` (
   `lang_fk` int(11) NOT NULL,
   `article_title` varchar(100) COLLATE utf8_bin NOT NULL,
   `text` text COLLATE utf8_bin NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -92,13 +92,13 @@ CREATE TABLE `cms_article_content` (
 --
 
 INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`, `article_title`, `text`, `timestamp`) VALUES
-(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf</h1>\n<p>Herzlich willkommen auf der offiziellen Webseite des Fasnachtsvereins Lostorf. Sch&ouml;n, dass Sie bei uns reinschauen.</p>\n<p>Auf unsere Webseite k&ouml;nnen Sie unter anderem alle Fotos unserer bisherigen Anl&auml;sse ansehen oder uns mithilfe des <a href="/de/kontakt">Kontaktformulares</a>&nbsp;direkt eure Anfragen stellen.</p>\n<p>Des Weiteren k&ouml;nnen Sie <a href="/de/news">News</a>&nbsp;&uuml;ber unseren Verein sowie auch das aktuelle <a href="/de/programm">Programm</a> einsehen, oder ein wenig etwas &uuml;ber die <a href="/de/verein">Entstehung des Vereins</a> lesen.</p>', '2018-01-15 15:41:03'),
+(1, 1, 1, 'Home', '<h1>Willkommen beim Fasnachtsverein Lostorf</h1>\n<p>Herzlich willkommen auf der offiziellen Webseite des Fasnachtsvereins Lostorf. Sch&ouml;n, dass Sie bei uns reinschauen.</p>\n<p>Auf unsere Webseite k&ouml;nnen Sie unter anderem alle Fotos unserer bisherigen Anl&auml;sse ansehen oder uns mithilfe des <a href="/de/kontakt">Kontaktformulares</a>&nbsp;direkt eure Anfragen stellen.</p>\n<p>Des Weiteren k&ouml;nnen Sie <a href="/de/news">News</a>&nbsp;&uuml;ber unseren Verein sowie auch das aktuelle <a href="/de/programm">Programm</a> einsehen, oder ein wenig etwas &uuml;ber die <a href="/de/verein">Entstehung des Vereins</a> lesen.</p>', '2018-11-23 11:19:25'),
 (3, 2, 1, 'Noch ein Artikel, mit titel', '<p>Das ist ein weiterer Artikel mit einer &Auml;nderung</p>\r\n<p><a href="../media/userdocuments/changesDev.txt" target="_blank">Ein Link auf eine Datei</a></p>', '2018-07-30 09:14:40'),
 (13, 7, 1, 'Kontakt', '<p>Das ist der Inhalt des Kontakt-dingens</p>\r\n<p><img src="../media/richtext/converse_shoes.jpg" alt="" width="320" height="201" /></p>', '2018-07-31 14:25:00'),
 (15, 8, 1, 'Anfahrt', '<p>Schauen Sie auf einen Besuch vorbei</p>\r\n<ul>\r\n<li>Auto:&nbsp;Unsere Anlagen sind mit dem Auto leider nicht zug&auml;nglich.</li>\r\n<li>&Ouml;ffentlicher Verkehr:&nbsp;Ein Bus f&auml;hrt jede Woche am Montag morgen um 02:10 Uhr im Industriegebiet.</li>\r\n<li>Zu Fuss: &Uuml;berqueren Sie die A1 und schwimmen Sie danach in der Aare gegen die Str&ouml;mung bis Sie unsere Firma auf der linken Seite hinter dem 2 Meter hohen Zaun erkennen k&ouml;nnen.</li>\r\n</ul>\r\n<p><img src="../media/richtext/583ae652e02ba71e008b6557-750.jpg" alt="" width="320" height="240" /></p>', '2018-07-31 14:26:50'),
 (17, 9, 1, 'Neuer Artikel', '<p>Mit Bilder&nbsp;</p>', '2018-08-02 11:54:14'),
 (19, 10, 1, 'Über uns', '<p>Wir sind die Weble AG</p>\r\n<p>Schon seit vielen vielen Stunden bieten wir Dienstleistungen und Produkte zum Verkauf an.</p>\r\n<p>Zu unserem Sortiment geh&ouml;ren viele n&uuml;tzliche Produkte f&uuml;r den Alltag wie zum Beipsiel&nbsp;⍰⍰⍰⍰ oder auch das beliebte&nbsp;⍰⍰⍰⍰⍰⍰⍰⍰⍰</p>\r\n<p><img src="../media/richtext/theComaRecut.jpg" alt="" width="150" height="148" /></p>', '2018-08-07 08:13:14'),
-(21, 11, 1, '404 - Seite nicht gefunden', '<h1>404 - Seite nicht gefunden</h1>\n<p>Die von Ihnen aufgerufene Seite konnte leider nicht gefunden werden.</p>\n<p><a title="Home" href="de/home">Home</a></p>', '2018-08-07 08:54:22'),
+(21, 11, 1, '404 - Seite nicht gefunden', '<h1>404 - Seite nicht gefunden</h1>\n<p>Die von Ihnen aufgerufene Seite konnte leider nicht gefunden werden.</p>\n<p><a title="Home" href="/de/home">Home</a></p>', '2018-11-23 13:25:31'),
 (23, 12, 1, 'Inhalt', '<p>Das ist Inhalt</p>', '2018-08-10 07:39:08'),
 (24, 13, 1, 'Kontakt', '<p><img src="../media/richtext/se&ntilde;or weble.png" alt="" width="250" height="348" /></p>\r\n<p>Hallo, ich bin der CEO der Weble-Studios.</p>\r\n<p>Wenn Sie Fragen zu einem unserer Produkte haben, kontaktieren Sie uns ungeniert mit einer der folgenden M&ouml;glichkeiten, oder schauen Sie bei uns direkt vorbei.</p>\r\n<p><a href="mailto:info@weble.ch">info@weble.ch</a></p>\r\n<p>Tel: +41 79 789 876 123<br />Fax: +41 79 789 876 124</p>\r\n<p>Weble Management<br />Se&ntilde;or Weble<br />CMS-Street 1994<br />2000 PownTown<br /><br /></p>', '2018-08-15 06:57:34'),
 (26, 14, 1, 'Geschichte', '<h1>Geschichte</h1>\n<p>Der "Fasnachtsverein Lostorf" wurde am 18. Oktober 2012 um ca. 22.00h im Rest. Wartenfels von Rolf Riesen, Ren&eacute; Knecht, Martin Lehmann und Philipp Baisotti gegr&uuml;ndet. Das Vereinslokal befindet sich an der Bachstrasse 40 in 4654 Lostorf.</p>\n<p>Die Fasnacht ist aus dem kulturellen Leben unserer Gemeinde nicht mehr wegzudenken. Seit Jahrzehnten war es immer ein Anliegen diverser Fako`s, die Dorffasnacht zu aktivieren und ihr neue Impulse zu verleihen. Es wird immer unser Ziel sein, auch mit anderen Fasnachtsgruppen, die zuk&uuml;nftigen n&auml;rrischen Tage ideenreich zu gestalten.</p>\n<p>Ohne die Mithilfe der Bev&ouml;lkerung und der Beh&ouml;rden sind unsere Ziele jedoch nicht realisierbar. Wir freuen uns immer wieder &uuml;ber die aktive Teilnahme vieler Lostorfer an unseren Veranstaltungen. Nur so k&ouml;nnen wir in Lostorf auch in den n&auml;chsten Jahrzehnten tolle Fasnachtstage erleben und geniessen.</p>\n<h2 style="text-align: left;">"daf&uuml;r m&ouml;chten wir uns bei allen recht herzlich bedanken"</h2>', '2018-08-21 05:54:50'),
@@ -189,7 +189,8 @@ INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_co
 (105, 35, 1, 'MonstersOfMetal.jpg', 3, '2018-11-20 14:27:51'),
 (106, 35, 1, 'muertos.jpg', 4, '2018-11-20 14:27:52'),
 (108, 21, 1, 'image.jpg', 0, '2018-11-21 07:21:15'),
-(109, 30, 1, 'image (5).jpg', 0, '2018-11-21 07:34:17');
+(109, 30, 1, 'image (5).jpg', 0, '2018-11-21 07:34:17'),
+(114, 11, 1, '15260284628.jpg', 0, '2018-11-23 13:26:04');
 
 -- --------------------------------------------------------
 
@@ -214,6 +215,28 @@ INSERT INTO `cms_lang` (`lang_id`, `short`, `name`, `timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cms_log`
+--
+
+CREATE TABLE `cms_log` (
+  `log_id` int(11) NOT NULL,
+  `user_fk` int(11) NOT NULL,
+  `message` text COLLATE utf8_bin NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `cms_log`
+--
+
+INSERT INTO `cms_log` (`log_id`, `user_fk`, `message`, `timestamp`) VALUES
+(1, 1, 'luki updated the page \'404\'.', '2018-11-23 13:25:08'),
+(2, 1, 'luki edited the article \'404 - Seite nicht gefunden\'.', '2018-11-23 13:25:31'),
+(3, 1, 'luki edited the article \'404 - Seite nicht gefunden\'.', '2018-11-23 13:26:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cms_navigation`
 --
 
@@ -224,6 +247,7 @@ CREATE TABLE `cms_navigation` (
   `is_active` tinyint(4) NOT NULL,
   `is_invisible` tinyint(4) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
+  `is_errorpage` tinyint(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -231,45 +255,46 @@ CREATE TABLE `cms_navigation` (
 -- Dumping data for table `cms_navigation`
 --
 
-INSERT INTO `cms_navigation` (`navigation_id`, `navigation_fk`, `sort`, `is_active`, `is_invisible`, `is_deleted`, `timestamp`) VALUES
-(1, 0, 1, 1, 0, 0, '2018-03-11 16:56:15'),
-(2, 0, 14, 1, 0, 1, '2018-03-11 16:56:21'),
-(3, 2, 15, 1, 0, 0, '2018-03-11 16:56:25'),
-(4, 0, 13, 1, 0, 1, '2018-08-07 06:58:25'),
-(5, 1, 3, 1, 0, 1, '2018-08-07 06:58:30'),
-(6, 1, 4, 1, 0, 1, '2018-08-07 06:58:34'),
-(7, 6, 5, 1, 0, 1, '2018-08-07 07:11:49'),
-(8, 0, 17, 1, 1, 0, '2018-08-07 08:53:42'),
-(9, 0, 9, 1, 0, 1, '2018-08-08 08:06:51'),
-(10, 0, 16, 1, 1, 1, '2018-08-08 11:52:19'),
-(11, 0, 0, 0, 0, 1, '2018-08-13 07:37:22'),
-(12, 0, 0, 0, 0, 1, '2018-08-13 07:38:09'),
-(13, 0, 0, 0, 0, 1, '2018-08-13 07:40:30'),
-(14, 0, 0, 0, 0, 1, '2018-08-13 07:44:33'),
-(15, 0, 0, 0, 0, 1, '2018-08-13 07:45:53'),
-(16, 0, 0, 0, 0, 1, '2018-08-13 08:17:44'),
-(17, 8, 0, 0, 0, 1, '2018-08-13 08:26:38'),
-(18, 1, 0, 0, 1, 1, '2018-08-13 08:43:29'),
-(19, 0, 2, 1, 0, 0, '2018-08-21 05:41:40'),
-(20, 0, 14, 1, 0, 0, '2018-08-21 05:42:04'),
-(21, 33, 5, 1, 0, 0, '2018-08-21 05:42:31'),
-(22, 33, 6, 1, 0, 0, '2018-08-21 05:43:10'),
-(23, 33, 7, 1, 0, 0, '2018-08-21 05:43:30'),
-(24, 0, 3, 1, 0, 0, '2018-08-21 05:44:16'),
-(25, 33, 8, 1, 0, 0, '2018-08-21 05:45:11'),
-(26, 33, 9, 1, 0, 0, '2018-08-21 05:45:53'),
-(27, 33, 10, 1, 0, 0, '2018-08-21 05:46:32'),
-(28, 33, 11, 1, 0, 0, '2018-08-21 05:46:59'),
-(29, 0, 16, 1, 0, 0, '2018-08-23 19:39:17'),
-(30, 0, 15, 1, 0, 0, '2018-08-23 19:39:34'),
-(31, 0, 18, 1, 1, 0, '2018-08-24 11:19:02'),
-(32, 32, 0, 0, 0, 0, '2018-09-22 06:47:52'),
-(33, 24, 4, 1, 0, 0, '2018-09-22 06:49:55'),
-(34, 24, 12, 1, 0, 0, '2018-09-22 06:52:12'),
-(35, 34, 13, 1, 0, 0, '2018-10-01 07:55:46'),
-(36, 0, 0, 0, 0, 1, '2018-11-20 14:04:44'),
-(37, 0, 0, 0, 0, 1, '2018-11-23 10:23:19'),
-(38, 24, 0, 1, 0, 0, '2018-11-23 10:24:00');
+INSERT INTO `cms_navigation` (`navigation_id`, `navigation_fk`, `sort`, `is_active`, `is_invisible`, `is_deleted`, `is_errorpage`, `timestamp`) VALUES
+(1, 0, 1, 1, 0, 0, 0, '2018-03-11 16:56:15'),
+(2, 0, 14, 1, 0, 1, 0, '2018-03-11 16:56:21'),
+(3, 2, 15, 1, 0, 0, 0, '2018-03-11 16:56:25'),
+(4, 0, 13, 1, 0, 1, 0, '2018-08-07 06:58:25'),
+(5, 1, 3, 1, 0, 1, 0, '2018-08-07 06:58:30'),
+(6, 1, 4, 1, 0, 1, 0, '2018-08-07 06:58:34'),
+(7, 6, 5, 1, 0, 1, 0, '2018-08-07 07:11:49'),
+(8, 0, 17, 1, 1, 0, 1, '2018-08-07 08:53:42'),
+(9, 0, 9, 1, 0, 1, 0, '2018-08-08 08:06:51'),
+(10, 0, 16, 1, 1, 1, 0, '2018-08-08 11:52:19'),
+(11, 0, 0, 0, 0, 1, 0, '2018-08-13 07:37:22'),
+(12, 0, 0, 0, 0, 1, 0, '2018-08-13 07:38:09'),
+(13, 0, 0, 0, 0, 1, 0, '2018-08-13 07:40:30'),
+(14, 0, 0, 0, 0, 1, 0, '2018-08-13 07:44:33'),
+(15, 0, 0, 0, 0, 1, 0, '2018-08-13 07:45:53'),
+(16, 0, 0, 0, 0, 1, 0, '2018-08-13 08:17:44'),
+(17, 8, 0, 0, 0, 1, 0, '2018-08-13 08:26:38'),
+(18, 1, 0, 0, 1, 1, 0, '2018-08-13 08:43:29'),
+(19, 0, 2, 1, 0, 0, 0, '2018-08-21 05:41:40'),
+(20, 0, 14, 1, 0, 0, 0, '2018-08-21 05:42:04'),
+(21, 33, 5, 1, 0, 0, 0, '2018-08-21 05:42:31'),
+(22, 33, 6, 1, 0, 0, 0, '2018-08-21 05:43:10'),
+(23, 33, 7, 1, 0, 0, 0, '2018-08-21 05:43:30'),
+(24, 0, 3, 1, 0, 0, 0, '2018-08-21 05:44:16'),
+(25, 33, 8, 1, 0, 0, 0, '2018-08-21 05:45:11'),
+(26, 33, 9, 1, 0, 0, 0, '2018-08-21 05:45:53'),
+(27, 33, 10, 1, 0, 0, 0, '2018-08-21 05:46:32'),
+(28, 33, 11, 1, 0, 0, 0, '2018-08-21 05:46:59'),
+(29, 0, 16, 1, 0, 0, 0, '2018-08-23 19:39:17'),
+(30, 0, 15, 1, 0, 0, 0, '2018-08-23 19:39:34'),
+(31, 0, 18, 1, 1, 0, 0, '2018-08-24 11:19:02'),
+(32, 32, 0, 0, 0, 0, 0, '2018-09-22 06:47:52'),
+(33, 24, 4, 1, 0, 0, 0, '2018-09-22 06:49:55'),
+(34, 24, 12, 1, 0, 0, 0, '2018-09-22 06:52:12'),
+(35, 34, 13, 1, 0, 0, 0, '2018-10-01 07:55:46'),
+(36, 0, 0, 0, 0, 1, 0, '2018-11-20 14:04:44'),
+(37, 0, 0, 0, 0, 1, 0, '2018-11-23 10:23:19'),
+(38, 24, 0, 1, 0, 0, 0, '2018-11-23 10:24:00'),
+(39, 0, 0, 0, 0, 1, 0, '2018-11-23 12:36:43');
 
 -- --------------------------------------------------------
 
@@ -333,7 +358,8 @@ INSERT INTO `cms_navigation_title` (`navigation_title_id`, `navigation_fk`, `lan
 (67, 0, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Fotos des Fasnachtsverein Lostorf der Fasnacht 2017', '', '2018-11-23 10:22:06'),
 (68, 0, 1, 'Test', 'test', '', '', '2018-11-23 10:22:59'),
 (69, 37, 1, 'test', 'test', '', '', '2018-11-23 10:23:20'),
-(70, 38, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Fotogallerie des Fasnachtverein Lostorf der Fasnacht 2017', 'Fasnacht, Fasnacht 2017, Gallerie, Fotos, Bilder, Lostorf, Fasnachtsverein Lostorf, Fasnachtsverein', '2018-11-23 10:24:39');
+(70, 38, 1, 'Fasnacht 2017', 'fasnacht-2017', 'Fotogallerie des Fasnachtverein Lostorf der Fasnacht 2017', 'Fasnacht, Fasnacht 2017, Gallerie, Fotos, Bilder, Lostorf, Fasnachtsverein Lostorf, Fasnachtsverein', '2018-11-23 10:24:39'),
+(71, 39, 1, 'Test', 'test', '', '', '2018-11-23 12:36:43');
 
 -- --------------------------------------------------------
 
@@ -436,7 +462,8 @@ INSERT INTO `cms_translation` (`translation_id`, `key`, `timestamp`) VALUES
 (72, 'navigation_keywords', '2018-09-19 16:11:20'),
 (73, 'navigation_meta_image', '2018-09-19 16:12:14'),
 (74, 'navigation_inactive', '2018-09-20 05:20:02'),
-(75, 'media_foldername', '2018-10-15 05:31:01');
+(75, 'media_foldername', '2018-10-15 05:31:01'),
+(76, 'navigation_errorpage', '2018-11-23 13:26:34');
 
 -- --------------------------------------------------------
 
@@ -597,7 +624,8 @@ INSERT INTO `cms_translation_text` (`translation_text_id`, `translation_fk`, `la
 (146, 73, 2, 'Social media image', '2018-09-19 16:12:14'),
 (147, 74, 1, 'Inaktiv', '2018-09-20 05:20:03'),
 (148, 74, 2, 'Inactive', '2018-09-20 05:20:03'),
-(149, 75, 1, 'Ordnername', '2018-10-15 05:31:01');
+(149, 75, 1, 'Ordnername', '2018-10-15 05:31:01'),
+(150, 76, 1, 'Errorseite (404)', '2018-11-23 13:26:35');
 
 -- --------------------------------------------------------
 
@@ -623,7 +651,7 @@ CREATE TABLE `cms_user` (
 --
 
 INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `permission_level`, `last_login`, `is_active`, `is_disabled`, `timestamp`) VALUES
-(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-23 11:19:33', 1, 0, '2018-01-15 17:11:10'),
+(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-23 13:36:25', 1, 0, '2018-01-15 17:11:10'),
 (3, 1, 'gianreto', '$2y$10$0tulw.VZ7LjjmPGiYxA5guFxMkN9EsdIwozoJTrwfHIj6Nk4Gbx7e', 'gian.vd@gmx.ch', 1, '2018-11-01 20:26:07', 1, 0, '2018-08-20 08:15:37'),
 (4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-22 15:37:24', 1, 0, '2018-08-23 20:32:04'),
 (5, 1, 'test', '$2y$10$a3lE/bDKjILIpC59tQ4P5.XbRNmDaBFDIKT1VQbcYqkbz67cKJzk6', 'test@test.com', 0, '2018-09-27 15:42:49', 1, 0, '2018-08-24 12:02:57'),
@@ -4781,7 +4809,43 @@ INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `tim
 (4148, '62.4.14.198', 0, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0', '2018-11-22 23:09:38'),
 (4149, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '2018-11-23 06:41:24'),
 (4150, '178.197.232.206', 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon', '2018-11-23 07:24:51'),
-(4151, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 10:19:12');
+(4151, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 10:19:12'),
+(4152, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:12'),
+(4153, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:16'),
+(4154, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:18'),
+(4155, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:19'),
+(4156, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:23'),
+(4157, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 11:19:26'),
+(4158, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', '2018-11-23 11:25:08'),
+(4159, '23.27.150.80', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36', '2018-11-23 11:53:27'),
+(4160, '38.130.185.249', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel XL Build/OPR1.170623.027) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.98 Mobile Safari/537.36', '2018-11-23 11:55:09'),
+(4161, '38.130.185.249', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel XL Build/OPR1.170623.027) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.98 Mobile Safari/537.36', '2018-11-23 11:55:10'),
+(4162, '198.199.92.66', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0', '2018-11-23 12:24:19'),
+(4163, '35.230.58.15', 0, NULL, '2018-11-23 12:24:27'),
+(4164, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:22'),
+(4165, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:31'),
+(4166, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:33'),
+(4167, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:36'),
+(4168, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:40'),
+(4169, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 12:36:50'),
+(4170, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:00'),
+(4171, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:02'),
+(4172, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:07'),
+(4173, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:11'),
+(4174, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:24'),
+(4175, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:25:26'),
+(4176, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:07'),
+(4177, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:10'),
+(4178, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:12'),
+(4179, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:14'),
+(4180, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:19'),
+(4181, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:20'),
+(4182, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:36'),
+(4183, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:39'),
+(4184, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:42'),
+(4185, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:44'),
+(4186, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:47'),
+(4187, '195.141.66.185', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', '2018-11-23 13:26:50');
 
 -- --------------------------------------------------------
 
@@ -4874,6 +4938,12 @@ ALTER TABLE `cms_lang`
   ADD PRIMARY KEY (`lang_id`);
 
 --
+-- Indexes for table `cms_log`
+--
+ALTER TABLE `cms_log`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `cms_navigation`
 --
 ALTER TABLE `cms_navigation`
@@ -4945,22 +5015,27 @@ ALTER TABLE `cms_article_content`
 -- AUTO_INCREMENT for table `cms_article_content_image`
 --
 ALTER TABLE `cms_article_content_image`
-  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 --
 -- AUTO_INCREMENT for table `cms_lang`
 --
 ALTER TABLE `cms_lang`
   MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `cms_log`
+--
+ALTER TABLE `cms_log`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `cms_navigation`
 --
 ALTER TABLE `cms_navigation`
-  MODIFY `navigation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `navigation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `cms_navigation_title`
 --
 ALTER TABLE `cms_navigation_title`
-  MODIFY `navigation_title_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `navigation_title_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `cms_password_reset`
 --
@@ -4970,12 +5045,12 @@ ALTER TABLE `cms_password_reset`
 -- AUTO_INCREMENT for table `cms_translation`
 --
 ALTER TABLE `cms_translation`
-  MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `cms_translation_text`
 --
 ALTER TABLE `cms_translation_text`
-  MODIFY `translation_text_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `translation_text_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 --
 -- AUTO_INCREMENT for table `cms_user`
 --
@@ -4985,7 +5060,7 @@ ALTER TABLE `cms_user`
 -- AUTO_INCREMENT for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4152;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4188;
 --
 -- AUTO_INCREMENT for table `tbl_appointment`
 --

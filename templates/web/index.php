@@ -53,7 +53,10 @@
 
 	if($error){
 		header("HTTP/1.0 404 Not Found");
-		$primaryId = 8;
+		$query = "SELECT navigation_id FROM cms_navigation WHERE is_errorpage = 1 LIMIT 1";
+		$q = $db->query($query);
+		$res = $q->fetch_row()[0];
+		$primaryId = $res !== "" ? $res : 0;
 	}
 
 	//print_r($_GET);
