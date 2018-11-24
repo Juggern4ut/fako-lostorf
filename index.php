@@ -78,10 +78,9 @@
 		//BEFORE INCLUDING THE FRONTEND, ADD THE USER INTO THE VISITOR-LIST, IF NEEDED
 		if(!isset($_SESSION["visitor_ip"])){
 			$userData = getUserData();
-			$stmt = $db->prepare("INSERT INTO cms_visit (remote_ip, is_mobile, useragent) VALUES (?, ?, ?)");
-			$stmt->bind_param("sis", $userData["ip"], $userData["isMobile"], $userData["userAgent"]);
+			$stmt = $db->prepare("INSERT INTO cms_visit (remote_ip, is_mobile, useragent, browser_name, browser_version, platform_name, platform_version) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			$stmt->bind_param("sisssss", $userData["ip"], $userData["browserInfo"]["isMobile"], $userData["browserInfo"]["userAgent"], $userData["browserInfo"]["browserName"], $userData["browserInfo"]["browserVersion"], $userData["browserInfo"]["platformName"], $userData["browserInfo"]["platformVersion"]);
 			$stmt->execute();
-			echo $db->error;
 			$_SESSION["visitor_ip"] = $userData["ip"];
 		}
 

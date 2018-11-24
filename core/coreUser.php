@@ -53,10 +53,13 @@
 		* @return boolean true if user is logged in, false otherwise.
 		*/
 		public function isLoggedIn(){
-			if($GLOBALS["user"]->getState()["code"] == 1){
-				return true;
-			}else{
-				return false;
+			if($GLOBALS["user"]){
+				$user = $this->getUser();
+				if($user["state"]["code"] == 1){
+					return true;
+				}else{
+					return false;
+				}
 			}
 		}
 

@@ -4,6 +4,10 @@ $(document).ready(function(){
 	initPasswordResetForm();
 	initPasswordForgottenForm();
 	init();
+
+	google.charts.load('current', {packages: ['corechart', 'line']});
+	google.charts.setOnLoadCallback(drawVisitors);
+	google.charts.setOnLoadCallback(drawPlatforms);
 });
 
 function init(){
@@ -16,6 +20,57 @@ function init(){
 	addCalendarNavigationControls();
 	makeTableRowClickable();
 	confirmationDialog();
+}
+
+function drawVisitors() {
+	if($("#visitor_chart").length > 0){
+		var data = new google.visualization.DataTable();
+		data.addColumn('date', 'X');
+		data.addColumn('number', 'Desktop Views');
+		data.addColumn('number', 'Mobile views');
+
+		$.get("/?async=1&getVisitorData=1", function(get_data){
+			console.log(get_data);
+
+			for (var i = 0; i < get_data.length; i++) {
+				var tmp = get_data[i][0].split("-");
+				get_data[i][0] = new Date(tmp[0], (tmp[1]-1), tmp[2]);
+			}
+
+			data.addRows(get_data);
+
+			var options = {
+				hAxis: {
+					title: 'Date'
+				},
+				vAxis: {
+					title: 'Amount'
+				}
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('visitor_chart'));
+
+			chart.draw(data, options);
+		});
+	}
+}
+
+function drawPlatforms(){
+	if($("#platforms_chart").length > 0){
+		$.get("/?async=1&getPlatformData=1", function(get_data){
+
+		var data = google.visualization.arrayToDataTable(get_data);
+
+		var options = {
+			title: 'Platforms',
+			pieHole: 0.4,
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('platforms_chart'));
+		chart.draw(data, options);
+		
+		});
+	}
 }
 
 /* FORM INITIALIZATION */
