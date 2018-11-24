@@ -206,8 +206,13 @@
 			<?php $image = $contents[0]["images"][0]; ?>
 			<section>
 				<?php
+					$count = 0;
 					foreach ($contents[0]["images"] as $image) {
 						echo "<article style=\"background-image: url('/".$image."');\">&nbsp;</article>";
+						$count++;
+						if($count > 4){
+							break;
+						}
 					}
 				?>
 			</section>
@@ -246,7 +251,11 @@
 						echo "<section class=\"gallery\">";
 							foreach ($content["images"] as $image) {
 								echo "<a href='/".$image."' class='swipebox'>";
-									echo "<article style=\"background-image: url('/".$image."')\"></article>";
+									if(file_exists(str_replace("navigation", "navigation_thumbs", $image))){
+										echo "<article style=\"background-image: url('/".str_replace("navigation", "navigation_thumbs", $image)."')\"></article>";
+									}else{
+										echo "<article style=\"background-image: url('/".$image."')\"></article>";
+									}
 								echo "</a>";
 							}
 						echo "</section>";
