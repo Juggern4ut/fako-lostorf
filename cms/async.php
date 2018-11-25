@@ -20,6 +20,8 @@
 
 		/*CMS ASYNC*/
 		if(isset($_GET["cms_logout"])){
+			unset($_COOKIE["userLoginCookie"]);
+			setcookie('userLoginCookie', null, -1, '/');
 			unset($_SESSION["cms_user"]);
 		}
 
@@ -36,6 +38,11 @@
 				$return = array("status_code"=>"-2", "status_message"=>$cT->get("login_no_input"));
 			}elseif($coreUser->login($_POST["username"], $_POST["password"])){
 				$return = array("status_code"=>"1", "status_message"=>$cT->get("login_success"));
+
+				if(isset($_POST["stayLoggedIn"])){
+					setcookie("userLoginCookie", $_SESSION["cms_user"], time() + (86400 * 30), "/");
+				}
+				
 			}else{
 				$return = array("status_code"=>"-1", "status_message"=>$cT->get("login_error"));
 			}

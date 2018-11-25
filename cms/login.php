@@ -10,6 +10,7 @@
 			<form id="login-form" method="POST" action="/?async=1&login=1" autocomplete="off">
 				<input placeholder="<?php echo $cT->get('login_username'); ?>" type="text" name="username"/><br/>
 				<input placeholder="<?php echo $cT->get('login_password'); ?>" type="password" name="password"/><br/>
+				<label for="stayLoggedIn"><input type="checkbox" name="stayLoggedIn" id="stayLoggedIn"> <span>Eingeloggt bleiben</span></label>
 				<input type="submit" name="submit" value="Login"/>
 			</form>
 		</div>

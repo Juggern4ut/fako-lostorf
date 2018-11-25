@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 24, 2018 at 01:06 PM
+-- Generation Time: Nov 25, 2018 at 09:08 PM
 -- Server version: 5.7.22-log-cll-lve
 -- PHP Version: 5.6.30
 
@@ -72,7 +72,8 @@ INSERT INTO `cms_article` (`article_id`, `navigation_fk`, `sort`, `is_active`, `
 (32, 30, 0, 0, 1, '2018-09-29 12:29:15'),
 (33, 30, 0, 1, 1, '2018-10-01 09:16:17'),
 (34, 29, 0, 0, 1, '2018-11-01 19:29:17'),
-(35, 36, 0, 0, 1, '2018-11-20 14:04:55');
+(35, 36, 0, 0, 1, '2018-11-20 14:04:55'),
+(36, 38, 0, 0, 0, '2018-11-25 16:20:43');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,7 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 (24, 13, 1, 'Kontakt', '<p><img src=\"../media/richtext/se&ntilde;or weble.png\" alt=\"\" width=\"250\" height=\"348\" /></p>\r\n<p>Hallo, ich bin der CEO der Weble-Studios.</p>\r\n<p>Wenn Sie Fragen zu einem unserer Produkte haben, kontaktieren Sie uns ungeniert mit einer der folgenden M&ouml;glichkeiten, oder schauen Sie bei uns direkt vorbei.</p>\r\n<p><a href=\"mailto:info@weble.ch\">info@weble.ch</a></p>\r\n<p>Tel: +41 79 789 876 123<br />Fax: +41 79 789 876 124</p>\r\n<p>Weble Management<br />Se&ntilde;or Weble<br />CMS-Street 1994<br />2000 PownTown<br /><br /></p>', '2018-08-15 06:57:34'),
 (26, 14, 1, 'Geschichte', '<h1>Geschichte</h1>\n<p>Der \"Fasnachtsverein Lostorf\" wurde am 18. Oktober 2012 um ca. 22.00h im Rest. Wartenfels von Rolf Riesen, Ren&eacute; Knecht, Martin Lehmann und Philipp Baisotti gegr&uuml;ndet. Das Vereinslokal befindet sich an der Bachstrasse 40 in 4654 Lostorf.</p>\n<p>Die Fasnacht ist aus dem kulturellen Leben unserer Gemeinde nicht mehr wegzudenken. Seit Jahrzehnten war es immer ein Anliegen diverser Fako`s, die Dorffasnacht zu aktivieren und ihr neue Impulse zu verleihen. Es wird immer unser Ziel sein, auch mit anderen Fasnachtsgruppen, die zuk&uuml;nftigen n&auml;rrischen Tage ideenreich zu gestalten.</p>\n<p>Ohne die Mithilfe der Bev&ouml;lkerung und der Beh&ouml;rden sind unsere Ziele jedoch nicht realisierbar. Wir freuen uns immer wieder &uuml;ber die aktive Teilnahme vieler Lostorfer an unseren Veranstaltungen. Nur so k&ouml;nnen wir in Lostorf auch in den n&auml;chsten Jahrzehnten tolle Fasnachtstage erleben und geniessen.</p>\n<h2 style=\"text-align: left;\">\"daf&uuml;r m&ouml;chten wir uns bei allen recht herzlich bedanken\"</h2>', '2018-08-21 05:54:50'),
 (28, 15, 1, 'Kontakt', '<h1>Vereinsadresse</h1>\n<p>Fasnachtsverein Lostorf<br />Bachstrasse 40<br />4654 Lostorf<br />Pr&auml;si: +41796944726</p>\n<h1>Kontaktformular</h1>\n<p>Haben Sie eine Frage oder ein anderes Anliegen? Treten Sie einfach mit uns in Kontakt indem Sie das untenstehende Formular ausf&uuml;llen und absenden. Wir werden Ihnen danach so schnell wie m&ouml;glich eine Antwort zukommen lassen.</p>\n<p>{kontakt_formular}</p>', '2018-08-21 05:56:22'),
-(30, 16, 1, 'Chesslete 2018', '', '2018-08-21 06:05:27'),
+(30, 16, 1, 'Chesslete 2018', '', '2018-11-25 16:54:00'),
 (32, 17, 1, 'Schlüsselübergabe 2018', '', '2018-11-24 11:34:21'),
 (34, 18, 1, 'Schmudo 2018', '', '2018-08-21 06:37:36'),
 (36, 19, 1, 'SA Umzug und Fasnachtsparty 18', '', '2018-08-21 06:39:02'),
@@ -124,7 +125,8 @@ INSERT INTO `cms_article_content` (`article_content_id`, `article_fk`, `lang_fk`
 (50, 32, 1, 'test', '', '2018-09-29 12:29:15'),
 (51, 33, 1, 'Test', '<p>Test</p>', '2018-10-01 09:16:17'),
 (52, 34, 1, 'Test', '<p>Test</p>', '2018-11-01 19:29:17'),
-(53, 35, 1, 'gfdsg', '<p>dsgfdsfgds</p>', '2018-11-20 14:04:55');
+(53, 35, 1, 'gfdsg', '<p>dsgfdsfgds</p>', '2018-11-20 14:04:55'),
+(54, 36, 1, 'Chesslete 2017', '', '2018-11-25 16:20:43');
 
 -- --------------------------------------------------------
 
@@ -149,12 +151,6 @@ INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_co
 (12, 2, 1, 'Chrysanthemum.jpg', 3, '2018-08-03 07:43:11'),
 (13, 2, 1, 'Desert.jpg', 1, '2018-08-03 07:43:11'),
 (15, 2, 1, 'Jellyfish.jpg', 2, '2018-08-03 07:43:12'),
-(24, 16, 1, 'image (1).jpg', 0, '2018-08-21 06:07:30'),
-(25, 16, 1, 'image (2).jpg', 0, '2018-08-21 06:07:30'),
-(26, 16, 1, 'image (3).jpg', 0, '2018-08-21 06:07:30'),
-(27, 16, 1, 'image (4).jpg', 0, '2018-08-21 06:07:31'),
-(28, 16, 1, 'image (5).jpg', 0, '2018-08-21 06:07:31'),
-(29, 16, 1, 'image (6).jpg', 0, '2018-08-21 06:07:31'),
 (36, 17, 1, 'image (1).jpg', 0, '2018-08-21 06:35:06'),
 (37, 17, 1, 'image (2).jpg', 0, '2018-08-21 06:35:06'),
 (38, 17, 1, 'image (3).jpg', 0, '2018-08-21 06:35:06'),
@@ -192,7 +188,17 @@ INSERT INTO `cms_article_content_image` (`article_content_image_id`, `article_co
 (106, 35, 1, 'muertos.jpg', 4, '2018-11-20 14:27:52'),
 (108, 21, 1, 'image.jpg', 0, '2018-11-21 07:21:15'),
 (109, 30, 1, 'image (5).jpg', 0, '2018-11-21 07:34:17'),
-(114, 11, 1, '15260284628.jpg', 0, '2018-11-23 13:26:04');
+(114, 11, 1, '15260284628.jpg', 0, '2018-11-23 13:26:04'),
+(145, 16, 1, '3 (1).jpg', 1, '2018-11-25 19:55:02'),
+(146, 16, 1, '3- (1).jpg', 2, '2018-11-25 19:55:04'),
+(147, 16, 1, '3- (2).jpg', 3, '2018-11-25 19:55:05'),
+(148, 16, 1, '3- (3).jpg', 0, '2018-11-25 20:05:14'),
+(149, 16, 1, '3- (5).jpg', 0, '2018-11-25 20:05:16'),
+(150, 16, 1, '3- (6).jpg', 0, '2018-11-25 20:05:17'),
+(151, 16, 1, '3 (8).jpg', 0, '2018-11-25 20:05:20'),
+(152, 16, 1, '3 (9).jpg', 0, '2018-11-25 20:05:22'),
+(153, 16, 1, '3-(4).jpg', 0, '2018-11-25 20:05:24'),
+(154, 16, 1, '3-1.jpg', 0, '2018-11-25 20:05:24');
 
 -- --------------------------------------------------------
 
@@ -237,7 +243,52 @@ INSERT INTO `cms_log` (`log_id`, `user_fk`, `message`, `timestamp`) VALUES
 (3, 1, 'luki edited the article \'404 - Seite nicht gefunden\'.', '2018-11-23 13:26:04'),
 (4, 1, 'luki edited the article \'Schlüsselübergabe 2018\'.', '2018-11-24 11:34:21'),
 (5, 1, 'luki updated the page \'Schlüsselübergabe 2018\'.', '2018-11-24 11:34:34'),
-(6, 1, 'luki updated the page \'Böögverbrennen 2018\'.', '2018-11-24 11:34:43');
+(6, 1, 'luki updated the page \'Böögverbrennen 2018\'.', '2018-11-24 11:34:43'),
+(7, 1, 'luki created the media-folder \'/Anus\'.', '2018-11-24 19:53:24'),
+(8, 1, 'luki created the media-folder \'/Test\'.', '2018-11-25 09:41:27'),
+(9, 1, 'luki uploaded the file \'weble.sql\' into the folder \'\'', '2018-11-25 09:41:37'),
+(10, 1, 'luki created the media-folder \'/hgfdhgfd\'.', '2018-11-25 09:45:34'),
+(11, 1, 'luki deleted the file \'hgfdhgfd\'.', '2018-11-25 09:45:39'),
+(12, 6, 'FaGi edited the article \'\'.', '2018-11-25 16:18:05'),
+(13, 6, 'FaGi created the article \'Chesslete 2017\'.', '2018-11-25 16:20:43'),
+(14, 6, 'FaGi edited the article \'Chesslete 2018\'.', '2018-11-25 16:24:03'),
+(15, 6, 'FaGi edited the article \'Chesslete 2018\'.', '2018-11-25 16:26:06'),
+(16, 6, 'FaGi edited the article \'\'.', '2018-11-25 16:26:35'),
+(17, 1, 'luki edited the article \'Test\'.', '2018-11-25 16:28:20'),
+(18, 1, 'luki edited the article \'Test\'.', '2018-11-25 16:30:15'),
+(19, 1, 'luki edited the article \'Chesslete\'.', '2018-11-25 16:32:34'),
+(20, 1, 'luki edited the article \'Chesslete\'.', '2018-11-25 16:42:57'),
+(21, 1, 'luki edited the article \'Chesslete\'.', '2018-11-25 16:43:07'),
+(22, 1, 'luki edited the article \'Chesslete\'.', '2018-11-25 16:43:19'),
+(23, 6, 'FaGi edited the article \'Chesslete\'.', '2018-11-25 16:47:56'),
+(24, 6, 'FaGi edited the article \'\'.', '2018-11-25 16:52:14'),
+(25, 6, 'FaGi edited the article \'\'.', '2018-11-25 16:52:57'),
+(26, 4, 'fabienne edited the article \'Chesslete 2018\'.', '2018-11-25 16:53:58'),
+(27, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:18:09'),
+(28, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:18:28'),
+(29, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:18:58'),
+(30, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:19:10'),
+(31, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:19:23'),
+(32, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:35:16'),
+(33, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:35:37'),
+(34, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:36:04'),
+(35, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:37:19'),
+(36, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:37:34'),
+(37, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:37:50'),
+(38, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:39:34'),
+(39, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:44:57'),
+(40, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:46:26'),
+(41, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:48:51'),
+(42, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:49:05'),
+(43, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:49:16'),
+(44, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:49:20'),
+(45, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:50:28'),
+(46, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:50:49'),
+(47, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:53:58'),
+(48, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:55:00'),
+(49, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:57:12'),
+(50, 1, 'luki edited the article \'Chesslete 2018\'.', '2018-11-25 19:57:16'),
+(51, 6, 'FaGi edited the article \'Chesslete 2018\'.', '2018-11-25 20:05:12');
 
 -- --------------------------------------------------------
 
@@ -670,11 +721,11 @@ CREATE TABLE `cms_user` (
 --
 
 INSERT INTO `cms_user` (`user_id`, `lang_fk`, `username`, `password`, `email`, `permission_level`, `last_login`, `is_active`, `is_disabled`, `timestamp`) VALUES
-(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-24 12:55:42', 1, 0, '2018-01-15 17:11:10'),
+(1, 1, 'luki', '$2y$10$BTEPi3Gy/uDFFvnT/7PpP.WFLDyMhvKfgxYYjTfv4mJ/fNb82xXby', 'me@lmeier.ch', 2, '2018-11-25 10:25:29', 1, 0, '2018-01-15 17:11:10'),
 (3, 1, 'gianreto', '$2y$10$0tulw.VZ7LjjmPGiYxA5guFxMkN9EsdIwozoJTrwfHIj6Nk4Gbx7e', 'gian.vd@gmx.ch', 1, '2018-11-01 20:26:07', 1, 0, '2018-08-20 08:15:37'),
-(4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-22 15:37:24', 1, 0, '2018-08-23 20:32:04'),
+(4, 1, 'fabienne', '$2y$10$xx1AsQ/IxynWXKBOm.URd.cFeW5.U8Nq2IIKi5FvMU.fUAKtqbb86', '', 1, '2018-11-25 17:53:25', 1, 0, '2018-08-23 20:32:04'),
 (5, 1, 'test', '$2y$10$a3lE/bDKjILIpC59tQ4P5.XbRNmDaBFDIKT1VQbcYqkbz67cKJzk6', 'test@test.com', 0, '2018-09-27 15:42:49', 1, 0, '2018-08-24 12:02:57'),
-(6, 1, 'FaGi', '$2y$10$8KIjwVKePrVIAZhnP46ZBebdZ/FRjgaGY5xQIycfhdfp2gwX5wTAO', 'FaGi', 1, '2018-11-01 20:38:27', 1, 1, '2018-11-01 19:27:23');
+(6, 1, 'FaGi', '$2y$10$8KIjwVKePrVIAZhnP46ZBebdZ/FRjgaGY5xQIycfhdfp2gwX5wTAO', 'FaGi', 1, '2018-11-25 21:03:44', 1, 1, '2018-11-01 19:27:23');
 
 -- --------------------------------------------------------
 
@@ -706,7 +757,164 @@ INSERT INTO `cms_visit` (`visit_id`, `remote_ip`, `is_mobile`, `useragent`, `bro
 (9, '157.55.39.26', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 11:57:34'),
 (10, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 11:57:40'),
 (11, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; Trident/7.0; rv:11.0) like Gecko', 'Internet Explorer', '11.0', 'Windows', 'Windows 10', '2018-11-24 12:00:41'),
-(12, '91.242.162.42', 0, 'Mozilla/5.0 (compatible; Qwantify/2.4w; +https://www.qwant.com/)/2.4w', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 12:05:51');
+(12, '91.242.162.42', 0, 'Mozilla/5.0 (compatible; Qwantify/2.4w; +https://www.qwant.com/)/2.4w', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 12:05:51'),
+(13, '178.197.232.182', 1, 'Mozilla/5.0 (Android 8.0.0; Mobile; rv:63.0) Gecko/63.0 Firefox/63.0', 'Firefox', '63.0', 'Android', 'Oreo', '2018-11-24 12:07:49'),
+(14, '178.197.232.182', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 13:04:43'),
+(15, '178.197.232.182', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 13:35:31'),
+(16, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 13:46:25'),
+(17, '178.197.232.182', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 13:47:54'),
+(18, '157.55.39.189', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 14:40:55'),
+(19, '66.249.66.92', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 16:18:05'),
+(20, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 16:18:06'),
+(21, '66.249.66.154', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 16:18:27'),
+(22, '66.249.66.152', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 16:18:28'),
+(23, '66.249.66.94', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 16:19:31'),
+(24, '178.197.228.150', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G930F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 16:26:00'),
+(25, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 16:36:09'),
+(26, '54.36.148.10', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 16:44:26'),
+(27, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-24 16:56:17'),
+(28, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-24 16:56:55'),
+(29, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-24 16:58:29'),
+(30, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 17:02:45'),
+(31, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-24 17:04:23'),
+(32, '66.249.93.86', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(33, '66.249.93.82', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(34, '66.249.93.84', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(35, '66.249.93.84', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(36, '66.249.93.86', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(37, '66.249.93.82', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:06:11'),
+(38, '66.249.93.86', 0, 'Mozilla/5.0 (compatible; Google-Site-Verification/1.0)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:07:18'),
+(39, '2a02:120b:2c09:5820:9c63:9919:db85:7dd8', 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon', 'Chrome', '49.0.2623.75', 'Linux', 'unknown', '2018-11-24 17:07:24'),
+(40, '138.201.30.66', 0, 'Mozilla/5.0 (compatible; SEOkicks; +https://www.seokicks.de/robot.html)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:12:40'),
+(41, '138.201.30.66', 0, 'Mozilla/5.0 (compatible; SEOkicks; +https://www.seokicks.de/robot.html)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 17:12:40'),
+(42, '66.249.66.94', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 17:17:42'),
+(43, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:17:49'),
+(44, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:17:51'),
+(45, '66.249.66.92', 0, 'Googlebot-Image/1.0', 'Googlebot', '1.0', 'unknown', 'unknown', '2018-11-24 17:17:54'),
+(46, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:17:56'),
+(47, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:17:58'),
+(48, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:00'),
+(49, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:02'),
+(50, '66.249.66.92', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 17:18:06'),
+(51, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:06'),
+(52, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:07'),
+(53, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:09'),
+(54, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:10'),
+(55, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:11'),
+(56, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:13'),
+(57, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 17:18:14'),
+(58, '66.249.66.156', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 17:42:09'),
+(59, '66.249.66.93', 0, 'Googlebot-Image/1.0', 'Googlebot', '1.0', 'unknown', 'unknown', '2018-11-24 18:07:18'),
+(60, '66.249.66.94', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 18:18:18'),
+(61, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 18:31:57'),
+(62, '66.249.66.152', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 18:32:24'),
+(63, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 18:35:45'),
+(64, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 18:47:41'),
+(65, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 18:48:07'),
+(66, '40.77.167.170', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 18:48:42'),
+(67, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-24 18:56:13'),
+(68, '178.197.236.190', 1, 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1', 'Safari', '11.0', 'iOS', 'iOS 11.4.1', '2018-11-24 18:57:32'),
+(69, '54.36.148.191', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 19:04:48'),
+(70, '95.163.255.38', 0, 'Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/2.0; +http://go.mail.ru/help/robots)', 'Mozilla', 'unknown', 'Linux', 'unknown', '2018-11-24 19:11:02'),
+(71, '95.163.255.37', 0, 'Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/2.0; +http://go.mail.ru/help/robots)', 'Mozilla', 'unknown', 'Linux', 'unknown', '2018-11-24 19:11:04'),
+(72, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 19:51:15'),
+(73, '149.154.167.164', 0, 'TelegramBot (like TwitterBot)', 'unknown', 'unknown', 'unknown', 'unknown', '2018-11-24 20:34:55'),
+(74, '178.197.234.210', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-24 20:48:42'),
+(75, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 21:53:13'),
+(76, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 21:53:17'),
+(77, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 21:53:36'),
+(78, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 21:53:40'),
+(79, '66.249.66.94', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-24 22:01:27'),
+(80, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-24 22:01:28'),
+(81, '54.36.148.42', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-24 23:11:37'),
+(82, '40.77.167.170', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 00:11:24'),
+(83, '54.36.148.183', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 01:04:21'),
+(84, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 01:10:40'),
+(85, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 01:10:43'),
+(86, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 01:11:03'),
+(87, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 01:11:06'),
+(88, '40.77.167.44', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 03:15:36'),
+(89, '66.249.66.154', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 05:33:00'),
+(90, '66.249.66.154', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 05:33:01'),
+(91, '188.60.99.86', 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko', 'Internet Explorer', '11.0', 'Windows', 'Windows 7', '2018-11-25 05:51:50'),
+(92, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 07:11:35'),
+(93, '178.197.227.157', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-25 09:14:03'),
+(94, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 09:17:57'),
+(95, '40.77.167.170', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 09:22:55'),
+(96, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-25 09:25:31'),
+(97, '66.249.66.93', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 09:31:29'),
+(98, '66.249.66.94', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:31:30'),
+(99, '178.195.207.57', 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; NP09; NP09; MAAU; rv:11.0) like Gecko', 'Internet Explorer', '11.0', 'Windows', 'Windows 7', '2018-11-25 09:34:15'),
+(100, '178.195.207.57', 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; NP09; NP09; MAAU; rv:11.0) like Gecko', 'Internet Explorer', '11.0', 'Windows', 'Windows 7', '2018-11-25 09:34:15'),
+(101, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:36:17'),
+(102, '66.249.66.94', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:41:05'),
+(103, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:45:53'),
+(104, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:50:41'),
+(105, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 09:55:29'),
+(106, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:00:17'),
+(107, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:05:05'),
+(108, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:09:53'),
+(109, '66.249.66.94', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:14:41'),
+(110, '40.77.167.170', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 10:17:17'),
+(111, '66.249.66.92', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:19:29'),
+(112, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:24:17'),
+(113, '148.251.182.79', 0, 'x28-job-bot; +http://x28.ch/bot.html', 'unknown', 'unknown', 'unknown', 'unknown', '2018-11-25 10:27:28'),
+(114, '148.251.182.79', 0, 'x28-job-bot; +http://x28.ch/bot.html', 'unknown', 'unknown', 'unknown', 'unknown', '2018-11-25 10:27:28'),
+(115, '66.249.66.93', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:29:05'),
+(116, '66.249.66.156', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 10:53:38'),
+(117, '66.249.66.156', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 10:53:39'),
+(118, '40.77.167.44', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:00'),
+(119, '40.77.167.44', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:01'),
+(120, '157.55.39.189', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:04'),
+(121, '157.55.39.189', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:05'),
+(122, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:09'),
+(123, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:10'),
+(124, '40.77.167.162', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:10'),
+(125, '40.77.167.170', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 11:09:14'),
+(126, '220.243.135.98', 1, 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2709.513 Mobile Safari/537.36', 'Chrome', '39.0.2709.513', 'Android', 'Oreo', '2018-11-25 11:38:48'),
+(127, '66.249.66.93', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 12:34:31'),
+(128, '66.249.66.94', 1, 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Chrome', '41.0.2272.96', 'Android', 'Marshmallow', '2018-11-25 12:34:31'),
+(129, '66.249.66.93', 0, 'Googlebot-Image/1.0', 'Googlebot', '1.0', 'unknown', 'unknown', '2018-11-25 12:34:46'),
+(130, '178.197.227.157', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-25 12:51:43'),
+(131, '178.197.227.157', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-25 12:58:55'),
+(132, '66.249.66.152', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 13:04:01'),
+(133, '66.249.66.154', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 13:04:02'),
+(134, '54.36.150.5', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 13:24:04'),
+(135, '66.249.66.93', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 13:41:19'),
+(136, '54.36.150.5', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 13:46:38'),
+(137, '54.36.149.49', 0, 'Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 13:46:39'),
+(138, '66.249.66.94', 0, 'Googlebot-Image/1.0', 'Googlebot', '1.0', 'unknown', 'unknown', '2018-11-25 14:08:18'),
+(139, '178.197.236.190', 1, 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1', 'Safari', '11.0', 'iOS', 'iOS 11.4.1', '2018-11-25 15:00:40'),
+(140, '180.76.15.149', 0, 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 15:14:35'),
+(141, '207.46.13.180', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 15:55:38'),
+(142, '46.127.147.249', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', 'Chrome', '70.0.3538.102', 'Windows', 'Windows 10', '2018-11-25 16:13:34'),
+(143, '66.249.66.94', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 16:25:51'),
+(144, '66.249.66.93', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 16:25:52'),
+(145, '66.249.66.156', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 16:27:20'),
+(146, '66.249.66.152', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 16:27:21'),
+(147, '178.197.234.151', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-25 16:27:55'),
+(148, '13.57.233.99', 0, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'Chrome', '61.0.3163.100', 'Macintosh', 'macOS Sierra', '2018-11-25 16:28:57'),
+(149, '180.76.15.27', 0, 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 16:42:49'),
+(150, '46.127.147.249', 1, 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1', 'Safari', '11.0', 'iOS', 'iOS 11.4.1', '2018-11-25 16:46:44'),
+(151, '178.197.234.151', 1, 'Mozilla/5.0 (Linux; Android 8.0.0; G8141) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36', 'Chrome', '70.0.3538.80', 'Android', 'Oreo', '2018-11-25 16:49:47'),
+(152, '207.46.13.180', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 16:50:13'),
+(153, '157.55.39.189', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 16:50:22'),
+(154, '157.55.39.189', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 17:12:19'),
+(155, '66.249.66.152', 0, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Googlebot', '2.1', 'unknown', 'unknown', '2018-11-25 18:27:36'),
+(156, '207.46.13.16', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 18:57:34'),
+(157, '178.197.236.190', 1, 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1', 'Safari', '11.0', 'iOS', 'iOS 11.4.1', '2018-11-25 19:07:24'),
+(158, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:07:39'),
+(159, '178.154.200.57', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:07:43'),
+(160, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:08:13'),
+(161, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:08:17'),
+(162, '83.76.109.61', 0, 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', 'Chrome', '70.0.3538.102', 'Windows', 'Windows 7', '2018-11-25 19:09:40'),
+(163, '178.192.149.130', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Chrome', '70.0.3538.110', 'Windows', 'Windows 10', '2018-11-25 19:17:51'),
+(164, '157.55.39.26', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 19:19:16'),
+(165, '157.55.39.26', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 19:19:17'),
+(166, '178.154.200.57', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:57:20'),
+(167, '87.250.224.87', 0, 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', 'Mozilla', 'unknown', 'unknown', 'unknown', '2018-11-25 19:57:26'),
+(168, '207.46.13.150', 0, 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 'Bingbot', '2.0', 'unknown', 'unknown', '2018-11-25 20:02:52'),
+(169, '46.127.147.249', 0, 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36', 'Chrome', '70.0.3538.102', 'Windows', 'Windows 7', '2018-11-25 20:03:22');
 
 -- --------------------------------------------------------
 
@@ -866,19 +1074,19 @@ ALTER TABLE `tbl_team`
 -- AUTO_INCREMENT for table `cms_article`
 --
 ALTER TABLE `cms_article`
-  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `cms_article_content`
 --
 ALTER TABLE `cms_article_content`
-  MODIFY `article_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `article_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `cms_article_content_image`
 --
 ALTER TABLE `cms_article_content_image`
-  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `article_content_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `cms_lang`
@@ -890,7 +1098,7 @@ ALTER TABLE `cms_lang`
 -- AUTO_INCREMENT for table `cms_log`
 --
 ALTER TABLE `cms_log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `cms_navigation`
@@ -932,7 +1140,7 @@ ALTER TABLE `cms_user`
 -- AUTO_INCREMENT for table `cms_visit`
 --
 ALTER TABLE `cms_visit`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `tbl_appointment`

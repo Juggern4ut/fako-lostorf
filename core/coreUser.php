@@ -41,6 +41,11 @@
 				$this->_userData = unserialize(base64_decode($_SESSION["cms_user"]));
 			}
 
+			if(isset($_COOKIE["userLoginCookie"])){
+				$_SESSION["cms_user"] = $_COOKIE["userLoginCookie"];
+				$this->_userData = unserialize(base64_decode($_COOKIE["userLoginCookie"]));
+			}
+
 			if(isset($this->_userData)){
 				return $this->_userData;
 			}else{

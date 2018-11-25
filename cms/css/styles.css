@@ -361,6 +361,39 @@ div#login_container{
 			bottom: 0px;
 		}
 
+		div#login_container div#login-form-container form > label span{
+			position: relative;
+			top: 5px;
+			left: 20px;
+			color: #FFF;
+		}
+
+		div#login_container div#login-form-container form > label {
+			height: 32px;
+			display: block;
+		}
+
+		div#login_container div#login-form-container form > label input{
+			visibility: hidden;
+		}
+		
+		div#login_container div#login-form-container form > label input:before{
+			content: " ";
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			background-color: rgba(255,255,255,0.4);
+			border: 1px solid rgba(255,255,255,0.6);
+			visibility: visible;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+
+		div#login_container div#login-form-container form > label input:checked:before{
+			background-image: url("/cms/img/checkbox_login.png");
+		}
+
 		.inputTextColor:-webkit-autofill {
 		    -webkit-text-fill-color: rgba(255,255,255,0.4);
 		}

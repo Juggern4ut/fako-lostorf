@@ -35,7 +35,7 @@
 			$src_type = finfo_file($finfo, $src);
 			finfo_close($finfo);
 			$tmp = explode("/", $src_type);
-			$src_type = $tmp[1];
+			$src_type = strtolower($tmp[1]);
 			$src_type = $src_type == "jpeg" ? "jpg" : $src_type;
 
 			$tmp = explode(".", $output);
