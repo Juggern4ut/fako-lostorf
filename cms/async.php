@@ -28,7 +28,7 @@
 		if(isset($_GET["isDir"])){
 			$file = str_replace("/media", "media", $_GET["isDir"]);
 			$return = is_dir($file) ? "1" : "0";
-			echo $return;
+			echo trim($return);
 		}
 
 		if(isset($_GET["login"]) && $_SERVER["REQUEST_METHOD"] === "POST"){

@@ -256,11 +256,11 @@
 				$q = $this->db->query($query);
 				$log = true;
 				while($res = $q->fetch_assoc()){								
-					$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text) VALUES (?, ?, ?, ?)")
-												: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ? WHERE lang_fk = ? AND article_fk = ?");
+					$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text, image_position) VALUES (?, ?, ?, ?, ?)")
+												: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ?, image_position = ? WHERE lang_fk = ? AND article_fk = ?");
 
-							isset($_GET["add"]) ? $stmt->bind_param("iiss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]])
-												: $stmt->bind_param("ssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $res["lang_id"], $id);
+							isset($_GET["add"]) ? $stmt->bind_param("iisss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]])
+												: $stmt->bind_param("sssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]], $res["lang_id"], $id);
 
 					if($log){
 						isset($_GET["add"]) ? $this->logger->log($this->user->getUsername()." created the article '".$_POST["title_".$res["lang_id"]]."'.", $this->user->getId())
@@ -283,13 +283,13 @@
 							$filename = strtolower($_FILES["image_".$res["short"]]["name"][$i]);
 
 							try{
-								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$filename, 1920, 1080);
+								$resizedImage = $imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$filename, 1920, 1080);
 								$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation_thumbs/".$id."/".$res["short"]."/".$filename, 480, 320);
 								
 								$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
-								$stmt2->bind_param("iis", $id, $res["lang_id"], $filename);
+								$stmt2->bind_param("iis", $id, $res["lang_id"], $resizedImage);
 								$stmt2->execute();
-
+								
 							}catch(Exception $e) {
 								$imageError = true;
 							}
@@ -350,14 +350,15 @@
 			}
 
 			private function setArticleFieldValues(){
-				$stmt = $this->db->prepare("SELECT ac.article_title, ac.text, ac.lang_fk, a.is_active FROM cms_article_content AS ac LEFT JOIN cms_article AS a ON ac.article_fk = a.article_id WHERE article_fk = ?");
+				$stmt = $this->db->prepare("SELECT ac.article_title, ac.text, ac.lang_fk, a.is_active, ac.image_position FROM cms_article_content AS ac LEFT JOIN cms_article AS a ON ac.article_fk = a.article_id WHERE article_fk = ?");
 				$stmt->bind_param("i", $_GET["edit"]);
 				$stmt->execute();
-				$stmt->bind_result($title, $text, $lang_fk, $is_active);
+				$stmt->bind_result($title, $text, $lang_fk, $is_active, $image_position);
 
 				while($stmt->fetch()){
 					$_POST["title_".$lang_fk] = $title;
 					$_POST["text_".$lang_fk] = $text;
+					$_POST["image_position_".$lang_fk] = $image_position;
 					$_POST["is_active"] = $is_active == 1 ? "1" : null;
 				}
 			}
@@ -480,6 +481,8 @@
 							$form->addSubtitle($res["name"]);
 							$form->addText($this->cT->get("navigation_title"), "title_".$res["lang_id"]);
 							$form->addRichtext($this->cT->get("navigation_content"), "text_".$res["lang_id"]);
+							$positions = array("top"=>"Oben", "center"=>"Mitte", "bottom"=>"Unten");
+							$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
 							$form->addFileUpload($this->cT->get("navigation_images"), "image_".$res["short"]);
 
 							if(isset($_GET["edit"])){

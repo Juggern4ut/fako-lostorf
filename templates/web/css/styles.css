@@ -261,6 +261,14 @@ main{
 	padding-bottom: 100px;
 }
 
+main table{
+	width: 100% !important;
+}
+
+main table td{
+	width: auto !important;
+}
+
 main p{
 	text-align: justify;
 }
@@ -612,5 +620,11 @@ footer a{
 	span#unread_news {
 		right: auto;
 		left: 15px;
+	}
+}
+
+@media(max-width: 425px){
+	main table td{
+		display: block;
 	}
 }

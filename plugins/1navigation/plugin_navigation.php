@@ -81,18 +81,22 @@
 		public function getContent($navigation_id, $getInvisible = true){
 			$return = array();
 
-			$stmt = $this->db->prepare("SELECT a.article_id, a.is_active, ac.article_title, ac.text, ac.article_content_id, ac.timestamp FROM cms_article AS a LEFT JOIN cms_article_content AS ac ON a.article_id = ac.article_fk WHERE is_deleted = 0 AND a.navigation_fk = ? AND ac.lang_fk = ? ORDER BY a.sort ASC");
+			$stmt = $this->db->prepare("SELECT a.article_id, a.is_active, ac.article_title, ac.text, ac.article_content_id, ac.timestamp, ac.image_position FROM cms_article AS a LEFT JOIN cms_article_content AS ac ON a.article_id = ac.article_fk WHERE is_deleted = 0 AND a.navigation_fk = ? AND ac.lang_fk = ? ORDER BY a.sort ASC");
 			$stmt->bind_param("ii", $navigation_id, $_SESSION["lang"][0]);
 			$stmt->execute();
 			$stmt->store_result();
-			$stmt->bind_result($article_id, $is_active, $article_title, $text, $article_content_id, $timestamp);
+			$stmt->bind_result($article_id, $is_active, $article_title, $text, $article_content_id, $timestamp, $image_position);
 
 			while($stmt->fetch()){
+				
+				$image_position = $image_position == "" ? "center" : $image_position;
+
 				$tmp["id"] = $article_id;
 				$tmp["title"] = $article_title;
 				$tmp["content"] = str_replace("../media", "/media", $text);
 				$tmp["timestamp"] = $timestamp;
 				$tmp["is_active"] = $is_active;
+				$tmp["image_position"] = $image_position;
 
 				$tmp["images"] = array();
 

@@ -365,8 +365,9 @@ function fileBrowserClick(callback){
 	$(".tiny-mce-image").click(function(){
 		var path = $(this).attr("docpath");
 		$.get("/?async=1&isDir="+path, function(data){
-			console.log(path);
+			data = data.trim();
 			if(data == "0"){
+				console.log(path);
 				callback(path);
 				$("#cms-lightbox").fadeOut();
 			}else{
@@ -392,7 +393,7 @@ function richtexteditor(){
 			"searchreplace visualblocks code fullscreen",
 			"insertdatetime media table contextmenu paste imagetools wordcount"
 		],
-		toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code",
+		toolbar: "styleselect | bold italic | table | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code",
 		a_plugin_option: true,
 		statusbar : false,
 		menubar : false,
