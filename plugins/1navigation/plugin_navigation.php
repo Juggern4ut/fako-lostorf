@@ -100,20 +100,30 @@
 
 				$tmp["images"] = array();
 
-				$stmt2 = $this->db->prepare("SELECT image, lang_fk FROM cms_article_content_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
+				$stmt2 = $this->db->prepare("SELECT image, lang_fk, image_align_percentage, show_in_slideshow FROM cms_article_content_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
 				$stmt2->bind_param("ii", $article_id, $_SESSION["lang"][0]);
 				$stmt2->execute();
 				$stmt2->store_result();
-				$stmt2->bind_result($image, $lang_fk);
+				$stmt2->bind_result($image, $lang_fk, $image_align_percentage, $show_in_slideshow);
 
 				while($stmt2->fetch()){	
+
+					$tmp_image = array();
+
 					if(file_exists("media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
-						$tmp["images"][] = "media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+						$tmp_image["image"] = "media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+						$tmp_image["alt"] = "Test";
+						$tmp_image["alignment"] = $image_align_percentage;
+						$tmp_image["show_in_slideshow"] = $show_in_slideshow;
+						$tmp_image["filename"] = $image;
+						
+						if(file_exists("media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
+							$tmp_image["thumbnail"] = "media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image;
+						}
+
+						$tmp["images"][] = $tmp_image;
 					}
 
-					if(file_exists("media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
-						$tmp["images_thumbs"][] = "media/navigation_thumbs/".$article_id."/".$_SESSION["lang"][1]."/".$image;
-					}
 				}
 				
 				$stmt2->close();

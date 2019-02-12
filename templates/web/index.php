@@ -208,7 +208,7 @@
 				<?php
 					$count = 0;
 					foreach ($contents[0]["images"] as $image) {
-						echo "<article style=\"background-image: url('/".$image."'); background-position: center ".$contents[0]["image_position"].";\">&nbsp;</article>";
+						echo "<article style=\"background-image: url('/".$image["image"]."'); background-position: center ".$image["alignment"]."%;\">&nbsp;</article>";
 						$count++;
 						if($count > 4){
 							break;

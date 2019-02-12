@@ -185,6 +185,15 @@
 			echo "</div>";
 		}
 
+		if(isset($_GET["getImageAlignment"])){
+			$stmt = $db->prepare('SELECT image_align_percentage FROM cms_article_content_image WHERE article_content_image_id = ? LIMIT 1');
+			$stmt->bind_param('i', $_GET["getImageAlignment"]);
+			$stmt->execute();
+			$stmt->bind_result($percentage);
+			$stmt->fetch();
+			echo $percentage;
+		}
+
 		if(isset($_GET["alignImage"])){
 			$stmt = $db->prepare('UPDATE cms_article_content_image SET image_align_percentage = ?, show_in_slideshow = ? WHERE article_content_image_id = ?');
 			$stmt->bind_param('sii', number_format($_GET["percentage"],2), $_GET["showInSlideshow"], $_GET["alignImage"]);

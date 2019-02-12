@@ -352,8 +352,18 @@ function cmsImageSettings(image, id){
 	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
 	$.get(url, function (data) {
 		$("#cms-lightbox-content").html(data);
-		$("#cms-lightbox").fadeIn();
-		initImageAlign(id);
+		$.get("/?async=1&getImageAlignment="+id, function(data){
+
+			var percentage = data;
+			var spanHeight = parseInt($("aside#cms-lightbox div#cms-lightbox-container .image-align span").css("height"));
+			var spanDelta = spanHeight/100*data;
+
+			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": "calc("+percentage+"%)"});
+			console.log($("aside#cms-lightbox div#cms-lightbox-container .image-align span").css("top"));
+			console.log(spanDelta);
+			$("#cms-lightbox").fadeIn();
+			initImageAlign(id);
+		})
 	});
 }
 
