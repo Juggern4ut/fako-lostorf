@@ -27,7 +27,9 @@ section.program{
 
 /* HEADER */
 header > section{
-	height: 33vw;
+	height: 56.25vw;
+	min-height: 250px;
+	max-height: 500px;
 	border-bottom: 1px solid #888;
 	border-top: 1px solid #888;
 }
