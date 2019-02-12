@@ -172,7 +172,7 @@
 
 		if(isset($_GET["imageSettings"])){
 			echo "<div>";
-				echo "<input class='showInSlideshow' type='checkbox' name='showInSlideshow'><label>In Slideshow anzeigen</label>";
+				echo "<input class='showInSlideshow' id='showInSlideshow' type='checkbox' name='showInSlideshow'><label for='showInSlideshow'>In Slideshow anzeigen</label>";
 				
 				echo "<div class='image-align'>";
 					echo "<img src='".$_GET["imageSettings"]."' />";
@@ -180,6 +180,8 @@
 				echo "</div>";
 
 				echo "<button class='save-image-align'>Speichern</button>";
+				echo "<br>";
+				echo "<button onclick='cmsRemoveImage(\"".$_GET["imageSettings"]."\",\"".$_GET["image_id"]."\")' class='delete-image'>Bild löschen</button>";
 			echo "</div>";
 		}
 

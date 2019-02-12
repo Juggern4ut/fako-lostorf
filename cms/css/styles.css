@@ -290,7 +290,7 @@ aside#cms-lightbox {
 		}
 
 		aside#cms-lightbox div#cms-lightbox-container .image-align img{
-			max-width: 100%;
+			width: 100%;
 		}
 
 		aside#cms-lightbox div#cms-lightbox-container .image-align span{
@@ -302,6 +302,15 @@ aside#cms-lightbox {
 			background-color: rgba(255,255,255,0.2);
 			border: 1px solid #fff;
 			box-sizing: border-box;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .save-image-align{
+			background-color: #1d3457;
+			border: 0px;
+			padding: 10px 20px;
+			color: #FFF;
+			font-size: 17px;
+			cursor: pointer;
 		}
 		
 /*END LIGHTBOX*/

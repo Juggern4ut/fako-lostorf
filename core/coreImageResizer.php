@@ -24,9 +24,10 @@
 		* @param boolean $force_proportions  If set to true, the n_width and n_height will not be calculated and proportions will be lost.
 		* @param string $force_image_type  Force output to be either a JPG, a PNG or a GIF, if set to false, the image_type will be kept from the original file.
 		* @param boolean $scale_up  If set to true small images will be scaled up to get desired width/height. If false, only scaling down will take place
+		* @param boolean $rotateByExif  Reads the Exif-Orientation-Value of images and rotates them accordingly, leaves the rotation as is if set to false.
 		* @return boolean
 		*/
-		public function resizeImage($src, $output, $n_width, $n_height, $force_proportions = false, $force_image_type = false, $scale_up = true){
+		public function resizeImage($src, $output, $n_width, $n_height, $force_proportions = false, $force_image_type = false, $scale_up = true, $rotateByExif = true){
 
 			$acceptedFileTypes = array("jpg", "jpeg", "png", "gif");
 			$allowedForceTypes = array("jpg", "png", "gif");
@@ -89,20 +90,37 @@
 			
 			imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
+			if($rotateByExif){
+				$exif = exif_read_data($src);
+				switch ($exif["Orientation"]) {
+					case 3:
+						$image_p = imagerotate($image_p, 90, 0);
+						break;
+					case 6:
+						$image_p = imagerotate($image_p, 270, 0);
+						break;
+					default:
+						break;
+				}
+			}
+
 			$force_image_type = $force_image_type == false ? $src_type : $force_image_type;
 			
 			$output = $this->changeFileExtension($output, $force_image_type);
+			$tmp = explode("/", $output);
+			$returnFilename = $tmp[count($tmp)-1];
+
 			if($src_type == "jpg" || $src_type == "jpeg" || $force_image_type == "jpg") {				
 				if(imagejpeg($image_p, $output, 80)){
-					return true;
+					return $returnFilename;
 				}
 			} elseif($src_type == "png" || $force_image_type == "png") {
 				if(imagepng($image_p, $output, 8)){
-					return true;
+					return $returnFilename;
 				}
 			} elseif($src_type == "gif" || $force_image_type == "gif"){
 				if(imagegif($image_p, $output)){
-					return true;
+					return $returnFilename;
 				}
 			}
 		}

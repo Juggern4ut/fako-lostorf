@@ -343,6 +343,7 @@ function cmsRemoveImage(image, id){
 		$.get(url, function(data){
 			$("main").html(data);
 			init();
+			$("#cms-lightbox").fadeOut();
 		});
 	}
 }
@@ -397,7 +398,7 @@ function initImageAlign(id){
 		var showInSlideshow = $(".showInSlideshow").is(":checked") ? "1" : "0";
 
 		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow, function (data) {
-			console.log(data);
+			$("#cms-lightbox").fadeOut();
 		});
 	})
 }
