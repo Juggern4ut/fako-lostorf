@@ -10,6 +10,14 @@ $(document).ready(function(){
 	google.charts.setOnLoadCallback(drawPlatforms);
 });
 
+$(window).resize(function(){
+	let imageAlignSpan = $("aside#cms-lightbox div#cms-lightbox-container .image-align span")
+	if (imageAlignSpan.length > 0){
+		var imageAlignSpanNewHeight = parseInt(imageAlignSpan.css("width"))/3;
+		imageAlignSpan.css({ "height": imageAlignSpanNewHeight+"px"});
+	}
+});
+
 function init(){
 	styleFileUpload();
 	optionsLogic();
@@ -337,6 +345,61 @@ function cmsRemoveImage(image, id){
 			init();
 		});
 	}
+}
+
+function cmsImageSettings(image, id){
+	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
+	$.get(url, function (data) {
+		$("#cms-lightbox-content").html(data);
+		$("#cms-lightbox").fadeIn();
+		initImageAlign(id);
+	});
+}
+
+function initImageAlign(id){
+	$(window).resize();
+	var dragging = false;
+	var initY = 0;
+	var initTop = 0;
+	var element = $("aside#cms-lightbox div#cms-lightbox-container .image-align span");
+	element.mousedown(function(e){
+		dragging = true;
+		initY = e.originalEvent.pageY;
+		initTop = parseInt($(this).css("top"));
+	});
+
+	element.mousemove(function(e){
+		if(dragging){
+			var maxTop = parseInt($(this).parent().css("height")) - parseInt($(this).css("height"));
+			var top = e.originalEvent.pageY - initY + initTop > 0 ? (e.originalEvent.pageY - initY + initTop)+"px" : "0px";
+			top = parseInt(top) < maxTop ? top : maxTop;
+			$(this).css({ "top" : top });
+		}
+	});
+
+	$("body").mouseup(function(){
+		dragging = false;	
+	});
+
+	$(".save-image-align").click(function(){
+		let percentage = 0;
+		var top = parseFloat(element.css("top"));
+		var bottom = parseFloat(element.parent().css("height")) - (top + parseFloat(element.css("height")));
+		var delta = top < bottom ? top / bottom * 100 : bottom / top * 100;
+		if (top < bottom) {
+			percentage = delta / 2;
+		} else {
+			percentage = 100 - delta / 2;
+		}
+
+		percentage = percentage > 100 ? 100 : percentage;
+
+		var showInSlideshow = $(".showInSlideshow").is(":checked") ? "1" : "0";
+
+		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow, function (data) {
+			console.log(data);
+		});
+	})
 }
 
 /* WYSIWYG */

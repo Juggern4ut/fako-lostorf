@@ -170,6 +170,25 @@
 			move_uploaded_file($_FILES["cms-richtext-upload"]["tmp_name"], "media/richtext/".$_FILES["cms-richtext-upload"]["name"]);
 		}
 
+		if(isset($_GET["imageSettings"])){
+			echo "<div>";
+				echo "<input class='showInSlideshow' type='checkbox' name='showInSlideshow'><label>In Slideshow anzeigen</label>";
+				
+				echo "<div class='image-align'>";
+					echo "<img src='".$_GET["imageSettings"]."' />";
+					echo "<span></span>";
+				echo "</div>";
+
+				echo "<button class='save-image-align'>Speichern</button>";
+			echo "</div>";
+		}
+
+		if(isset($_GET["alignImage"])){
+			$stmt = $db->prepare('UPDATE cms_article_content_image SET image_align_percentage = ?, show_in_slideshow = ? WHERE article_content_image_id = ?');
+			$stmt->bind_param('sii', number_format($_GET["percentage"],2), $_GET["showInSlideshow"], $_GET["alignImage"]);
+			$stmt->execute();
+		}
+
 		//CHANGE CALENDAR SESSION
 		if(isset($_GET["calendarMonth"])){
 			if($_SESSION["calendarMonth"] == 1 && $_GET["calendarMonth"] == -1){

@@ -283,7 +283,27 @@ aside#cms-lightbox {
 			display: inline-block;
 			cursor: pointer;
 		}
+		
+		aside#cms-lightbox div#cms-lightbox-container .image-align{
+			position: relative;
+			line-height: 0;
+		}
 
+		aside#cms-lightbox div#cms-lightbox-container .image-align img{
+			max-width: 100%;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .image-align span{
+			width: 100%;
+			height: 250px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba(255,255,255,0.2);
+			border: 1px solid #fff;
+			box-sizing: border-box;
+		}
+		
 /*END LIGHTBOX*/
 
 /*LOGIN*/

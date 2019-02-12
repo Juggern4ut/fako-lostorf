@@ -50,7 +50,8 @@
 			<meta name="author" content="Lukas Meier" />
 		
 			<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,700" rel="stylesheet"> 
-			<link rel="Stylesheet" type="text/css" media="screen" href="/cms/css/styles.min.css">
+			<link rel="Stylesheet" type="text/css" media="screen" href="/cms/css/styles.css">
+			<!--<link rel="Stylesheet" type="text/css" media="screen" href="/cms/css/styles.min.css">-->
 	
 			<!--FAVICONS-->
 			<link rel="apple-touch-icon" sizes="180x180" href="/cms/img/favicon/apple-touch-icon.png">
