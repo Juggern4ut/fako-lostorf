@@ -83,6 +83,28 @@ $(window).resize(function(){
 	}else{
 		$("header nav").css({"height":"auto"});
 	}
+
+	$("main article table").each(function(){
+		var table = $(this);
+		table.find("tr").each(function(){
+			var row = $(this);
+			if(row.find("td").length == 2){
+				if(row.find("td").eq(0).find("img").length > 0){
+					row.find("td").eq(0).css({"width":"33%"});
+				}else{
+					row.find("td").eq(0).css({ "width": "67%" });
+				}
+
+				if (row.find("td").eq(1).find("img").length > 0) {
+					row.find("td").eq(1).css({ "width": "33%" });
+				}else {
+					row.find("td").eq(1).css({ "width": "67%" });
+				}
+			}
+		});
+
+
+	});
 });
 
 $(window).scroll(function(){

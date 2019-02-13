@@ -204,7 +204,7 @@ aside#cms-lightbox {
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 		position: relative;
 		min-height: 100px;
-		padding: 40px 10px 1px 10px;
+		padding: 40px 10px 10px 10px;
 		z-index: 65001;
 		max-height: 700px;
 		overflow-y: auto;
@@ -284,6 +284,50 @@ aside#cms-lightbox {
 			cursor: pointer;
 		}
 
+		aside#cms-lightbox div#cms-lightbox-container h3{
+			margin-bottom: 10px;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .delete-image{
+			background-color: #800;
+			border: 0px;
+			padding: 10px 20px;
+			color: #FFF;
+			font-size: 17px;
+			cursor: pointer;
+			margin-top: 10px;
+		}
+		
+		aside#cms-lightbox div#cms-lightbox-container .image-align{
+			position: relative;
+			line-height: 0;
+			margin: 10px 0;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .image-align img{
+			width: 100%;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .image-align span{
+			width: 100%;
+			height: 250px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba(255,255,255,0.2);
+			border: 1px solid #fff;
+			box-sizing: border-box;
+		}
+
+		aside#cms-lightbox div#cms-lightbox-container .save-image-align{
+			background-color: #1d3457;
+			border: 0px;
+			padding: 10px 20px;
+			color: #FFF;
+			font-size: 17px;
+			cursor: pointer;
+		}
+		
 /*END LIGHTBOX*/
 
 /*LOGIN*/

@@ -206,12 +206,9 @@
 			<?php $image = $contents[0]["images"][0]; ?>
 			<section>
 				<?php
-					$count = 0;
 					foreach ($contents[0]["images"] as $image) {
-						echo "<article style=\"background-image: url('/".$image."'); background-position: center ".$contents[0]["image_position"].";\">&nbsp;</article>";
-						$count++;
-						if($count > 4){
-							break;
+						if($image["show_in_slideshow"]){
+							echo "<article style=\"background-image: url('/".$image["image"]."'); background-position: center ".$image["alignment"]."%;\">&nbsp;</article>";
 						}
 					}
 				?>

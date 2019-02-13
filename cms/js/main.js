@@ -335,8 +335,72 @@ function cmsRemoveImage(image, id){
 		$.get(url, function(data){
 			$("main").html(data);
 			init();
+			$("#cms-lightbox").fadeOut();
 		});
 	}
+}
+
+function cmsImageSettings(image, id){
+	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
+	$.get(url, function (data) {
+		$("#cms-lightbox-content").html(data);
+		$.get("/?async=1&getImageSettings="+id, function(data){
+			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": data.percentage+"%"});
+			if(data.show_in_slideshow){
+				$("#showInSlideshow").click();
+			}
+			$("#cms-lightbox").fadeIn();
+			initImageAlign(id);
+		})
+	});
+}
+
+function initImageAlign(id){
+	$(window).resize();
+	var dragging = false;
+	var initY = 0;
+	var initTop = 0;
+	var element = $("aside#cms-lightbox div#cms-lightbox-container .image-align span");
+	element.mousedown(function(e){
+		dragging = true;
+		initY = e.originalEvent.pageY;
+		initTop = parseInt($(this).css("top"));
+	});
+
+	element.mousemove(function(e){
+		if(dragging){
+			var maxTop = parseInt($(this).parent().css("height")) - parseInt($(this).css("height"));
+			var top = e.originalEvent.pageY - initY + initTop > 0 ? (e.originalEvent.pageY - initY + initTop)+"px" : "0px";
+			top = parseInt(top) < maxTop ? top : maxTop;
+			$(this).css({ "top" : top });
+		}
+	});
+
+	$("body").mouseup(function(){
+		dragging = false;	
+	});
+
+	$(".save-image-align").click(function(){
+		let percentage = 0;
+		var top = parseFloat(element.css("top"));
+		var bottom = parseFloat(element.parent().css("height")) - (top + parseFloat(element.css("height")));
+		var delta = top < bottom ? top / bottom * 100 : bottom / top * 100;
+		if (top < bottom) {
+			percentage = delta / 2;
+		} else {
+			percentage = 100 - delta / 2;
+		}
+
+		let cmsViewPercentage = top / parseFloat(element.parent().css("height")) * 100;
+
+		percentage = percentage > 100 ? 100 : percentage;
+
+		var showInSlideshow = $(".showInSlideshow").is(":checked") ? "1" : "0";
+
+		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow +"&cmsViewPercentage="+cmsViewPercentage, function (data) {
+			$("#cms-lightbox").fadeOut();
+		});
+	})
 }
 
 /* WYSIWYG */

@@ -12,6 +12,31 @@
 				$_GET["part"] = "overview";
 			}
 
+			if(isset($_GET["downloadevent"])){
+
+				$stmt = $this->db->prepare("SELECT name, start_date, end_date, start_time, end_time, description, location, all_day FROM tbl_appointment WHERE appointment_id = ? LIMIT 1");
+				$stmt->bind_param('i', $_GET["downloadevent"]);
+				$stmt->execute();
+				$stmt->bind_result($name, $start_date, $end_date, $start_time, $end_time, $description, $location, $all_day);
+				$stmt->fetch();
+
+				if($all_day){
+					$start = $start_date;
+					$end = $end_date;
+				}else {
+					$start = $start_date." ".$start_time;
+					$end = $end_date." ".$end_time;
+				}
+
+				$start = date("Y-m-d H:i:s", strtotime($start));
+				$end = date("Y-m-d H:i:s", strtotime($end));
+
+				$ics = new coreIcs();
+				$ics->createEvent($start, $end, $name, strip_tags($description), $location);
+				$ics->show();
+				exit();
+			}
+
 			if(!isset($_GET["details"]) && !isset($_GET["add"]) && !isset($_GET["edit"])){
 
 				if(isset($_GET["rmv"]) && $this->user->getPermissions() >= 1){
@@ -173,7 +198,8 @@
 					}
 				}
 			}
-			
+	
+			echo "<a target='_blank' href='/?admin=1&module=termine&async=1&downloadevent=".$_GET["details"]."'>In den Kalender speichern</a>";
 
 			echo $table->render();
 			cms_back();

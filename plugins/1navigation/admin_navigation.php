@@ -482,7 +482,7 @@
 							$form->addText($this->cT->get("navigation_title"), "title_".$res["lang_id"]);
 							$form->addRichtext($this->cT->get("navigation_content"), "text_".$res["lang_id"]);
 							$positions = array("top"=>"Oben", "center"=>"Mitte", "bottom"=>"Unten");
-							$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
+							//$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
 							$form->addFileUpload($this->cT->get("navigation_images"), "image_".$res["short"]);
 
 							if(isset($_GET["edit"])){
