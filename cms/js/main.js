@@ -575,6 +575,14 @@ function confirmationDialog(){
 	});
 }
 
+$(window).resize(function () {
+	let imageAlignSpan = $("aside#cms-lightbox div#cms-lightbox-container .image-align span")
+	if (imageAlignSpan.length > 0) {
+		var imageAlignSpanNewHeight = parseInt(imageAlignSpan.css("width")) / 3;
+		imageAlignSpan.css({ "height": imageAlignSpanNewHeight + "px" });
+	}
+});
+
 function loader(state, speed){
 	speed = speed == undefined ? 200 : speed;
 	if(state == "hide"){

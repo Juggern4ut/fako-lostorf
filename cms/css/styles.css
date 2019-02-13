@@ -55,14 +55,14 @@ div#status.moving{
 
 /*DASHBOARD*/
 div#dashboard div{
-    padding: 10px;
-    background-color: #fff;
-    width: 500px;
+	padding: 10px;
+	background-color: #fff;
+	width: 500px;
 	max-width: calc(100% - 20px);
-    margin: 0px auto;
-    color: #5f5f5f;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
-    margin-bottom: 20px;
+	margin: 0px auto;
+	color: #5f5f5f;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+	margin-bottom: 20px;
 }
 
 div#dashboard div ul{
