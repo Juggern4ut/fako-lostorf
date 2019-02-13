@@ -172,6 +172,7 @@
 
 		if(isset($_GET["imageSettings"])){
 			echo "<div>";
+				echo "<h3>Bildkonfiguration</h3>";
 				echo "<input class='showInSlideshow' id='showInSlideshow' type='checkbox' name='showInSlideshow'><label for='showInSlideshow'>In Slideshow anzeigen</label>";
 				
 				echo "<div class='image-align'>";
@@ -185,18 +186,19 @@
 			echo "</div>";
 		}
 
-		if(isset($_GET["getImageAlignment"])){
-			$stmt = $db->prepare('SELECT image_align_percentage FROM cms_article_content_image WHERE article_content_image_id = ? LIMIT 1');
-			$stmt->bind_param('i', $_GET["getImageAlignment"]);
+		if(isset($_GET["getImageSettings"])){
+			header('Content-Type: application/json');
+			$stmt = $db->prepare('SELECT cms_align_percentage, show_in_slideshow FROM cms_article_content_image WHERE article_content_image_id = ? LIMIT 1');
+			$stmt->bind_param('i', $_GET["getImageSettings"]);
 			$stmt->execute();
-			$stmt->bind_result($percentage);
+			$stmt->bind_result($percentage, $show_in_slideshow);
 			$stmt->fetch();
-			echo $percentage;
+			echo json_encode(array("percentage"=>$percentage, "show_in_slideshow"=>$show_in_slideshow));
 		}
 
 		if(isset($_GET["alignImage"])){
-			$stmt = $db->prepare('UPDATE cms_article_content_image SET image_align_percentage = ?, show_in_slideshow = ? WHERE article_content_image_id = ?');
-			$stmt->bind_param('sii', number_format($_GET["percentage"],2), $_GET["showInSlideshow"], $_GET["alignImage"]);
+			$stmt = $db->prepare('UPDATE cms_article_content_image SET image_align_percentage = ?, show_in_slideshow = ?, cms_align_percentage = ? WHERE article_content_image_id = ?');
+			$stmt->bind_param('sisi', number_format($_GET["percentage"],2), $_GET["showInSlideshow"], $_GET["cmsViewPercentage"], $_GET["alignImage"]);
 			$stmt->execute();
 		}
 

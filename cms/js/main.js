@@ -352,15 +352,11 @@ function cmsImageSettings(image, id){
 	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
 	$.get(url, function (data) {
 		$("#cms-lightbox-content").html(data);
-		$.get("/?async=1&getImageAlignment="+id, function(data){
-
-			var percentage = data;
-			var spanHeight = parseInt($("aside#cms-lightbox div#cms-lightbox-container .image-align span").css("height"));
-			var spanDelta = spanHeight/100*data;
-
-			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": "calc("+percentage+"%)"});
-			console.log($("aside#cms-lightbox div#cms-lightbox-container .image-align span").css("top"));
-			console.log(spanDelta);
+		$.get("/?async=1&getImageSettings="+id, function(data){
+			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": data.percentage+"%"});
+			if(data.show_in_slideshow){
+				$("#showInSlideshow").click();
+			}
 			$("#cms-lightbox").fadeIn();
 			initImageAlign(id);
 		})
@@ -403,11 +399,13 @@ function initImageAlign(id){
 			percentage = 100 - delta / 2;
 		}
 
+		let cmsViewPercentage = top / parseFloat(element.parent().css("height")) * 100;
+
 		percentage = percentage > 100 ? 100 : percentage;
 
 		var showInSlideshow = $(".showInSlideshow").is(":checked") ? "1" : "0";
 
-		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow, function (data) {
+		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow +"&cmsViewPercentage="+cmsViewPercentage, function (data) {
 			$("#cms-lightbox").fadeOut();
 		});
 	})
