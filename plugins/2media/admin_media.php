@@ -2,7 +2,7 @@
 		class admin_media extends plugin{
 						
 			public function configure(){
-				$this->setPermission(1);
+				$this->setPermission(0);
 				$this->setName($this->cT->get("module_media"));
 			}
 
@@ -22,7 +22,7 @@
 			}
 
 			private function removeLogic(){
-				if(isset($_GET["rmv"])){
+				if(isset($_GET["rmv"]) && $this->user->getPermissions()){
 
 					$path = (isset($_GET["path"]) && trim($_GET["path"]) != "") ? "media/userdocuments/".$_GET["path"].$_GET["rmv"] : "media/userdocuments/".$_GET["rmv"];
 					if(file_exists($path) && strpos($_GET["rmv"], "..") === false){
@@ -68,11 +68,13 @@
 				echo "<h1>".$this->cT->get("media_module_title")."</h1>";
 				echo "<p>".$this->cT->get("media_module_description")."</p><br>";
 
-				$form->addTitle("Upload");
-				$form->addFileUpload($this->cT->get("media_file")."<div class='form-label'>Maximale Dateigrösse: ".ini_get("upload_max_filesize")."</div>", "files");
-				$form->addText($this->cT->get("media_foldername"), "folder");
-				$form->addSubmit($this->cT->get("global_submit"), "submit");
-				echo $form->render();
+				if($this->user->getPermissions()){
+					$form->addTitle("Upload");
+					$form->addFileUpload($this->cT->get("media_file")."<div class='form-label'>Maximale Dateigrösse: ".ini_get("upload_max_filesize")."</div>", "files");
+					$form->addText($this->cT->get("media_foldername"), "folder");
+					$form->addSubmit($this->cT->get("global_submit"), "submit");
+					echo $form->render();
+				}
 
 				$table->addTitle(array($this->cT->get("media_files")));
 				$table->addSubtitle(array($this->cT->get("media_filename")));
@@ -105,16 +107,14 @@
 				foreach ($files as $file) {
 
 					if($file != ".." && $file != "."){
+
+						$rmvIcon = $this->user->getPermissions() ? array(array("link"=>"rmv=".$file, "name"=>$this->cT->get("remove"), "async"=>"1", "confirmDialog"=>$this->cT->get("global_confirm_delete"), "direct_link"=>true))
+																 : null;
+
 						if(is_dir("media/userdocuments/".$_GET["path"].$file)){
-							$table->addRow(	array("<a class=\"media-document\" href=\"/index.php/?admin=1&module=media&path=".$_GET["path"].$file."/\"><img draggable=\"false\" src=\"".getFiletypeIcon("media/userdocuments/".$_GET["path"].$file)."\"> <span>".$file."</span></a>"),
-											array(
-												array("link"=>"rmv=".$file, "name"=>$this->cT->get("remove"), "async"=>"1", "confirmDialog"=>$this->cT->get("global_confirm_delete"), "direct_link"=>true)
-											));
+							$table->addRow(	array("<a class=\"media-document\" href=\"/index.php/?admin=1&module=media&path=".$_GET["path"].$file."/\"><img draggable=\"false\" src=\"".getFiletypeIcon("media/userdocuments/".$_GET["path"].$file)."\"> <span>".$file."</span></a>"), $rmvIcon);
 						}else{
-							$table->addRow(	array("<a class=\"media-document\" download href=\"/media/userdocuments/".$_GET["path"].$file."\"><img draggable=\"false\" src=\"".getFiletypeIcon("media/userdocuments/".$_GET["path"].$file)."\"> <span>".$file."</span></a>"),
-											array(
-												array("link"=>"rmv=".$file, "name"=>$this->cT->get("remove"), "async"=>"1", "confirmDialog"=>$this->cT->get("global_confirm_delete"), "direct_link"=>true)
-											));
+							$table->addRow(	array("<a class=\"media-document\" download href=\"/media/userdocuments/".$_GET["path"].$file."\"><img draggable=\"false\" src=\"".getFiletypeIcon("media/userdocuments/".$_GET["path"].$file)."\"> <span>".$file."</span></a>"), $rmvIcon);
 						}
 					}
 				}

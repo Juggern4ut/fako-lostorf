@@ -256,11 +256,11 @@
 				$q = $this->db->query($query);
 				$log = true;
 				while($res = $q->fetch_assoc()){								
-					$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text, image_position) VALUES (?, ?, ?, ?, ?)")
-												: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ?, image_position = ? WHERE lang_fk = ? AND article_fk = ?");
+					$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text) VALUES (?, ?, ?, ?)")
+												: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ? WHERE lang_fk = ? AND article_fk = ?");
 
-							isset($_GET["add"]) ? $stmt->bind_param("iisss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]])
-												: $stmt->bind_param("sssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]], $res["lang_id"], $id);
+							isset($_GET["add"]) ? $stmt->bind_param("iiss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]])
+												: $stmt->bind_param("ssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $res["lang_id"], $id);
 
 					if($log){
 						isset($_GET["add"]) ? $this->logger->log($this->user->getUsername()." created the article '".$_POST["title_".$res["lang_id"]]."'.", $this->user->getId())

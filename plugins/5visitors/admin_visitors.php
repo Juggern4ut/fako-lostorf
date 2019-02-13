@@ -2,7 +2,7 @@
 		class admin_visitors extends plugin{
 						
 			public function configure(){
-				$this->setPermission(0);
+				$this->setPermission(1);
 				$this->setName($this->cT->get("module_visitors"));
 			}
 

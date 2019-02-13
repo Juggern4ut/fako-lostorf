@@ -226,18 +226,26 @@
 							echo "</article>";
 						}
 					echo "</section>";
-				//NEWS
+				//NEWS AND PROGRAM
 				}elseif($primaryId == 30 || $primaryId == 29){
 					echo "<div id='news'>";
-						foreach ($contents as $content) {
+					$count = 0;	
+					foreach ($contents as $content) {
+						if($count === 0){
+							echo "<article>";
+								$form = $navigation->getContactForm();
+								echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
+							echo "</article>";
+						}else{
 							echo "<article class='news'>";
 								echo "<h3><span>".date("d.m.Y", strtotime($content["timestamp"]))."</span><br />".$content["title"]."<span class='moreLess'>» mehr</h3>";
 								echo "<section>";
 									echo $content["content"];
 								echo "</section>";
 							echo "</article>";
-							$count++;
 						}
+						$count++;
+					}
 					echo "</div>";
 				//GALLERY
 				}elseif($primaryId == 24 && isset($secondaryId)){
