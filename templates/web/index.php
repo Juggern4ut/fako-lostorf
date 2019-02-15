@@ -226,6 +226,12 @@
 							echo "</article>";
 						}
 					echo "</section>";
+					if($primaryId === 1){
+						echo "<div class='countdown'>";
+							echo "<h1>Schmudo</h1>";
+						echo "</div>";
+						echo "<script>initCountdown('.countdown')</script>";
+					}
 				//NEWS AND PROGRAM
 				}elseif($primaryId == 30 || $primaryId == 29){
 					echo "<div id='news'>";

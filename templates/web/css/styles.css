@@ -256,7 +256,42 @@ main{
 	width: calc(100% - 40px);
 	margin: 0px auto;
 	line-height: 1.6;
-	padding-bottom: 100px;
+	padding-bottom: 50px;
+}
+
+main .countdown{
+	text-align: center;
+	margin-top: 50px;
+}
+
+main .countdown div{
+	display: inline-block;
+	line-height: 1;
+	padding: 20px;
+	text-align: center;
+	font-size: 30px;
+}
+
+main .countdown div.days{
+	color: #db4844;
+}
+
+main .countdown div.hours{
+	color: #f07c22;
+}
+
+main .countdown div.minutes{
+	color: #f6da74;
+}
+
+main .countdown div.seconds{
+	color: #abcd58;
+}
+
+main .countdown div span{
+	display: block;
+	font-size: 20px;
+	color: #454545;
 }
 
 main table{
@@ -625,6 +660,25 @@ footer a{
 	span#unread_news {
 		right: auto;
 		left: 15px;
+	}
+}
+
+@media(max-width: 500px){
+	main .countdown div{
+		font-size: 20px;
+		padding: 8px;
+	}
+	
+	main .countdown div:first-child{
+		padding-left: 0;
+	}
+
+	main .countdown div:last-child{
+		padding-right: 0;
+	}
+
+	main .countdown div span{
+		font-size: 15px;
 	}
 }
 

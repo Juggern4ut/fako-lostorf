@@ -142,3 +142,35 @@ function mobileNavLinks(){
 		}
 	});
 }
+
+function initCountdown(selector){
+	
+	var endTime = new Date("28 February 2019 00:00:00");
+	endTime = (Date.parse(endTime) / 1000);
+
+	var container = $(selector);
+	container.append("<div class='days'></div>")
+	container.append("<div class='hours'></div>")
+	container.append("<div class='minutes'></div>")
+	container.append("<div class='seconds'></div>")
+	setInterval(function (){
+		var now = new Date();
+		now = (Date.parse(now) / 1000);
+
+		var timeLeft = endTime - now;
+
+		var days = Math.floor(timeLeft / 86400);
+		var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+		var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60);
+		var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+		if (hours < "10") { hours = "0" + hours; }
+		if (minutes < "10") { minutes = "0" + minutes; }
+		if (seconds < "10") { seconds = "0" + seconds; }
+
+		container.find(".days").html(days + "<span>Tage</span>");
+		container.find(".hours").html(hours + "<span>Stunden</span>");
+		container.find(".minutes").html(minutes + "<span>Minuten</span>");
+		container.find(".seconds").html(seconds + "<span>Sekunden</span>");
+	}, 1000);
+}
