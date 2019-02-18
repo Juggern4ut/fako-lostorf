@@ -158,9 +158,8 @@
 									$_GET["n0"] = $nav["link"];
 								}
 
-								if($nav["link"] == "news"){
-									$liId = " id='news'";
-								}
+								$liId = $nav["link"] == "news" ? " id='news'" : "";
+								
 								echo "<li".$class.$liId.">";
 									$subnavPoints = $navigation->getNavigation($nav["id"]);
 									if(count($subnavPoints) > 0){

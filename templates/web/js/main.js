@@ -102,8 +102,6 @@ $(window).resize(function(){
 				}
 			}
 		});
-
-
 	});
 });
 
