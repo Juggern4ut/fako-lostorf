@@ -88,7 +88,7 @@
 			$stmt->bind_result($article_id, $is_active, $article_title, $text, $article_content_id, $timestamp, $image_position);
 
 			while($stmt->fetch()){
-				
+
 				$image_position = $image_position == "" ? "center" : $image_position;
 
 				$tmp["id"] = $article_id;
@@ -107,7 +107,7 @@
 				$stmt2->bind_result($image, $lang_fk, $image_align_percentage, $show_in_slideshow);
 
 				while($stmt2->fetch()){	
-
+					
 					$tmp_image = array();
 
 					if(file_exists("media/navigation/".$article_id."/".$_SESSION["lang"][1]."/".$image)){
@@ -127,7 +127,7 @@
 				}
 				
 				$stmt2->close();
-
+				
 				$return[] = $tmp;
 				unset($tmp);
 			}

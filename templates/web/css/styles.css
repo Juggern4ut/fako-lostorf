@@ -28,6 +28,8 @@ section.program{
 /* HEADER */
 header > section{
 	height: 33vw;
+	min-height: 250px;
+	max-height: 500px;
 	border-bottom: 1px solid #888;
 	border-top: 1px solid #888;
 }
@@ -185,6 +187,7 @@ span#unread_news {
 	transform: rotate(20deg);
 	text-align: center;
 	font-size: 13px;
+	z-index: 1;
 }
 
 header nav ul li ul{
@@ -256,7 +259,7 @@ main{
 	width: calc(100% - 40px);
 	margin: 0px auto;
 	line-height: 1.6;
-	padding-bottom: 50px;
+	padding-bottom: 100px;
 }
 
 main .countdown{
@@ -296,21 +299,19 @@ main .countdown div span{
 
 main table{
 	width: 100% !important;
-}
-main table td{
-	vertical-align: top;
+	height: auto !important;
 }
 
-main table td:not(:last-child){
-	padding-right: 10px;
-}
-
-main article table img{
-	width: 100%;
+main table td:not(:last-child) {
+    padding-right: 10px;
 }
 
 main p{
 	text-align: justify;
+}
+
+main table p{
+	text-align: left;
 }
 
 main a{
@@ -660,25 +661,6 @@ footer a{
 	span#unread_news {
 		right: auto;
 		left: 15px;
-	}
-}
-
-@media(max-width: 500px){
-	main .countdown div{
-		font-size: 20px;
-		padding: 8px;
-	}
-	
-	main .countdown div:first-child{
-		padding-left: 0;
-	}
-
-	main .countdown div:last-child{
-		padding-right: 0;
-	}
-
-	main .countdown div span{
-		font-size: 15px;
 	}
 }
 

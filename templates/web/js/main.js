@@ -84,20 +84,20 @@ $(window).resize(function(){
 		$("header nav").css({"height":"auto"});
 	}
 
-	$("main article table").each(function(){
+	$("main article table").each(function () {
 		var table = $(this);
-		table.find("tr").each(function(){
+		table.find("tr").each(function () {
 			var row = $(this);
-			if(row.find("td").length == 2){
-				if(row.find("td").eq(0).find("img").length > 0){
-					row.find("td").eq(0).css({"width":"33%"});
-				}else{
+			if (row.find("td").length == 2) {
+				if (row.find("td").eq(0).find("img").length > 0) {
+					row.find("td").eq(0).css({ "width": "33%" });
+				} else {
 					row.find("td").eq(0).css({ "width": "67%" });
 				}
 
 				if (row.find("td").eq(1).find("img").length > 0) {
 					row.find("td").eq(1).css({ "width": "33%" });
-				}else {
+				} else {
 					row.find("td").eq(1).css({ "width": "67%" });
 				}
 			}
@@ -141,9 +141,9 @@ function mobileNavLinks(){
 	});
 }
 
-function initCountdown(selector){
-	
-	var endTime = new Date("28 February 2019 00:00:00");
+function initCountdown(selector) {
+
+	var endTime = new Date("11 November 2019 00:00:00");
 	endTime = (Date.parse(endTime) / 1000);
 
 	var container = $(selector);
@@ -151,7 +151,7 @@ function initCountdown(selector){
 	container.append("<div class='hours'></div>")
 	container.append("<div class='minutes'></div>")
 	container.append("<div class='seconds'></div>")
-	setInterval(function (){
+	setInterval(function () {
 		var now = new Date();
 		now = (Date.parse(now) / 1000);
 

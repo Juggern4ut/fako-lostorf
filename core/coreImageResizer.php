@@ -92,6 +92,7 @@
 
 			if($rotateByExif){
 				$exif = exif_read_data($src);
+				echo $exif["Orientation"];
 				switch ($exif["Orientation"]) {
 					case 3:
 						$image_p = imagerotate($image_p, 90, 0);

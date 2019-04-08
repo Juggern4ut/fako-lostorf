@@ -117,7 +117,7 @@
 		<meta name="twitter:description" content="<?php echo $metaDescription; ?>">
 		<meta name="twitter:image" content="<?php echo $metaImage; ?>">
 		
-		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/styles.css">
+		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/styles.css?v=3">
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/slick.css">
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/swipebox.min.css">
 
@@ -127,7 +127,7 @@
 		<link rel="apple-touch-icon" href="/favicon.png"/>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/templates/web/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/templates/web/js/main.js?v=4" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/jquery.swipebox.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -159,7 +159,7 @@
 								}
 
 								$liId = $nav["link"] == "news" ? " id='news'" : "";
-								
+
 								echo "<li".$class.$liId.">";
 									$subnavPoints = $navigation->getNavigation($nav["id"]);
 									if(count($subnavPoints) > 0){
@@ -227,7 +227,7 @@
 					echo "</section>";
 					if($primaryId === 1){
 						echo "<div class='countdown'>";
-							echo "<h1>Schmudo</h1>";
+							echo "<h1>Fasnachtsauftakt</h1>";
 						echo "</div>";
 						echo "<script>initCountdown('.countdown')</script>";
 					}
@@ -236,7 +236,7 @@
 					echo "<div id='news'>";
 					$count = 0;	
 					foreach ($contents as $content) {
-						if($count === 0){
+						if($count === 0 && $primaryId === 29){
 							echo "<article>";
 								$form = $navigation->getContactForm();
 								echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
@@ -260,11 +260,11 @@
 						echo "<br />";
 						echo "<section class=\"gallery\">";
 							foreach ($content["images"] as $image) {
-								echo "<a href='/".$image."' class='swipebox'>";
-									if(file_exists(str_replace("navigation", "navigation_thumbs", $image))){
-										echo "<article style=\"background-image: url('/".str_replace("navigation", "navigation_thumbs", $image)."')\"></article>";
+								echo "<a href='/".$image["image"]."' class='swipebox'>";
+									if(file_exists(str_replace("navigation", "navigation_thumbs", $image["thumbnail"]))){
+										echo "<article style=\"background-image: url('/".str_replace("navigation", "navigation_thumbs", $image["thumbnail"])."')\"></article>";
 									}else{
-										echo "<article style=\"background-image: url('/".$image."')\"></article>";
+										echo "<article style=\"background-image: url('/".$image["image"]."')\"></article>";
 									}
 								echo "</a>";
 							}

@@ -146,10 +146,12 @@ function initCmsForm(){
 			}
 			loader('show', 200);
 		},
-		success: function(data){
+		success: function (data) {
 			loader('hide', 200);
 			$("main").html(data);
-			init();
+		},
+		error: function () {
+			loader('hide', 200);
 		}
 	});
 }
@@ -206,14 +208,15 @@ function makeTableSortable(tableName){
 		items: ".row",
 		helper: fixHelper,
 		update: function(event, ui) {
+			loader('show', 200);
 			var sortArray = {};
 			$(this).find(".row").each(function(index){
 				sortArray[index+1] = $(this).attr("row_id");
 			});
 
 			$.post(window.location.href+"&async=1&sort=1&table="+tableName, {"sort":sortArray}, function(data){
-				console.log(sortArray);
-				console.log(data);
+				$("main").html(data);
+				loader('hide', 200);
 			});
 		}
 	}).disableSelection();
@@ -272,70 +275,70 @@ function styleFileUpload(){
 }
 
 function validateCmsForm(form){
-			var formError = false;
-			$(form).find("input, select, textarea").each(function(){
+	var formError = false;
+	var richtextIndex = 0;
+	$(form).find("input, select, textarea").each(function(){
 
-				var value = $(this).val();
-				var minLength = $(this).attr("minLength") != undefined ? $(this).attr("minLength") : 0;
-				var error = false;
+		var value = $(this).val();
+		var minLength = $(this).attr("minLength") != undefined ? $(this).attr("minLength") : 0;
+		var error = false;
 
-				/*console.log($(this)[0].tagName);
-				console.log(value);*/
+		/*console.log($(this)[0].tagName);
+		console.log(value);*/
 
-				if($(this).attr("type") == "radio" && $(this).attr("required") == "required"){
-					var name = $(this).attr("name");
-					var val = $("input:radio[name ='" + name + "']:checked").val();
-					if(val == undefined){
-						error = true;
-					}
-				}
-
-				if($(this).attr("type") == "checkbox" && $(this).attr("required") == "required" && !$(this).is(":checked")){
-					error = true;
-				}
-
-				if($(this)[0].tagName == "SELECT" && value == "0" && $(this).attr("required") == "required"){
-					error = true;
-				}
-
-				if($(this).attr("required") == "required" && value.length <= 0){
-					error = true;
-				}
-
-				if($(this).hasClass("cms-richtext")){
-					var rtVal = tinymce.editors[$(this).index()-1].getContent();
-					console.log(rtVal);
-					if($(this).attr("required") == "required" && rtVal.length <= 0){
-						error = true;
-					}
-				}
-
-				if(value.length < minLength){
-					error = true;
-				}
-
-				if(error){
-					$(this).closest("td").addClass("cms-error");
-					formError = true;
-				}else{
-					$(this).closest("td").removeClass("cms-error");
-				}
-			});
-
-			if(formError){
-				return false;
-			}else{
-				return true;
+		if($(this).attr("type") == "radio" && $(this).attr("required") == "required"){
+			var name = $(this).attr("name");
+			var val = $("input:radio[name ='" + name + "']:checked").val();
+			if(val == undefined){
+				error = true;
 			}
+		}
+
+		if($(this).attr("type") == "checkbox" && $(this).attr("required") == "required" && !$(this).is(":checked")){
+			error = true;
+		}
+
+		if($(this)[0].tagName == "SELECT" && value == "0" && $(this).attr("required") == "required"){
+			error = true;
+		}
+
+		if($(this).attr("required") == "required" && value.length <= 0){
+			error = true;
+		}
+
+		if($(this).hasClass("cms-richtext")){
+			var rtVal = tinymce.editors[richtextIndex].getContent();
+			richtextIndex++;
+			if($(this).attr("required") == "required" && rtVal.length <= 0){
+				error = true;
+			}
+		}
+
+		if(value.length < minLength){
+			error = true;
+		}
+
+		if(error){
+			$(this).closest("td").addClass("cms-error");
+			formError = true;
+		}else{
+			$(this).closest("td").removeClass("cms-error");
+		}
+	});
+
+	if(formError){
+		return false;
+	}else{
+		return true;
+	}
 }
 
-function cmsRemoveSimpleImage(image) {
+function cmsRemoveImage(image, id) {
 	var r = confirm("Möchten Sie dieses Element wirklich löschen?");
 	if (r == true) {
 		var url = window.location.href;
 		url = url.replace("&async=1", "");
-		url = url + "&async=1&cmsRemoveSimpleImage=" + image;
-		
+		url = url + "&async=1&cmsRemoveImage=" + image + "&image_id=" + id;
 		$.get(url, function (data) {
 			$("main").html(data);
 			init();
@@ -344,27 +347,13 @@ function cmsRemoveSimpleImage(image) {
 	}
 }
 
-function cmsRemoveImage(image, id){
-	var r = confirm("Möchten Sie dieses Element wirklich löschen?");
-	if (r == true) {
-		var url = window.location.href;
-		url = url.replace("&async=1", "");
-		url = url+"&async=1&cmsRemoveImage="+image+"&image_id="+id;
-		$.get(url, function(data){
-			$("main").html(data);
-			init();
-			$("#cms-lightbox").fadeOut();
-		});
-	}
-}
-
-function cmsImageSettings(image, id){
+function cmsImageSettings(image, id) {
 	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
 	$.get(url, function (data) {
 		$("#cms-lightbox-content").html(data);
-		$.get("/?async=1&getImageSettings="+id, function(data){
-			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": data.percentage+"%"});
-			if(data.show_in_slideshow){
+		$.get("/?async=1&getImageSettings=" + id, function (data) {
+			$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": data.percentage + "%" });
+			if (data.show_in_slideshow) {
 				$("#showInSlideshow").click();
 			}
 			$("#cms-lightbox").fadeIn();
@@ -373,32 +362,32 @@ function cmsImageSettings(image, id){
 	});
 }
 
-function initImageAlign(id){
+function initImageAlign(id) {
 	$(window).resize();
 	var dragging = false;
 	var initY = 0;
 	var initTop = 0;
 	var element = $("aside#cms-lightbox div#cms-lightbox-container .image-align span");
-	element.mousedown(function(e){
+	element.mousedown(function (e) {
 		dragging = true;
 		initY = e.originalEvent.pageY;
 		initTop = parseInt($(this).css("top"));
 	});
 
-	element.mousemove(function(e){
-		if(dragging){
+	element.mousemove(function (e) {
+		if (dragging) {
 			var maxTop = parseInt($(this).parent().css("height")) - parseInt($(this).css("height"));
-			var top = e.originalEvent.pageY - initY + initTop > 0 ? (e.originalEvent.pageY - initY + initTop)+"px" : "0px";
+			var top = e.originalEvent.pageY - initY + initTop > 0 ? (e.originalEvent.pageY - initY + initTop) + "px" : "0px";
 			top = parseInt(top) < maxTop ? top : maxTop;
-			$(this).css({ "top" : top });
+			$(this).css({ "top": top });
 		}
 	});
 
-	$("body").mouseup(function(){
-		dragging = false;	
+	$("body").mouseup(function () {
+		dragging = false;
 	});
 
-	$(".save-image-align").click(function(){
+	$(".save-image-align").click(function () {
 		let percentage = 0;
 		var top = parseFloat(element.css("top"));
 		var bottom = parseFloat(element.parent().css("height")) - (top + parseFloat(element.css("height")));
@@ -415,7 +404,7 @@ function initImageAlign(id){
 
 		var showInSlideshow = $(".showInSlideshow").is(":checked") ? "1" : "0";
 
-		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow +"&cmsViewPercentage="+cmsViewPercentage, function (data) {
+		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow + "&cmsViewPercentage=" + cmsViewPercentage, function (data) {
 			$("#cms-lightbox").fadeOut();
 		});
 	})
@@ -449,7 +438,6 @@ function fileBrowserClick(callback){
 		$.get("/?async=1&isDir="+path, function(data){
 			data = data.trim();
 			if(data == "0"){
-				console.log(path);
 				callback(path);
 				$("#cms-lightbox").fadeOut();
 			}else{
@@ -473,7 +461,7 @@ function richtexteditor(){
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"searchreplace visualblocks code fullscreen",
-			"insertdatetime media table contextmenu paste imagetools wordcount"
+			"insertdatetime media table paste imagetools wordcount"
 		],
 		toolbar: "styleselect | bold italic | table | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code",
 		a_plugin_option: true,

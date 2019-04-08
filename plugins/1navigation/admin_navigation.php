@@ -39,7 +39,7 @@
 				);
 
 				$elements++;
-								
+							  
 				$this->navigation($table,$res["navigation_id"],$stage+1,$elements);
 				$in++;
 			}
@@ -60,7 +60,7 @@
 				}		
 				
 				$arr[$res["navigation_id"]]=$space." ".$res["title"];
-								
+							  
 				$this->navigationArray($res["navigation_id"],$stage+1,$arr);
 				$in++;
 			}
@@ -99,6 +99,7 @@
 					$stmt->execute();
 				}
 				$this->logger->log($this->user->getUsername()." changed the order of the pages.", $this->user->getId());
+				cms_status($this->cT->get("global_sort_success"));
 			}
 		}
 
@@ -256,12 +257,12 @@
 			$q = $this->db->query($query);
 			$log = true;
 			while($res = $q->fetch_assoc()){								
-				$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text) VALUES (?, ?, ?, ?)")
-											: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ? WHERE lang_fk = ? AND article_fk = ?");
+				$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text, image_position) VALUES (?, ?, ?, ?, ?)")
+											: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ?, image_position = ? WHERE lang_fk = ? AND article_fk = ?");
 
-						isset($_GET["add"]) ? $stmt->bind_param("iiss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]])
-											: $stmt->bind_param("ssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $res["lang_id"], $id);
-
+						isset($_GET["add"]) ? $stmt->bind_param("iisss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]])
+											: $stmt->bind_param("sssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]], $res["lang_id"], $id);
+				
 				if($log){
 					isset($_GET["add"]) ? $this->logger->log($this->user->getUsername()." created the article '".$_POST["title_".$res["lang_id"]]."'.", $this->user->getId())
 										: $this->logger->log($this->user->getUsername()." edited the article '".$_POST["title_".$res["lang_id"]]."'.", $this->user->getId());
@@ -279,9 +280,7 @@
 
 					$imageError = false;
 					for($i = 0; $i < count($_FILES["image_".$res["short"]]["name"]); $i++){
-
 						$filename = strtolower($_FILES["image_".$res["short"]]["name"][$i]);
-
 						try{
 							$resizedImage = $imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$filename, 1920, 1080);
 							$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation_thumbs/".$id."/".$res["short"]."/".$filename, 480, 320);
@@ -289,7 +288,29 @@
 							$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
 							$stmt2->bind_param("iis", $id, $res["lang_id"], $resizedImage);
 							$stmt2->execute();
+
+						}catch(Exception $e) {
+							$imageError = true;
+						}
+					}
+				}
+
+				if(isset($_FILES["slideshow_image_".$res["short"]])){
+					@mkdir("media/slideshow/".$id);
+					@mkdir("media/slideshow/".$id."/".$res["short"]);
+
+					$imageResizer = new coreImageResizer();
+
+					$imageError = false;
+					for($i = 0; $i < count($_FILES["slideshow_image_".$res["short"]]["name"]); $i++){
+						$filename = strtolower($_FILES["slideshow_image_".$res["short"]]["name"][$i]);
+						try{
+							$resizedImage = $imageResizer->resizeImage($_FILES["slideshow_image_".$res["short"]]["tmp_name"][$i], "media/slideshow/".$id."/".$res["short"]."/".$filename, 1920, 1080);
 							
+							$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_slideshow_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
+							$stmt2->bind_param("iis", $id, $res["lang_id"], $resizedImage);
+							$stmt2->execute();
+
 						}catch(Exception $e) {
 							$imageError = true;
 						}
@@ -302,6 +323,15 @@
 					$sortValues = json_decode($_POST["sortArticleImages_".$res["short"]]);
 					foreach ($sortValues as $position => $imageId) {
 						$stmt = $this->db->prepare("UPDATE cms_article_content_image SET sort = ? WHERE article_content_image_id = ?");
+						$stmt->bind_param("ii", $position, $imageId);
+						$stmt->execute();
+					}
+				}
+
+				if($_POST["sortArticleSlideshowImages_".$res["short"]] != ""){
+					$sortValues = json_decode($_POST["sortArticleSlideshowImages_".$res["short"]]);
+					foreach ($sortValues as $position => $imageId) {
+						$stmt = $this->db->prepare("UPDATE cms_article_content_slideshow_image SET sort = ? WHERE article_content_slideshow_image_id = ?");
 						$stmt->bind_param("ii", $position, $imageId);
 						$stmt->execute();
 					}
@@ -334,6 +364,17 @@
 						@unlink($file);
 						@unlink(str_replace("/navigation/", "/navigation_thumbs/", $file));
 					}
+				}
+			}
+
+			if(isset($_GET["cmsRemoveSlideshowImage"])){
+				$file = str_replace("/media", "media", $_GET["cmsRemoveSlideshowImage"]);		
+				$stmt = $this->db->prepare("DELETE FROM cms_article_content_slideshow_image WHERE article_content_slideshow_image_id = ?");
+				$stmt->bind_param("i", $_GET["image_id"]);
+				$stmt->execute();
+				
+				if(file_exists($file)){
+					@unlink($file);
 				}
 			}
 		}
@@ -482,7 +523,33 @@
 						$form->addText($this->cT->get("navigation_title"), "title_".$res["lang_id"]);
 						$form->addRichtext($this->cT->get("navigation_content"), "text_".$res["lang_id"]);
 						$positions = array("top"=>"Oben", "center"=>"Mitte", "bottom"=>"Unten");
-						//$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
+						$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
+						/*$form->addFileUpload("Slideshow Bilder (Nur bei Gallerie)", "slideshow_image_".$res["short"]);
+
+						if(isset($_GET["edit"])){
+							$slideshow_images = array();
+							$dir = "media/slideshow/".$_GET["edit"]."/".$res["short"];
+
+							$stmt = $this->db->prepare("SELECT article_content_slideshow_image_id, image, sort FROM cms_article_content_slideshow_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
+							$stmt->bind_param("ii", $_GET["edit"], $res["lang_id"]);
+							$stmt->execute();
+							$stmt->bind_result($image_id, $image, $sort);
+
+							while($stmt->fetch()){
+								$tmpDir = str_replace("navigation", "navigation_thumbs", $dir);
+
+								if(file_exists($tmpDir."/".$image)){
+									$images[] = array("path"=>"/".$tmpDir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+								}elseif(file_exists($dir."/".$image)){
+									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+								}
+
+							}
+							if(count($images) > 0){
+								$form->addImageGallery($images, true, 'sortArticleSlideshowImages_'.$res["short"], 'cmsRemoveSlideshowImage');
+							}
+						}*/
+
 						$form->addFileUpload($this->cT->get("navigation_images"), "image_".$res["short"]);
 
 						if(isset($_GET["edit"])){
@@ -504,7 +571,9 @@
 								}
 
 							}
-							$form->addImageGallery($images, true, 'sortArticleImages_'.$res["short"]);
+							if(count($images) > 0){
+								$form->addImageGallery($images, true, 'sortArticleImages_'.$res["short"]);
+							}
 						}
 					}
 

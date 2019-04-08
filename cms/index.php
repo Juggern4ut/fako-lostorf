@@ -70,7 +70,7 @@
 			
 			<script src="/cms/js/jquery.form.js"></script> 
 			<script src="/cms/js/tinymce/tinymce.min.js" type="text/javascript" charset="utf-8"></script>
-			<script src="/cms/js/main.js" type="text/javascript" charset="utf-8"></script>
+			<script src="/cms/js/main.js?v=2" type="text/javascript" charset="utf-8"></script>
 
 			<?php
 				$total = disk_total_space(".");
