@@ -163,7 +163,8 @@
 		private function _renderImageGallery($field){
 			echo "<td colspan=\"2\">";
 				foreach ($field["value"] as $image) {
-					echo "<div class=\"image-gallery-element\" sortListName=\"".$field["sortName"]."\" language=\"".$image["lang"]."\" image_id=\"".$image["id"]."\" onclick=\"cmsImageSettings('".$image["path"]."', '".$image["id"]."');\" style=\"background-image: url('".$image["path"]."');\"><span></span></div>";
+					$class = strlen(trim($image["class"])) > 0 ? " ".trim($image["class"]) : "";
+					echo "<div class=\"image-gallery-element".$class."\" sortListName=\"".$field["sortName"]."\" language=\"".$image["lang"]."\" image_id=\"".$image["id"]."\" onclick=\"cmsImageSettings('".$image["path"]."', '".$image["id"]."', this);\" style=\"background-image: url('".$image["path"]."');\"><span></span></div>";
 				}
 			echo "</td>";
 		}

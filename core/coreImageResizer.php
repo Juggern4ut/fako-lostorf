@@ -90,9 +90,8 @@
 			
 			imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
-			if($rotateByExif){
+			if($rotateByExif && ($src_type == "jpg" || $src_type == "tiff")){
 				$exif = exif_read_data($src);
-				echo $exif["Orientation"];
 				switch ($exif["Orientation"]) {
 					case 3:
 						$image_p = imagerotate($image_p, 90, 0);

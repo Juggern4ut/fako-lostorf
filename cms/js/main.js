@@ -347,7 +347,7 @@ function cmsRemoveImage(image, id) {
 	}
 }
 
-function cmsImageSettings(image, id) {
+function cmsImageSettings(image, id, elem) {
 	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
 	$.get(url, function (data) {
 		$("#cms-lightbox-content").html(data);
@@ -358,6 +358,14 @@ function cmsImageSettings(image, id) {
 			}
 			$("#cms-lightbox").fadeIn();
 			initImageAlign(id);
+		})
+
+		$("#showInSlideshow").click(function(){
+			if($(this).is(":checked")){
+				$(elem).addClass("in-slideshow")
+			}else{
+				$(elem).removeClass("in-slideshow")
+			}
 		})
 	});
 }
@@ -447,7 +455,7 @@ function fileBrowserClick(callback){
 				});
 			}
 		});
-	});
+	})
 }
 
 function richtexteditor(){

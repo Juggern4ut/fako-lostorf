@@ -869,6 +869,11 @@ nav.open{
 					background-position: center;
 				}
 
+					form.cms-form table.cms-table td .image-gallery-element.in-slideshow {
+						outline: 2px solid #ff4500;
+						outline-offset: 1px;
+					}
+
 					form.cms-form table.cms-table td .image-gallery-element span{
 						cursor: pointer;
 						display: block;

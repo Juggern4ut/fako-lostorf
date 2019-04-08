@@ -278,6 +278,9 @@
 
 					$imageResizer = new coreImageResizer();
 
+					$amount_query = $this->db->query("SELECT COUNT(image) FROM cms_article_content_image WHERE article_content_fk = ".$id." AND lang_fk = ".$res["lang_id"]." LIMIT 1");
+					$new_sort = $amount_query->fetch_row()[0];
+
 					$imageError = false;
 					for($i = 0; $i < count($_FILES["image_".$res["short"]]["name"]); $i++){
 						$filename = strtolower($_FILES["image_".$res["short"]]["name"][$i]);
@@ -285,9 +288,13 @@
 							$resizedImage = $imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation/".$id."/".$res["short"]."/".$filename, 1920, 1080);
 							$imageResizer->resizeImage($_FILES["image_".$res["short"]]["tmp_name"][$i], "media/navigation_thumbs/".$id."/".$res["short"]."/".$filename, 480, 320);
 							
-							$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image) VALUES (?, ?, ?)");
-							$stmt2->bind_param("iis", $id, $res["lang_id"], $resizedImage);
-							$stmt2->execute();
+							$search_duplicate_query = $this->db->query("SELECT image FROM cms_article_content_image WHERE article_content_fk = ".$id." AND lang_fk = ".$res["lang_id"]." AND image = '".$resizedImage."' LIMIT 1");
+							if($search_duplicate_query->num_rows <= 0){
+								$new_sort++;
+								$stmt2 = $this->db->prepare("INSERT INTO cms_article_content_image (article_content_fk, lang_fk, image, sort) VALUES (?, ?, ?, ?)");
+								$stmt2->bind_param("iisi", $id, $res["lang_id"], $resizedImage, $new_sort);
+								$stmt2->execute();
+							}
 
 						}catch(Exception $e) {
 							$imageError = true;
@@ -524,50 +531,26 @@
 						$form->addRichtext($this->cT->get("navigation_content"), "text_".$res["lang_id"]);
 						$positions = array("top"=>"Oben", "center"=>"Mitte", "bottom"=>"Unten");
 						$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
-						/*$form->addFileUpload("Slideshow Bilder (Nur bei Gallerie)", "slideshow_image_".$res["short"]);
-
-						if(isset($_GET["edit"])){
-							$slideshow_images = array();
-							$dir = "media/slideshow/".$_GET["edit"]."/".$res["short"];
-
-							$stmt = $this->db->prepare("SELECT article_content_slideshow_image_id, image, sort FROM cms_article_content_slideshow_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
-							$stmt->bind_param("ii", $_GET["edit"], $res["lang_id"]);
-							$stmt->execute();
-							$stmt->bind_result($image_id, $image, $sort);
-
-							while($stmt->fetch()){
-								$tmpDir = str_replace("navigation", "navigation_thumbs", $dir);
-
-								if(file_exists($tmpDir."/".$image)){
-									$images[] = array("path"=>"/".$tmpDir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
-								}elseif(file_exists($dir."/".$image)){
-									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
-								}
-
-							}
-							if(count($images) > 0){
-								$form->addImageGallery($images, true, 'sortArticleSlideshowImages_'.$res["short"], 'cmsRemoveSlideshowImage');
-							}
-						}*/
-
 						$form->addFileUpload($this->cT->get("navigation_images"), "image_".$res["short"]);
 
 						if(isset($_GET["edit"])){
 							$images = array();
 							$dir = "media/navigation/".$_GET["edit"]."/".$res["short"];
 
-							$stmt = $this->db->prepare("SELECT article_content_image_id, image, sort FROM cms_article_content_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
+							$stmt = $this->db->prepare("SELECT article_content_image_id, image, sort, show_in_slideshow FROM cms_article_content_image WHERE article_content_fk = ? AND lang_fk = ? ORDER BY sort ASC");
 							$stmt->bind_param("ii", $_GET["edit"], $res["lang_id"]);
 							$stmt->execute();
-							$stmt->bind_result($image_id, $image, $sort);
+							$stmt->bind_result($image_id, $image, $sort, $show_in_slideshow);
 
 							while($stmt->fetch()){
 								$tmpDir = str_replace("navigation", "navigation_thumbs", $dir);
 
+								$class = $show_in_slideshow == 0 ? "" : "in-slideshow";
+
 								if(file_exists($tmpDir."/".$image)){
-									$images[] = array("path"=>"/".$tmpDir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+									$images[] = array("path"=>"/".$tmpDir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id, "class"=>$class);
 								}elseif(file_exists($dir."/".$image)){
-									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id);
+									$images[] = array("path"=>"/".$dir."/".$image, "lang"=>$res["lang_id"], "id"=>$image_id, "class"=>$class);
 								}
 
 							}
