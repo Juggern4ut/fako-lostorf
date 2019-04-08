@@ -62,6 +62,10 @@
 			$this->_fields[] = array("class"=>"row", "type"=>"imageGallery", "value"=>$images, "sortable"=>$sortable, "sortName"=>$sortName);
 		}
 
+		public function addSimpleImageGallery($images){
+			$this->_fields[] = array("class"=>"row", "type"=>"simpleImageGallery", "value"=>$images);
+		}
+
 		private function _renderText($field){
 			echo "<td>".$field["title"]."</td>";
 			echo "<td>";
@@ -168,6 +172,14 @@
 			echo "</td>";
 		}
 
+		private function _renderSimpleImageGallery($field){
+			echo "<td colspan=\"2\">";
+				foreach ($field["value"] as $image) {
+					echo "<div class=\"image-gallery-element simple\" onclick=\"cmsRemoveSimpleImage('".$image."');\" style=\"background-image: url('".$image."');\"><span></span></div>";
+				}
+			echo "</td>";
+		}
+
 		public function render(){
 			ob_start();
 
@@ -200,7 +212,9 @@
 								}elseif($row["type"] == "radio"){
 									$this->_renderRadio($row);									
 								}elseif($row["type"] == "fileupload"){
-									$this->_renderFileUpload($row);									
+									$this->_renderFileUpload($row);	
+								}elseif($row["type"] == "simpleImageGallery"){
+									$this->_renderSimpleImageGallery($row);
 								}elseif($row["type"] == "imageGallery"){
 									$this->_renderImageGallery($row);
 

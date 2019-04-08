@@ -211,7 +211,10 @@ function makeTableSortable(tableName){
 				sortArray[index+1] = $(this).attr("row_id");
 			});
 
-			$.post(window.location.href+"&async=1&sort=1&table="+tableName, {"sort":sortArray});
+			$.post(window.location.href+"&async=1&sort=1&table="+tableName, {"sort":sortArray}, function(data){
+				console.log(sortArray);
+				console.log(data);
+			});
 		}
 	}).disableSelection();
 }
@@ -324,6 +327,21 @@ function validateCmsForm(form){
 			}else{
 				return true;
 			}
+}
+
+function cmsRemoveSimpleImage(image) {
+	var r = confirm("Möchten Sie dieses Element wirklich löschen?");
+	if (r == true) {
+		var url = window.location.href;
+		url = url.replace("&async=1", "");
+		url = url + "&async=1&cmsRemoveSimpleImage=" + image;
+		
+		$.get(url, function (data) {
+			$("main").html(data);
+			init();
+			$("#cms-lightbox").fadeOut();
+		});
+	}
 }
 
 function cmsRemoveImage(image, id){
