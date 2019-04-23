@@ -446,6 +446,30 @@ function cmsGalleryImageLogic() {
 			});
 		}
 	})
+
+	$(".form__add-multiple").click(function () {
+		var r = confirm("Möchten Sie die ausgewählten (" + selectedGalleryImages.length + ") Elemente wirklich in die Slideshow einfügen?");
+		if (r == true) {
+			var url = window.location.href.split("/?")
+			url = "/?async=1&cmsAddMultipleImagesToSlideshow=1&" + url[1] + "&imagelist=" + JSON.stringify(selectedGalleryImages);
+			$.get(url, function (data) {
+				$("main").html(data)
+				selectedGalleryImages = []
+			});
+		}
+	})
+
+	$(".form__remove-multiple").click(function () {
+		var r = confirm("Möchten Sie die ausgewählten (" + selectedGalleryImages.length + ") Elemente wirklich aus der Slideshow entfernen?");
+		if (r == true) {
+			var url = window.location.href.split("/?")
+			url = "/?async=1&cmsRemoveMultipleImagesFromSlideshow=1&" + url[1] + "&imagelist=" + JSON.stringify(selectedGalleryImages);
+			$.get(url, function (data) {
+				$("main").html(data)
+				selectedGalleryImages = []
+			});
+		}
+	})
 }
 
 function initImageAlign(id) {

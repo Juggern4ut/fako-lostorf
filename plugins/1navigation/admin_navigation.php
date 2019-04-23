@@ -254,6 +254,18 @@
 			}
 		}
 
+		private function toggleMultipleSlideshow(){
+			if(isset($_GET["cmsAddMultipleImagesToSlideshow"]) || isset($_GET["cmsRemoveMultipleImagesFromSlideshow"])){
+				$images = json_decode($_GET["imagelist"]);
+				$value = isset($_GET["cmsAddMultipleImagesToSlideshow"]) ? 1 : 0;
+				foreach ($images as $image_id) {
+					$stmt = $this->db->prepare("UPDATE cms_article_content_image SET show_in_slideshow = ? WHERE article_content_image_id = ?");
+					$stmt->bind_param("ii", $value, $image_id);
+					$stmt->execute();
+				}
+			}
+		}
+
 		private function addEditArticle(){
 
 			$is_active = isset($_POST["is_active"]) ? 1 : 0;
@@ -454,6 +466,7 @@
 						$this->removeArticleImage();
 						$this->setArticleFieldValues();
 						$this->removeMultipleImages();
+						$this->toggleMultipleSlideshow();
 					}
 				}
 			}

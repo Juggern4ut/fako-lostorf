@@ -171,7 +171,9 @@
 					echo "</div>";
 				}
 				echo "<div class=\"form__gallery-multi-edit\">"; 
-					echo "<button class=\"form__delete-multiple button u-margin-bottom\" type=\"button\">Delete</button>";
+					echo "<button class=\"form__delete-multiple button u-margin-bottom\" type=\"button\">L&ouml;schen</button>&nbsp;";
+					echo "<button class=\"form__add-multiple button u-margin-bottom\" type=\"button\">Zu Slideshow hinzuf&uuml;gen</button>&nbsp;";
+					echo "<button class=\"form__remove-multiple button u-margin-bottom\" type=\"button\">Aus Slideshow entfernen</button>";
 				echo "</div>";
 			echo "</td>";
 		}
