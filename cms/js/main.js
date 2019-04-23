@@ -4,7 +4,7 @@ $(document).ready(function(){
 	initPasswordResetForm();
 	initPasswordForgottenForm();
 	init();
-
+	
 	google.charts.load('current', {packages: ['corechart', 'line']});
 	google.charts.setOnLoadCallback(drawVisitors);
 	google.charts.setOnLoadCallback(drawPlatforms);
@@ -20,6 +20,7 @@ function init(){
 	addCalendarNavigationControls();
 	makeTableRowClickable();
 	confirmationDialog();
+	cmsGalleryImageLogic()
 }
 
 function drawVisitors() {
@@ -343,11 +344,12 @@ function cmsRemoveImage(image, id) {
 			$("main").html(data);
 			init();
 			$("#cms-lightbox").fadeOut();
+			$("body").css({ "overflow" : "auto" });
 		});
 	}
 }
 
-function cmsImageSettings(image, id, elem) {
+/*function cmsImageSettings(image, id, elem) {
 	var url = "/?async=1&imageSettings=" + image + "&image_id=" + id;
 	$.get(url, function (data) {
 		$("#cms-lightbox-content").html(data);
@@ -368,6 +370,82 @@ function cmsImageSettings(image, id, elem) {
 			}
 		})
 	});
+}*/
+
+var selectedGalleryImages = []
+function cmsGalleryImageLogic() {
+	$(".image-gallery-element").click(function (e) {
+		var elem = $(this);
+		//OPEN SETTINGS
+		if ($(e.target).hasClass("image-gallery-element")) {
+			var url = "/?async=1&imageSettings=" + $(e.target).attr("image_id") + "&image=" + $(e.target).attr("image") + "&settingsName=" + $(e.target).attr("settingsname");
+			$.get(url, function (data) {
+
+				$("#cms-lightbox-content").html(data);
+				$("#cms-lightbox").fadeIn();
+				$("body").css({"overflow":"hidden"});
+				initImageAlign($(e.target).attr("image_id"));
+				
+				$.get("/?async=1&getImageSettings=" + $(e.target).attr("image_id"), function (data) {
+					$("aside#cms-lightbox div#cms-lightbox-container .image-align span").css({ "top": data.percentage + "%" });
+					if (data.show_in_slideshow) {
+						$("#showInSlideshow").click();
+					}
+				})
+				
+				$("#showInSlideshow").click(function () {
+					if ($(this).is(":checked")) {
+						elem.addClass("in-slideshow")
+					} else {
+						elem.removeClass("in-slideshow")
+					}
+				})
+
+				$(".image-settings__form").ajaxForm({
+					beforeSend: function () {
+						loader('show');
+					},
+					success: function () {
+						loader('hide');
+						$("#cms-lightbox").fadeOut();
+						$("body").css({ "overflow" : "auto" });
+					},
+					error: function () {
+						loader('hide');
+					}
+				});
+			});
+		//SELECT IMAGE
+		} else {
+			var imageItem = $(e.target).closest(".image-gallery-element")
+			imageItem.toggleClass("image-gallery-element--selected")
+			if (imageItem.hasClass("image-gallery-element--selected")) {
+				selectedGalleryImages.push(imageItem.attr("image_id"))
+			} else {
+				selectedGalleryImages = selectedGalleryImages.filter(function (val) {
+					return imageItem.attr("image_id") != val
+				})
+			}
+
+			if (selectedGalleryImages.length > 0) {
+				imageItem.parent().find(".form__gallery-multi-edit").addClass("form__gallery-multi-edit--visible")
+			} else {
+				imageItem.parent().find(".form__gallery-multi-edit").removeClass("form__gallery-multi-edit--visible")
+			}
+		}
+	})
+
+	$(".form__delete-multiple").click(function () {
+		var r = confirm("Möchten Sie die ausgewählten (" + selectedGalleryImages.length + ") Elemente wirklich löschen?");
+		if (r == true) {
+			var url = window.location.href.split("/?")
+			url = "/?async=1&cmsRemoveMultipleImages=1&" + url[1] + "&imagelist=" + JSON.stringify(selectedGalleryImages);
+			$.get(url, function (data) {
+				$("main").html(data)
+				selectedGalleryImages = []
+			});
+		}
+	})
 }
 
 function initImageAlign(id) {
@@ -414,6 +492,7 @@ function initImageAlign(id) {
 
 		$.get("/?async=1&alignImage=" + id + "&percentage=" + percentage + "&showInSlideshow=" + showInSlideshow + "&cmsViewPercentage=" + cmsViewPercentage, function (data) {
 			$("#cms-lightbox").fadeOut();
+			$("body").css({ "overflow": "auto" });
 		});
 	})
 }
@@ -424,6 +503,7 @@ function myFileBrowser(callback, value, meta){
 	$.get(url, function(data){
 		$("#cms-lightbox-content").html(data);
 		$("#cms-lightbox").fadeIn();
+		$("body").css({ "overflow": "hidden" });
 
 		$("#cms-lightbox-content form input[type=file]").change(function(){
 			$(this).parent().submit();
@@ -448,6 +528,7 @@ function fileBrowserClick(callback){
 			if(data == "0"){
 				callback(path);
 				$("#cms-lightbox").fadeOut();
+				$("body").css({ "overflow": "auto" });
 			}else{
 				$.get("/?async=1&richtext_files=1&path="+path+"/", function(data){
 					$("#cms-lightbox-content").html(data);
@@ -488,6 +569,9 @@ function richtexteditor(){
 function lightbox(){
 	$("#cms-lightbox-container > img").click(function(){
 		$("#cms-lightbox").fadeOut();
+		$("body").css({ "overflow" : "auto" });
+		$("body").css({ "overflow" : "auto" });
+		$("body").css({ "overflow": "auto" });
 	});
 }
 
@@ -567,9 +651,12 @@ function confirmationDialog(){
 		$.get("/?async=1&getConfirmDialogButtons=1", function(data){
 			$("#cms-lightbox-content").html(message+data);
 			$("#cms-lightbox").fadeIn();
+			$("body").css({ "overflow": "hidden" });
 
 			$("button.no").click(function(){
 				$("#cms-lightbox").fadeOut();
+				$("body").css({ "overflow" : "auto" });
+				$("body").css({ "overflow" : "auto" });
 			});
 
 			$("button.yes").click(function(){

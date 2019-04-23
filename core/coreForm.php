@@ -164,8 +164,15 @@
 			echo "<td colspan=\"2\">";
 				foreach ($field["value"] as $image) {
 					$class = strlen(trim($image["class"])) > 0 ? " ".trim($image["class"]) : "";
-					echo "<div class=\"image-gallery-element".$class."\" sortListName=\"".$field["sortName"]."\" language=\"".$image["lang"]."\" image_id=\"".$image["id"]."\" onclick=\"cmsImageSettings('".$image["path"]."', '".$image["id"]."', this);\" style=\"background-image: url('".$image["path"]."');\"><span></span></div>";
+					echo "<div class=\"image-gallery-element".$class."\" sortListName=\"".$field["sortName"]."\" language=\"".$image["lang"]."\" image=\"".$image["path"]."\" image_id=\"".$image["id"]."\" style=\"background-image: url('".$image["path"]."');\">";
+						echo "<svg class=\"form__gallery-svg-tick\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\">";
+							echo "<path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\"></path>";
+						echo "</svg>";
+					echo "</div>";
 				}
+				echo "<div class=\"form__gallery-multi-edit\">"; 
+					echo "<button class=\"form__delete-multiple button u-margin-bottom\" type=\"button\">Delete</button>";
+				echo "</div>";
 			echo "</td>";
 		}
 

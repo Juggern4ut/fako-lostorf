@@ -236,6 +236,24 @@
 			}
 		}
 
+		private function removeMultipleImages(){
+			if(isset($_GET["cmsRemoveMultipleImages"])){
+				$images = json_decode($_GET["imagelist"]);
+				foreach ($images as $image_id) {
+					$stmt = $this->db->prepare("SELECT aci.image, l.short, aci.article_content_fk FROM cms_article_content_image AS aci LEFT JOIN cms_lang as l ON aci.lang_fk = l.lang_id WHERE aci.article_content_image_id = ? LIMIT 1");
+					$stmt->bind_param("i", $image_id);
+					$stmt->execute();
+					$stmt->bind_result($image, $lang, $article);
+					$stmt->fetch();
+					@unlink("media/navigation/".$article."/".$lang."/".$image);
+					@unlink("media/navigation_thumbs/".$article."/".$lang."/".$image);
+					$this->db->query("DELETE FROM article_content_image WHERE article_content_image_id = ".$image_id);
+					$stmt->close();
+				}
+				cms_status($this->cT->get("global_delete_success"));
+			}
+		}
+
 		private function addEditArticle(){
 
 			$is_active = isset($_POST["is_active"]) ? 1 : 0;
@@ -435,6 +453,7 @@
 					}else{
 						$this->removeArticleImage();
 						$this->setArticleFieldValues();
+						$this->removeMultipleImages();
 					}
 				}
 			}

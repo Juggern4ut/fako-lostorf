@@ -187,26 +187,26 @@ span.radio_checkbox input[type=radio]:checked + label div{
 /*LIGHTBOX*/
 aside#cms-lightbox {
 	display: none;
-    background-color: rgba(0,0,0,0.4);
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 65000;
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 65000;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 	aside#cms-lightbox div#cms-lightbox-container{
-		margin: 0px auto;
+		margin: 100px auto;
 		max-width: 500px;
 		width: calc(100% - 100px);
 		background-color: #FFF;
-		margin-top: 100px;
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 		position: relative;
 		min-height: 100px;
 		padding: 40px 10px 10px 10px;
 		z-index: 65001;
-		max-height: 700px;
 		overflow-y: auto;
 	}
 		aside#cms-lightbox div#cms-lightbox-container div.dialogButtons{
@@ -867,7 +867,54 @@ nav.open{
 					margin-right: 10px;
 					background-size: cover;
 					background-position: center;
+					position: relative;
 				}
+
+				form.cms-form table.cms-table td .image-gallery-element::after{
+					content: " ";
+					position: absolute;
+					display: block;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background-image: -webkit-linear-gradient(to bottom,rgba(0,0,0,0.5),transparent 56px,transparent);
+					background-image: linear-gradient(to bottom,rgba(0,0,0,0.5),transparent 56px,transparent);
+					opacity: 0;
+					transition: 200ms ease-out;
+				}
+
+					form.cms-form table.cms-table td .image-gallery-element:hover::after{
+						opacity: 1;
+					}
+
+					.form__gallery-svg-tick{
+						opacity: 0;
+						margin: 5px;
+						fill: #fff;
+						fill-opacity: 0.6;
+						transition: 200ms ease-out;
+						position: relative;
+						z-index: 10;
+					}
+
+					.image-gallery-element:hover .form__gallery-svg-tick{
+						opacity: 1;
+					}
+
+					.image-gallery-element--selected .form__gallery-svg-tick{
+						fill: #ff4500;
+						fill-opacity: 1;
+            opacity: 1;
+					}
+
+					.image-gallery-element--selected::after{
+						opacity: 1 !important;
+					}
+
+					.form__gallery-svg-tick:hover{
+						fill-opacity: 1;
+					}
 
 					form.cms-form table.cms-table td .image-gallery-element.in-slideshow {
 						outline: 2px solid #ff4500;
@@ -890,6 +937,24 @@ nav.open{
 
 					form.cms-form table.cms-table td .image-gallery-element:hover span{
 						opacity: 1;
+					}
+
+					.form__gallery-multi-edit{
+						display: none;
+						padding: 10px 0;
+					}
+
+					.form__gallery-multi-edit button{
+						background-color: #1d3457;
+						border: 0px;
+						padding: 10px 20px;
+						color: #FFF;
+						font-size: 17px;
+						cursor: pointer;
+					}
+
+					.form__gallery-multi-edit--visible{
+						display: block;
 					}
 
 main .cms-pagination{

@@ -174,9 +174,8 @@
 			echo "<div>";
 				echo "<h3>Bildkonfiguration</h3>";
 				echo "<input class='showInSlideshow' id='showInSlideshow' type='checkbox' name='showInSlideshow'><label for='showInSlideshow'>In Slideshow anzeigen</label>";
-				
 				echo "<div class='image-align'>";
-					echo "<img src='".$_GET["imageSettings"]."' />";
+					echo "<img src='".$_GET["image"]."' />";
 					echo "<span></span>";
 				echo "</div>";
 
