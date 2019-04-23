@@ -32,7 +32,7 @@
 				$end = date("Y-m-d H:i:s", strtotime($end));
 
 				$ics = new coreIcs();
-				$ics->createEvent($start, $end, $name, strip_tags($description), $location);
+				$ics->addEvent($start, $end, $name, strip_tags($description), $location);
 				$ics->show();
 				exit();
 			}
@@ -48,8 +48,8 @@
 			}elseif(isset($_GET["edit"]) || isset($_GET["add"]) && $this->user->getPermissions() >= 1){
 
 				if($_SERVER["REQUEST_METHOD"] === "POST"){
-					$query = isset($_GET["edit"])	? "UPDATE tbl_appointment SET all_day = '".isset($_POST["all_day"])."', name = '".$_POST["name"]."', start_date = '".date("Y-m-d", strtotime($_POST["start_date"]))."', start_time = '".date("H:i:s", strtotime($_POST["start_time"]))."', end_date = '".date("Y-m-d", strtotime($_POST["end_date"]))."', end_time = '".date("H:i:s", strtotime($_POST["end_time"]))."', description = '".$_POST["description"]."', location='".$_POST["location"]."' WHERE appointment_id = '".$_GET["edit"]."'"
-													: "INSERT INTO tbl_appointment (name, start_date, end_date, start_time, end_time, description, all_day, location) VALUES ('".$_POST["name"]."', '".date("Y-m-d", strtotime($_POST["start_date"]))."', '".date("Y-m-d", strtotime($_POST["end_date"]))."', '".date("H:i:s", strtotime($_POST["start_time"]))."', '".date("H:i:s", strtotime($_POST["end_time"]))."', '".$_POST["description"]."', '".isset($_POST["all_day"])."', '".$_POST["location"]."')";
+					$query = isset($_GET["edit"])	? "UPDATE tbl_appointment SET all_day = '".isset($_POST["all_day"])."', name = '".$_POST["name"]."', start_date = '".date("Y-m-d", strtotime($_POST["start_date"]))."', start_time = '".date("H:i:s", strtotime($_POST["start_time"]))."', end_date = '".date("Y-m-d", strtotime($_POST["end_date"]))."', end_time = '".date("H:i:s", strtotime($_POST["end_time"]))."', description = '".$_POST["description"]."', location='".$_POST["location"]."', appointment_type_fk='".$_POST["appointment_type_fk"]."' WHERE appointment_id = '".$_GET["edit"]."'"
+													: "INSERT INTO tbl_appointment (name, start_date, end_date, start_time, end_time, description, all_day, location, appointment_type_fk) VALUES ('".$_POST["name"]."', '".date("Y-m-d", strtotime($_POST["start_date"]))."', '".date("Y-m-d", strtotime($_POST["end_date"]))."', '".date("H:i:s", strtotime($_POST["start_time"]))."', '".date("H:i:s", strtotime($_POST["end_time"]))."', '".$_POST["description"]."', '".isset($_POST["all_day"])."', '".$_POST["location"]."', '".$_POST["appointment_type_fk"]."')";
 					$this->db->query($query);
 					$id = isset($_GET["edit"]) ? $_GET["edit"] : $this->db->insert_id;
 
@@ -65,7 +65,7 @@
 				}
 
 				if(isset($_GET["edit"])){
-					$query = "SELECT name, start_date, start_time, end_date, end_time, description, all_day, location FROM tbl_appointment WHERE appointment_id = '".$_GET["edit"]."' LIMIT 1";
+					$query = "SELECT name, start_date, start_time, end_date, end_time, description, all_day, location, appointment_type_fk FROM tbl_appointment WHERE appointment_id = '".$_GET["edit"]."' LIMIT 1";
 					$q = $this->db->query($query);
 					$res = $q->fetch_assoc();
 					$_POST["name"] = $res["name"];
@@ -75,6 +75,7 @@
 					$_POST["end_time"] = date("H:i", strtotime($res["end_time"]));
 					$_POST["description"] = $res["description"];
 					$_POST["location"] = $res["location"];
+					$_POST["appointment_type_fk"] = $res["appointment_type_fk"];
 					$_POST["all_day"] = $res["all_day"] == 0 ? null : 1;
 				}
 
@@ -131,6 +132,15 @@
 						}
 					}
 					echo $table->render();
+
+					echo "<br>";
+					echo "<h2>Termine herunterladen</h2>";
+					$q = $this->db->query("SELECT appointment_type_id, name, color FROM tbl_appointment_type ORDER BY name ASC");
+					while($res = $q->fetch_row()){
+						echo "<button class=\"appointment_button\" onclick=\"downloadAppointments('".$res[0]."');\" style=\"background-color: ".$res[2].";\">".$res[1]."</button>";
+					}
+					
+
 				}elseif((isset($_GET["edit"]) || isset($_GET["add"])) && $this->user->getPermissions() >= 1){
 					$this->getEventForm();
 				}elseif(isset($_GET["details"])){
@@ -150,11 +160,11 @@
 						$calendar->addDayClick("add");
 					}
 
-					$query = "SELECT appointment_id, name, start_date, end_date, start_time, end_time, all_day, SUBSTRING(description, 1, 90) AS description FROM tbl_appointment WHERE start_date >= '".date($_SESSION["calendarYear"]."-".$_SESSION["calendarMonth"]."-01")."' AND start_date <= '".date($_SESSION["calendarYear"]."-".$_SESSION["calendarMonth"]."-31")."' ORDER BY start_date ASC, start_time ASC";
+					$query = "SELECT appointment_id, a.name, start_date, end_date, start_time, end_time, all_day, SUBSTRING(description, 1, 90) AS description, at.color FROM tbl_appointment AS a LEFT JOIN tbl_appointment_type AS at ON a.appointment_type_fk = at.appointment_type_id WHERE start_date >= '".date($_SESSION["calendarYear"]."-".$_SESSION["calendarMonth"]."-01")."' AND start_date <= '".date($_SESSION["calendarYear"]."-".$_SESSION["calendarMonth"]."-31")."' ORDER BY start_date ASC, start_time ASC";
 					
 					$q = $this->db->query($query);
 					while($res = $q->fetch_assoc()){
-						$calendar->addEvent($res["start_date"], $res["end_date"], $res["start_time"], $res["end_time"], $res["name"], $res["appointment_id"], "lightblue", $res["all_day"]);
+						$calendar->addEvent($res["start_date"], $res["end_date"], $res["start_time"], $res["end_time"], $res["name"], $res["appointment_id"], $res["color"], $res["all_day"]);
 					}
 					$calendar->show();
 				}
@@ -163,11 +173,12 @@
 
 		public function getEventDetailView(){
 			$table = new coreTable(false);
-			$query = "SELECT name, start_date, end_date, start_time, end_time, description, all_day, location FROM tbl_appointment WHERE appointment_id = '".$_GET["details"]."'";
+			$query = "SELECT a.name, a.start_date, a.end_date, a.start_time, a.end_time, a.description, a.all_day, a.location, at.name AS at_name FROM tbl_appointment  AS a LEFT JOIN tbl_appointment_type AS at ON a.appointment_type_fk = at.appointment_type_id WHERE a.appointment_id = '".$_GET["details"]."'";
 			$q = $this->db->query($query);
 			$res = $q->fetch_assoc();
 			$table->addTitle(array($res["name"]));
 			$table->addRow(array("Name", $res["name"]));
+			$table->addRow(array("Kategorie", $res["at_name"]));
 			if($res["all_day"]){
 				if($res["start_date"] != $res["end_date"]){
 					$table->addRow(array("Beginn", date("d.m.Y", strtotime($res["start_date"]))));
@@ -206,18 +217,25 @@
 		}
 
 		public function getEventForm(){
+
+			$categories = array();
+			$q = $this->db->query("SELECT appointment_type_id, name FROM tbl_appointment_type ORDER BY name ASC");
+			while($res = $q->fetch_row()){
+				$categories[$res[0]] = $res[1];
+			}
+
 			$form = new coreForm();
 			$form->addTitle("Termin bearbeiten/erfassen");
 			$form->addText("Name", "name", array("required"=>true));
+			$form->addSelect("Kategorie", "appointment_type_fk", $categories);
 			$form->addText("Start-Datum", "start_date", array("required"=>true));
 			$form->addText("End-Datum", "end_date", array("required"=>true));
 			$form->addCheckbox("Ganztägiger Event", "all_day");
 			$form->addText("Zeit", "start_time", array("required"=>true));
 			$form->addText("Ende", "end_time", array("required"=>true));
-			$form->addText("Ort", "location", array("required"=>true));
+			$form->addText("Ort", "location");
 			$form->addRichtext("Beschreibung", "description");
 			$form->addFileUpload("Dokumente", "documents");
-
 
 			$form->addSubmit("Speichern", "submit");
 			echo $form->render();

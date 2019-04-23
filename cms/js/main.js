@@ -472,6 +472,10 @@ function cmsGalleryImageLogic() {
 	})
 }
 
+function downloadAppointments(id){
+	window.location.href = "/?async=1&download_multiple_appointments="+id;
+}
+
 function initImageAlign(id) {
 	$(window).resize();
 	var dragging = false;
