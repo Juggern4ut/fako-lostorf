@@ -17,6 +17,14 @@
 		$tmp->view();
 		echo "<script>init();</script>";
 	}else{
+		
+		foreach ($modules as $module) {
+			$moduleName = get_class($module);
+			if(strpos($moduleName, "plugin_") !== false){
+				$tmp = $GLOBALS['cmh']->get($moduleName);
+				$tmp->async();
+			}
+		}
 
 		/*CMS ASYNC*/
 		if(isset($_GET["cms_logout"])){
@@ -211,14 +219,6 @@
 				$_SESSION["calendarMonth"] = 1;
 			}else{
 				$_SESSION["calendarMonth"] += $_GET["calendarMonth"];
-			}
-		}
-
-		foreach ($modules as $module) {
-			$moduleName = get_class($module);
-			if(strpos($moduleName, "plugin_") !== false){
-				$tmp = $GLOBALS['cmh']->get($moduleName);
-				$tmp->async();
 			}
 		}
 	}

@@ -58,6 +58,7 @@
 	include 'core/PHPMailer/PHPMailer.php';
 	include 'core/PHPMailer/class.pop3.php';
 	include 'core/PHPMailer/class.smtp.php';
+
 	
 	//CREATE MODULE-HANDLER AND LOAD IT WITH FRONTEND-MODULES
 	$GLOBALS['coreTranslate'] = new coreTranslate();

@@ -123,4 +123,4 @@
 				echo "<span style=\"font-size: 9px; font-style: italic;\">Icons made by <a target=\"_blank\" href=\"https://www.flaticon.com/authors/smashicons\">smashicons</a> from <a target=\"_blank\" href=\"https://www.flaticon.com\">www.flaticon.com</a></span>";
 			}
 		}
-?>	
+?>
