@@ -55,17 +55,19 @@
 		public function getNavigation($navigation_fk = 0){
 			$return = array();
 
-			$stmt = $this->db->prepare("SELECT n.navigation_id, nt.title, n.is_active, n.is_invisible, nt.link FROM cms_navigation AS n LEFT JOIN cms_navigation_title AS nt ON n.navigation_id = nt.navigation_fk WHERE n.navigation_fk = ? AND is_deleted = 0 AND nt.lang_fk = ? ORDER BY sort ASC");
+			$stmt = $this->db->prepare("SELECT n.navigation_id, nt.title, n.is_active, n.is_tiledesign, n.is_invisible, nt.link FROM cms_navigation AS n LEFT JOIN cms_navigation_title AS nt ON n.navigation_id = nt.navigation_fk WHERE n.navigation_fk = ? AND is_deleted = 0 AND nt.lang_fk = ? ORDER BY sort ASC");
 			$stmt->bind_param("ii", $navigation_fk, $_SESSION["lang"][0]);
 			$stmt->execute();
-			$stmt->bind_result($navigation_id, $title, $is_active, $is_invisible, $link);
+			$stmt->bind_result($navigation_id, $title, $is_active, $is_tiledesign, $is_invisible, $link);
 
 			while($stmt->fetch()){
 				$tmp["id"] = $navigation_id;
 				$tmp["title"] = $title;
 				$tmp["is_active"] = $is_active;
 				$tmp["is_invisible"] = $is_invisible;
+				$tmp["is_tiledesign"] = $is_tiledesign;
 				$tmp["link"] = $link;
+				$tmp["header_image"] = file_exists("media/headerimage/".$navigation_id."/".$_SESSION["lang"][1]."/header.jpg") ? "media/headerimage/".$navigation_id."/".$_SESSION["lang"][1]."/header.jpg" : "";
 				$return[] = $tmp;
 				unset($tmp);
 			}

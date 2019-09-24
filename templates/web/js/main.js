@@ -15,6 +15,10 @@ $(document).ready(function(){
 		pauseOnHover: false
 	});
 
+	$("main.tile article").click(function(){
+		$(this).toggleClass("open")
+	})
+
 	$(".hasSubnav").click(function(){
 		if($(this).parent().hasClass("open")){
 			$(this).parent().parent().find("> li").removeClass("open");

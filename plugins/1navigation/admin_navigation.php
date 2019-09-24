@@ -106,6 +106,7 @@
 		private function addEditNavigation(){
 			$is_active = isset($_POST["is_active"]) ? 1 : 0;
 			$is_invisible = isset($_POST["is_invisible"]) ? 1 : 0;
+			$is_tiledesign = isset($_POST["is_tiledesign"]) ? 1 : 0;
 			$is_errorpage = isset($_POST["is_errorpage"]) ? 1 : 0;
 			$child_of = (int)$_POST["child_of"];
 
@@ -114,14 +115,14 @@
 			}
 
 			if(isset($_GET["add"])){
-				$stmt = $this->db->prepare("INSERT INTO cms_navigation (is_active, is_deleted, navigation_fk, is_invisible, is_errorpage) VALUES (?,'0',?,?,?)");
-				$stmt->bind_param("iiii", $is_active, $child_of, $is_invisible, $is_errorpage);
+				$stmt = $this->db->prepare("INSERT INTO cms_navigation (is_active, is_tiledesign, is_deleted, navigation_fk, is_invisible, is_errorpage) VALUES (?,?,'0',?,?,?)");
+				$stmt->bind_param("iiiii", $is_active, $is_tiledesign, $child_of, $is_invisible, $is_errorpage);
 				$stmt->execute();
 				$id = $this->db->insert_id;
 			}else{
 				$id = $_GET["edit"];
-				$stmt = $this->db->prepare("UPDATE cms_navigation SET is_invisible = ?, is_active = ?, navigation_fk = ?, is_errorpage = ? WHERE navigation_id = ?");
-				$stmt->bind_param("iiiii", $is_invisible, $is_active, $_POST["child_of"], $is_errorpage, $id);
+				$stmt = $this->db->prepare("UPDATE cms_navigation SET is_invisible = ?, is_tiledesign = ?, is_active = ?, navigation_fk = ?, is_errorpage = ? WHERE navigation_id = ?");
+				$stmt->bind_param("iiiiii", $is_invisible, $is_tiledesign, $is_active, $_POST["child_of"], $is_errorpage, $id);
 				$stmt->execute();
 			}
 
@@ -161,6 +162,19 @@
 					}									
 				}
 
+				if(isset($_FILES["headerimage_".$res["short"]])){
+					@mkdir("media/headerimage/".$id."/".$res["short"], 0777, true);
+
+					$imageResizer = new coreImageResizer();
+
+					$imageError = false;
+					try{
+						$imageResizer->resizeImage($_FILES["headerimage_".$res["short"]]["tmp_name"][0], "media/headerimage/".$id."/".$res["short"]."/header.jpg", 1920, 1080, false, "jpg");
+					}catch(Exception $e) {
+						$imageError = true;
+					}									
+				}
+
 				isset($_GET["add"]) ? cms_status($this->cT->get("global_add_success")) : cms_status($this->cT->get("global_edit_success"));									
 				
 			}
@@ -182,10 +196,10 @@
 		}
 
 		private function setNavigationFieldValues(){
-			$stmt = $this->db->prepare("SELECT nt.title, nt.lang_fk, n.is_active, n.navigation_fk, n.is_invisible, nt.description, nt.keywords, n.is_errorpage FROM cms_navigation_title AS nt LEFT JOIN cms_navigation AS n ON nt.navigation_fk = n.navigation_id WHERE nt.navigation_fk = ?");
+			$stmt = $this->db->prepare("SELECT nt.title, nt.lang_fk, n.is_active, n.is_tiledesign, n.navigation_fk, n.is_invisible, nt.description, nt.keywords, n.is_errorpage FROM cms_navigation_title AS nt LEFT JOIN cms_navigation AS n ON nt.navigation_fk = n.navigation_id WHERE nt.navigation_fk = ?");
 			$stmt->bind_param("i", $_GET["edit"]);
 			$stmt->execute();
-			$stmt->bind_result($title, $lang, $active, $nav_fk, $invisible, $description, $keywords, $errorpage);
+			$stmt->bind_result($title, $lang, $active, $tiledesign, $nav_fk, $invisible, $description, $keywords, $errorpage);
 			while($stmt->fetch()){
 				$_POST["title_".$lang] = $title;
 				$_POST["description_".$lang] = $description;
@@ -194,6 +208,7 @@
 				$_POST["is_active"] = $active == 1 ? "1" : null;
 				$_POST["is_invisible"] = $invisible == 1 ? "1" : null;
 				$_POST["is_errorpage"] = $errorpage == 1 ? "1" : null;
+				$_POST["is_tiledesign"] = $tiledesign == 1 ? "1" : null;
 			}
 		}
 
@@ -279,7 +294,7 @@
 			}else{
 				$id = $_GET["edit"];
 				$stmt = $this->db->prepare("UPDATE cms_article SET is_active = ? WHERE article_id = ?");
-				$stmt->bind_param("ii", $is_active, $articles);
+				$stmt->bind_param("ii", $is_active, $id);
 				$stmt->execute();
 			}
 
@@ -287,11 +302,11 @@
 			$q = $this->db->query($query);
 			$log = true;
 			while($res = $q->fetch_assoc()){								
-				$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text, image_position) VALUES (?, ?, ?, ?, ?)")
-											: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ?, image_position = ? WHERE lang_fk = ? AND article_fk = ?");
+				$stmt = isset($_GET["add"])	? $this->db->prepare("INSERT INTO cms_article_content (article_fk, lang_fk, article_title, text, image_position) VALUES (?, ?, ?, ?)")
+											: $this->db->prepare("UPDATE cms_article_content SET article_title = ?, text = ? WHERE lang_fk = ? AND article_fk = ?");
 
-						isset($_GET["add"]) ? $stmt->bind_param("iisss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]])
-											: $stmt->bind_param("sssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $_POST["image_position_".$res["lang_id"]], $res["lang_id"], $id);
+						isset($_GET["add"]) ? $stmt->bind_param("iiss", $id, $res["lang_id"], $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]])
+											: $stmt->bind_param("ssii", $_POST["title_".$res["lang_id"]], $_POST["text_".$res["lang_id"]], $res["lang_id"], $id);
 				
 				if($log){
 					isset($_GET["add"]) ? $this->logger->log($this->user->getUsername()." created the article '".$_POST["title_".$res["lang_id"]]."'.", $this->user->getId())
@@ -505,6 +520,7 @@
 					$form->addCheckbox("Aktiv", "is_active");
 					$form->addCheckbox($this->cT->get("navigation_invisible"), "is_invisible");
 					$form->addCheckbox($this->cT->get("navigation_errorpage"), "is_errorpage");
+					$form->addCheckbox($this->cT->get("navigation_tiledesign"), "is_tiledesign");
 					$form->addSelect($this->cT->get("navigation_child_of"), "child_of", $pages);
 
 					while($res = $q->fetch_assoc()){
@@ -515,6 +531,11 @@
 						$form->addFileUpload($this->cT->get("navigation_meta_image"), "metaimage_".$res["short"]);
 						if(file_exists("media/metaimage/".$_GET["edit"]."/".$res["short"]."/share.jpg")){
 							$form->addImageGallery(array(array("path"=>"/media/metaimage/".$_GET["edit"]."/".$res["short"]."/share.jpg?v=".strtotime("now"))),false);
+						}
+
+						$form->addFileUpload($this->cT->get("navigation_header_image"), "headerimage_".$res["short"]);
+						if(file_exists("media/headerimage/".$_GET["edit"]."/".$res["short"]."/header.jpg")){
+							$form->addImageGallery(array(array("path"=>"/media/headerimage/".$_GET["edit"]."/".$res["short"]."/header.jpg?v=".strtotime("now"))),false);
 						}
 					}
 
@@ -561,8 +582,6 @@
 						$form->addSubtitle($res["name"]);
 						$form->addText($this->cT->get("navigation_title"), "title_".$res["lang_id"]);
 						$form->addRichtext($this->cT->get("navigation_content"), "text_".$res["lang_id"]);
-						$positions = array("top"=>"Oben", "center"=>"Mitte", "bottom"=>"Unten");
-						$form->addSelect("Bilderausrichtung", "image_position_".$res["lang_id"], $positions);
 						$form->addFileUpload($this->cT->get("navigation_images"), "image_".$res["short"]);
 
 						if(isset($_GET["edit"])){

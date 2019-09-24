@@ -151,11 +151,13 @@
 				<ul>
 					<?php
 						foreach ($navigationPoints as $nav) {
-							if($nav["is_invisible"] != 1){
+							if($nav["is_invisible"] != 1 && $nav["is_active"]){
 								$class = "";
 								if($nav["id"] == $primaryId){
 									$class = " class=\"active\"";
 									$_GET["n0"] = $nav["link"];
+									$headerImage = $nav["header_image"];
+									$layout = $nav["is_tiledesign"] ? " class=\"tile\"" : "";
 								}
 
 								$liId = $nav["link"] == "news" ? " id='news'" : "";
@@ -205,23 +207,27 @@
 			<?php $image = $contents[0]["images"][0]; ?>
 			<section>
 				<?php
-					foreach ($contents[0]["images"] as $image) {
-						if($image["show_in_slideshow"]){
-							echo "<article style=\"background-image: url('/".$image["image"]."'); background-position: center ".$image["alignment"]."%;\">&nbsp;</article>";
-						}
-					}
+					echo "<article style=\"background-image: url('/".$headerImage."');\">&nbsp;</article>";
 				?>
 			</section>
 		</header>
-		<main>
+		<main <?php echo $layout; ?>>
 			<?php
 				//DEFAULT CONTENT
 				if($primaryId != 30 && $primaryId != 24 && $primaryId != 29){
 					echo "<section>";
 						foreach ($contents as $content) {
+
+							if(!$content["is_active"]){
+								continue;
+							}
+
 							echo "<article>";
-									$form = $navigation->getContactForm();
-									echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
+								if(file_exists($content["images"][0]["image"])){
+									echo "<div class='article_head' style='background-image: url(\"/".$content["images"][0]["image"]."\");'></div>";
+								}
+								$form = $navigation->getContactForm();
+								echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
 							echo "</article>";
 						}
 					echo "</section>";
@@ -236,6 +242,12 @@
 					echo "<div id='news'>";
 					$count = 0;	
 					foreach ($contents as $content) {
+
+						if(!$content["is_active"]){
+							$count++;
+							continue;
+						}
+
 						if($count === 0 && $primaryId === 29){
 							echo "<article>";
 								$form = $navigation->getContactForm();
