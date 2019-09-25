@@ -14,33 +14,33 @@
 
 		public function getContactForm(){
 			ob_start();
-			echo "<form id='contact-form'>";
+			echo "<form class='form' id='contact-form'>";
 				
-				echo "<div class='input-container'>";
-					echo "<input id=\"name\" type=\"text\" placeholder=\"Name\" name=\"name\">";
-					echo "<span class=\"focus-border\"></span>";
+				echo "<div class='form__input-container'>";
+					echo "<input class='form__input form__input--text' id=\"name\" type=\"text\" placeholder=\"Name\" name=\"name\">";
+					echo "<span class=\"form__focus-border\"></span>";
 				echo "</div>";
 				
-				echo "<div class='input-container'>";
-					echo "<input id=\"mail\" type=\"text\" placeholder=\"E-Mail\" name=\"email\">";
-					echo "<span class=\"focus-border\"></span>";
+				echo "<div class='form__input-container'>";
+					echo "<input class='form__input form__input--text' id=\"mail\" type=\"text\" placeholder=\"E-Mail\" name=\"email\">";
+					echo "<span class=\"form__focus-border\"></span>";
 				echo "</div>";
 				
-				echo "<div class='input-container'>";
-					echo "<input id=\"subject\" type=\"text\" placeholder=\"Betreff\" name=\"subject\">";
-					echo "<span class=\"focus-border\"></span>";
+				echo "<div class='form__input-container'>";
+					echo "<input class='form__input form__input--text' id=\"subject\" type=\"text\" placeholder=\"Betreff\" name=\"subject\">";
+					echo "<span class=\"form__focus-border\"></span>";
 				echo "</div>";
 
-				echo '<div class="input-container">';
-					echo "<textarea id=\"message\" placeholder=\"Nachricht\"></textarea>";
-					echo '<span class="focus-border">';
+				echo '<div class="form__input-container">';
+					echo "<textarea class='form__input form__input--textarea' id=\"message\" placeholder=\"Nachricht\"></textarea>";
+					echo '<span class="form__focus-border">';
 						echo '<i></i>';
 					echo '</span>';
 				echo '</div>';
 
 				echo '<div class="g-recaptcha" data-sitekey="6LfJhXwUAAAAACk-GbDFudHNd3rkhQfuWWN4URBC"></div>';
 
-				echo "<input type=\"submit\" value=\"Abschicken\">";
+				echo "<input class='form__submit' type=\"submit\" value=\"Abschicken\">";
 			echo "</form>";
 			$ret = ob_get_contents();
 			ob_end_clean();

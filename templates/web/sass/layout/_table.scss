@@ -1,0 +1,9 @@
+.table,
+table {
+  width: 100% !important;
+  height: auto !important;
+  
+  td:not(:last-child) {
+    padding-right: 10px;
+  }
+}

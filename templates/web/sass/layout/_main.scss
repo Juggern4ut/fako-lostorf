@@ -1,0 +1,40 @@
+.main {
+  max-width: 770px;
+  padding: 10px 15px;
+  width: calc(100% - 40px);
+  margin: 0px auto;
+  line-height: 1.6;
+  padding-bottom: 100px;
+  min-height: calc(100vh - 186px - (100vw / 3));
+
+  &--tile {
+    max-width: 1240px;
+
+    .article {
+      width: calc((100% / 3) - 20px);
+      display: inline-block;
+      vertical-align: top;
+      max-height: 250px;
+      border: 1px solid #cecece;
+      overflow: hidden;
+      box-sizing: border-box;
+      margin: 0 10px 20px 10px;
+      padding: 10px;
+      transition: 200ms ease-out;
+      cursor: pointer;
+
+      &--open {
+        max-height: 1500px;
+        cursor: default;
+      }
+
+      .article_head {
+        height: 10vw;
+        max-height: 150px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

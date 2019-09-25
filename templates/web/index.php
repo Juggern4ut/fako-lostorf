@@ -117,8 +117,7 @@
 		<meta name="twitter:description" content="<?php echo $metaDescription; ?>">
 		<meta name="twitter:image" content="<?php echo $metaImage; ?>">
 		
-		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/styles.css?v=3">
-		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/slick.css">
+		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/dist/main.css?v=3">
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/swipebox.min.css">
 
 		<link rel="icon" href="/favicon.png" type="image/png">
@@ -127,7 +126,7 @@
 		<link rel="apple-touch-icon" href="/favicon.png"/>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/templates/web/js/main.js?v=4" type="text/javascript" charset="utf-8"></script>
+		<script src="/templates/web/dist/main.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/templates/web/js/jquery.swipebox.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -140,49 +139,49 @@
 			}
 		?>
 		<header>
-			<div id="mobile-nav-burger">
-				<span></span>
-				<span></span>
-				<span></span>
+			<div class="navigation__mobile-burger" id="mobile-nav-burger">
+				<span class="navigation__mobile-burger-span"></span>
+				<span class="navigation__mobile-burger-span"></span>
+				<span class="navigation__mobile-burger-span"></span>
 			</div>
 			<a id="mobile-logo" href="/"><img src="/templates/web/img/logo.png" /></a>
-			<nav>
-				<a class="nav-title" href="/">Fasnachtsverein Lostorf</a>
-				<ul>
+			<nav class="navigation">
+				<a class="navigation__title" href="/">Fasnachtsverein Lostorf</a>
+				<ul class="navigation__list">
 					<?php
 						foreach ($navigationPoints as $nav) {
 							if($nav["is_invisible"] != 1 && $nav["is_active"]){
 								$class = "";
 								if($nav["id"] == $primaryId){
-									$class = " class=\"active\"";
+									$class = " navigation__list-item--active";
 									$_GET["n0"] = $nav["link"];
 									$headerImage = $nav["header_image"];
-									$layout = $nav["is_tiledesign"] ? " class=\"tile\"" : "";
+									$layout = $nav["is_tiledesign"] ? " main--tile" : "";
 								}
 
 								$liId = $nav["link"] == "news" ? " id='news'" : "";
 
-								echo "<li".$class.$liId.">";
+								echo "<li class='navigation__list-item".$class."'".$liId.">";
 									$subnavPoints = $navigation->getNavigation($nav["id"]);
 									if(count($subnavPoints) > 0){
-										echo "<a class=\"hasSubnav\">".$nav["title"]."</a>";
-										echo "<ul>";
+										echo "<a class=\"navigation__list-link navigation__list-link--subnav\">".$nav["title"]."</a>";
+										echo "<ul class='navigation__sub-list'>";
 											foreach ($subnavPoints as $snav) {
 												$class = "";
 												if($snav["id"] == $secondaryId){
-													$class = " class=\"active\"";
+													$class = " active";
 												}
-												echo "<li".$class.">";
+												echo "<li class='navigation__list-item".$class."'>";
 													$subSubnavPoints = $navigation->getNavigation($snav["id"]);
 													if(count($subnavPoints) > 0){
-														echo "<a class=\"hasSubnav\">".$snav["title"]."</a>";
-														echo "<ul>";
+														echo "<a class=\"navigation__list-link navigation__list-link--subnav\">".$snav["title"]."</a>";
+														echo "<ul class='navigation__sub-list'>";
 															foreach ($subSubnavPoints as $ssnav) {
-																echo "<li><a href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."/".$snav["link"]."/".$ssnav["link"]."\">".$ssnav["title"]."</a></li>";
+																echo "<li class='navigation__list-item'><a class=\"navigation__list-link\" href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."/".$snav["link"]."/".$ssnav["link"]."\">".$ssnav["title"]."</a></li>";
 															}
 														echo "</ul>";
 													}else{
-														echo "<a href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."/".$snav["link"]."\">".$snav["title"]."</a>";
+														echo "<a class=\"navigation__list-link\" href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."/".$snav["link"]."\">".$snav["title"]."</a>";
 													}
 												echo "</li>";
 											}
@@ -196,7 +195,7 @@
 												echo "<span id='unread_news'>".$diff."</span>";
 											}
 										}
-										echo "<a href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."\">".$nav["title"]."</a>";
+										echo "<a class=\"navigation__list-link\" href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."\">".$nav["title"]."</a>";
 									}
 								echo "</li>";
 							}
@@ -211,10 +210,10 @@
 				?>
 			</section>
 		</header>
-		<main <?php echo $layout; ?>>
+		<main class="main<?php echo $layout; ?>">
 			<?php
 				//DEFAULT CONTENT
-				if($primaryId != 30 && $primaryId != 24 && $primaryId != 29){
+				if($primaryId != 24){
 					echo "<section>";
 						foreach ($contents as $content) {
 
@@ -222,7 +221,7 @@
 								continue;
 							}
 
-							echo "<article>";
+							echo "<article class='article'>";
 								if(file_exists($content["images"][0]["image"])){
 									echo "<div class='article_head' style='background-image: url(\"/".$content["images"][0]["image"]."\");'></div>";
 								}
@@ -231,39 +230,13 @@
 							echo "</article>";
 						}
 					echo "</section>";
+
 					if($primaryId === 1){
 						echo "<div class='countdown'>";
 							echo "<h1>Fasnachtsauftakt</h1>";
 						echo "</div>";
 						echo "<script>initCountdown('.countdown')</script>";
 					}
-				//NEWS AND PROGRAM
-				}elseif($primaryId == 30 || $primaryId == 29){
-					echo "<div id='news'>";
-					$count = 0;	
-					foreach ($contents as $content) {
-
-						if(!$content["is_active"]){
-							$count++;
-							continue;
-						}
-
-						if($count === 0 && $primaryId === 29){
-							echo "<article>";
-								$form = $navigation->getContactForm();
-								echo str_replace("<p>{kontakt_formular}</p>", $form, $content["content"]);
-							echo "</article>";
-						}else{
-							echo "<article class='news'>";
-								echo "<h3><span>".date("d.m.Y", strtotime($content["timestamp"]))."</span><br />".$content["title"]."<span class='moreLess'>» mehr</h3>";
-								echo "<section>";
-									echo $content["content"];
-								echo "</section>";
-							echo "</article>";
-						}
-						$count++;
-					}
-					echo "</div>";
 				//GALLERY
 				}elseif($primaryId == 24 && isset($secondaryId)){
 					foreach ($contents as $content) {
@@ -285,9 +258,9 @@
 				}
 			?>
 		</main>
-		<footer>
+		<footer class="footer">
 			<span>Copyright - FaKo Lostorf 2018 &copy;</span>
-			<span><a href="/de/impressum">Impressum</a></span>
+			<span><a class="footer__link" href="/de/impressum">Impressum</a></span>
 		</footer>
 	</body>
 </html>

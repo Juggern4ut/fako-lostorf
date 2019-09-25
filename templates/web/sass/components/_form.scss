@@ -1,0 +1,127 @@
+.form {
+  &__input {
+    font: 15px "Roboto", Arial, sans-serif;
+    color: $colorText;
+    letter-spacing: 1px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 10px;
+
+    &--text {
+      outline: 0;
+      border: 0;
+      padding: 7px 11px;
+      border-bottom: 1px solid #ccc;
+
+      ~ .form__focus-border {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $colorFormOutline;
+        transition: $transitionSpeedForm;
+      }
+
+      &:focus ~ .form__focus-border {
+        width: 100%;
+      }
+    }
+
+    &--textarea {
+      border: 1px solid #ccc;
+      padding: 7px 14px 9px;
+      transition: $transitionSpeedForm ease-out;
+      height: 150px;
+      resize: none;
+
+      ~ .form__focus-border {
+        &::before,
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: $colorFormOutline;
+          transition: $transitionSpeedForm;
+        }
+
+        &::after {
+          top: auto;
+          bottom: 0px;
+        }
+
+        i {
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background-color: $colorFormOutline;
+            transition: $transitionSpeedForm;
+          }
+        }
+      }
+
+      &:focus {
+        ~ .form__focus-border {
+          &::before,
+          &::after {
+            left: 0;
+            width: 100%;
+          }
+
+          i {
+            &::before,
+            &::after {
+              top: 0;
+              height: 100%;
+            }
+
+            &::after {
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__submit,
+  &__label {
+    width: 320px;
+    background-color: $colorText;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    transition: $transitionSpeedForm ease-out;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-weight: 300;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  &__submit {
+    &:hover {
+      background-color: lighten($colorText, 10);
+    }
+  }
+
+  &__input-container {
+    position: relative;
+  }
+
+  .g-recaptcha {
+    margin-bottom: 8px;
+  }
+}
