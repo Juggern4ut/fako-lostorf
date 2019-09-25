@@ -12,7 +12,7 @@
 
     .article {
       width: calc((100% / 3) - 20px);
-      display: inline-block;
+      display: inline-block !important;
       vertical-align: top;
       max-height: 250px;
       border: 1px solid #cecece;
@@ -34,7 +34,44 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        @include respond-to("large") {
+          height: 15vw;
+          max-height: 200px;
+        }
+
+        @include respond-to("medium") {
+          height: 25vw;
+          max-height: 200px;
+        }
       }
+
+      @include respond-to("large") {
+        display: inline-block;
+        width: calc(50% - 20px);
+      }
+
+      @include respond-to("medium") {
+        width: calc(100% - 20px);
+      }
+    }
+  }
+
+  .article {
+    flex: 1;
+    padding: 10px;
+    min-height: 400px;
+
+    @include respond-to("large") {
+      display: block;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ul {
+      padding-left: 22px;
     }
   }
 }

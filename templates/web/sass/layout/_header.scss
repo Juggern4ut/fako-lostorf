@@ -12,10 +12,6 @@ header {
     background-size: cover;
   }
 
-  #mobile-logo {
-    display: none;
-  }
-
   &.open {
     #mobile-nav-burger {
       span {
@@ -35,5 +31,10 @@ header {
         }
       }
     }
+  }
+
+  @include respond-to("large") {
+    z-index: 10;
+    padding-top: 72px;
   }
 }

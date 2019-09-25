@@ -118,7 +118,6 @@
 		<meta name="twitter:image" content="<?php echo $metaImage; ?>">
 		
 		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/dist/main.css?v=3">
-		<link rel="Stylesheet" type="text/css" media="screen" href="/templates/web/css/swipebox.min.css">
 
 		<link rel="icon" href="/favicon.png" type="image/png">
 		<link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -144,7 +143,9 @@
 				<span class="navigation__mobile-burger-span"></span>
 				<span class="navigation__mobile-burger-span"></span>
 			</div>
-			<a id="mobile-logo" href="/"><img src="/templates/web/img/logo.png" /></a>
+			<a class="navigation__mobile-logo" href="/">
+				<img class="navigation__mobile-logo-image" src="/templates/web/img/logo.png" />
+			</a>
 			<nav class="navigation">
 				<a class="navigation__title" href="/">Fasnachtsverein Lostorf</a>
 				<ul class="navigation__list">
@@ -192,7 +193,7 @@
 											$np = count($navigation->getContent(30));
 											if($np > $_COOKIE["news_read"]){
 												$diff = $np - $_COOKIE["news_read"];
-												echo "<span id='unread_news'>".$diff."</span>";
+												echo "<span class='navigation__unread_news' id='unread_news'>".$diff."</span>";
 											}
 										}
 										echo "<a class=\"navigation__list-link\" href=\"/".$_SESSION["lang"][1]."/".$nav["link"]."\">".$nav["title"]."</a>";
@@ -247,9 +248,9 @@
 							foreach ($content["images"] as $image) {
 								echo "<a href='/".$image["image"]."' class='swipebox'>";
 									if(file_exists(str_replace("navigation", "navigation_thumbs", $image["thumbnail"]))){
-										echo "<article style=\"background-image: url('/".str_replace("navigation", "navigation_thumbs", $image["thumbnail"])."')\"></article>";
+										echo "<article class='article' style=\"background-image: url('/".str_replace("navigation", "navigation_thumbs", $image["thumbnail"])."')\"></article>";
 									}else{
-										echo "<article style=\"background-image: url('/".$image["image"]."')\"></article>";
+										echo "<article class='article' style=\"background-image: url('/".$image["image"]."')\"></article>";
 									}
 								echo "</a>";
 							}

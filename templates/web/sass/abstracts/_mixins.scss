@@ -1,0 +1,43 @@
+/// Mixin welches dem ::after-Element das Attribute "clear: both" zuweist, um gefloatete Elemente zu clearen.
+/// Display table ist zur Verhinderung eines `top-margin`-Kollapses bei ::before Elementen.
+/// @author Lukas Meier
+/// @group Abstracts
+@mixin clearfix {
+  &::after {
+    content: " ";
+    clear: both;
+    display: table;
+  }
+}
+
+/// Ein ::before oder ::after-Element benötigt immer mindestens die folgenden 3 CSS-Regeln um funktionieren zu können.
+/// Mit diesem Mixin müssen diese nicht immer wieder gesetzt werden.
+/// @author Lukas Meier
+/// @group Abstracts
+@mixin pseudo($pos: relative, $display: block, $content: " ") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+
+/// Responsive breakpoint manager
+/// @author Hugo Giraudel
+/// @group Abstracts
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+/// @link https://sass-guidelin.es/#responsive-web-design-and-breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+  @if $raw-query {
+    $query: if(type-of($raw-query) == "string", unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}

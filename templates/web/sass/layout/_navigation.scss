@@ -9,6 +9,10 @@
     width: 40px;
     padding: 25px;
     z-index: 5;
+
+    @include respond-to("large") {
+      display: block;
+    }
   }
 
   &__mobile-burger-span {
@@ -25,6 +29,10 @@
   &__list {
     display: inline-block;
     vertical-align: top;
+
+    @include respond-to("large") {
+      display: block;
+    }
   }
 
   &__title {
@@ -36,14 +44,46 @@
     position: absolute;
     left: 0px;
     top: 0px;
+
+    @include respond-to("large") {
+      display: none;
+    }
   }
 
   &__list-item {
     display: inline-block;
     vertical-align: top;
+    position: relative;
 
     &--active {
       background-color: #f0f0f0;
+    }
+
+    @include respond-to("large") {
+      display: block;
+    }
+  }
+
+  &__unread_news {
+    background-color: $colorUnreadNews;
+    color: #fff;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -3px;
+    line-height: 20px;
+    font-weight: bold;
+    transform: rotate(20deg);
+    text-align: center;
+    font-size: 13px;
+    z-index: 1;
+
+    @include respond-to("large") {
+      right: auto;
+      left: 15px;
     }
   }
 
@@ -63,6 +103,12 @@
       background-size: 20px;
       padding-right: 40px;
     }
+
+    @include respond-to("large") {
+      text-align: left;
+      font-weight: 400;
+      padding: 20px 35px;
+    }
   }
 
   &__sub-list {
@@ -75,11 +121,29 @@
     z-index: 1;
     width: 100%;
     border-bottom: 1px solid #888;
+
+    @include respond-to("large") {
+      position: static;
+      border-bottom: 0px;
+    }
   }
 
   &__sub-list &__sub-list {
     top: 45px;
   }
+  
+  &__sub-list &__list-link{
+    @include respond-to("large") {
+      padding-left: 50px;
+    }
+  }
+
+  &__sub-list &__sub-list &__list-link{
+    @include respond-to("large") {
+      padding-left: 70px;
+    }
+  }
+
 
   &__list-item--open > &__sub-list {
     display: block;
@@ -88,5 +152,37 @@
 
   &__list-item--open > &__list-link--subnav {
     background-image: url(#{$imagePath}arrow_up.png);
+  }
+
+  &__mobile-logo {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    @include respond-to("large") {
+      display: block;
+    }
+  }
+
+  &__mobile-logo-image {
+    width: 60px;
+  }
+
+  @include respond-to("large") {
+    position: fixed;
+    top: 73px;
+    left: -400px;
+    width: 400px;
+    z-index: 4;
+    transition: left 0.4s ease-out;
+    height: 100%;
+    background-color: #fefefe;
+  }
+
+  &--open {
+    @include respond-to("large") {
+      left: 0px;
+      box-shadow: 0px 15px 10px 10px rgba(0, 0, 0, 0.3);
+    }
   }
 }
