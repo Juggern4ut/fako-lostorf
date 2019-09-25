@@ -160,9 +160,9 @@
 									$layout = $nav["is_tiledesign"] ? " main--tile" : "";
 								}
 
-								$liId = $nav["link"] == "news" ? " id='news'" : "";
+								$newsClass = $nav["link"] == "news" ? " navigation__list-item--news" : "";
 
-								echo "<li class='navigation__list-item".$class."'".$liId.">";
+								echo "<li class='navigation__list-item".$class.$newsClass."'>";
 									$subnavPoints = $navigation->getNavigation($nav["id"]);
 									if(count($subnavPoints) > 0){
 										echo "<a class=\"navigation__list-link navigation__list-link--subnav\">".$nav["title"]."</a>";

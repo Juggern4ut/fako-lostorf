@@ -71,14 +71,11 @@ function handleTableSize() {
   });
 }
 
-function setMobileNavTop() {
-  if (window.innerWidth <= 1024) {
-    var scrollTop = $(window).scrollTop();
-    var navTop = 73;
-    $("header nav").css({
-      top: navTop - scrollTop + "px"
-    });
-  }
+function setMobileNavTop() {// if (window.innerWidth <= 1024) {
+  //   var scrollTop = $(window).scrollTop()
+  //   var navTop = 73
+  //   $(".navigation").css({ top: navTop - scrollTop + "px" })
+  // }
 }
 
 function mobileNavLinks() {

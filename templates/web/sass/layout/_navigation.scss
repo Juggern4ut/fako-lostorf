@@ -53,7 +53,10 @@
   &__list-item {
     display: inline-block;
     vertical-align: top;
-    position: relative;
+
+    &--news{
+      position: relative;
+    }
 
     &--active {
       background-color: #f0f0f0;
@@ -107,7 +110,8 @@
     @include respond-to("large") {
       text-align: left;
       font-weight: 400;
-      padding: 20px 35px;
+      padding: 20px;
+      font-size: 15px;
     }
   }
 
@@ -134,13 +138,13 @@
   
   &__sub-list &__list-link{
     @include respond-to("large") {
-      padding-left: 50px;
+      padding-left: 30px;
     }
   }
 
   &__sub-list &__sub-list &__list-link{
     @include respond-to("large") {
-      padding-left: 70px;
+      padding-left: 40px;
     }
   }
 
@@ -169,12 +173,13 @@
   }
 
   @include respond-to("large") {
-    position: fixed;
+    position: absolute;
     top: 73px;
-    left: -400px;
-    width: 400px;
+    left: -350px;
+    width: 350px;
+    max-width: 100%;
     z-index: 4;
-    transition: left 0.4s ease-out;
+    transition: left 400ms ease-out;
     height: 100%;
     background-color: #fefefe;
   }
