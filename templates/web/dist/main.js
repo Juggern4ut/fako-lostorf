@@ -4,6 +4,17 @@ $(document).ready(function () {
   initSwipebox();
   initTileArticleHandler();
   initNavigation();
+  $("header > section").slick({
+    dots: false,
+    arrows: false,
+    speed: 2000,
+    fade: true,
+    cssEase: "linear",
+    autoplay: true,
+    autplayspeed: 6000,
+    pauseOnFocus: false,
+    pauseOnHover: false
+  });
 });
 $(window).resize(function () {
   handleMobileNav();
@@ -147,27 +158,29 @@ function initFormSubmit() {
 }
 
 function initCountdown(selector) {
-  var endTime = new Date("11 November 2019 00:00:00");
-  endTime = Date.parse(endTime) / 1000;
-  var container = $(selector);
-  container.append("<div class='countdown__tile countdown__tile--days'></div>");
-  container.append("<div class='countdown__tile countdown__tile--hours'></div>");
-  container.append("<div class='countdown__tile countdown__tile--minutes'></div>");
-  container.append("<div class='countdown__tile countdown__tile--seconds'></div>");
-  setInterval(function () {
-    var now = new Date();
-    now = Date.parse(now) / 1000;
-    var timeLeft = endTime - now;
-    var days = Math.floor(timeLeft / 86400);
-    var hours = Math.floor((timeLeft - days * 86400) / 3600);
-    var minutes = Math.floor((timeLeft - days * 86400 - hours * 3600) / 60);
-    var seconds = Math.floor(timeLeft - days * 86400 - hours * 3600 - minutes * 60);
-    hours = hours < "10" ? "0" + hours : hours;
-    minutes = minutes < "10" ? "0" + minutes : minutes;
-    seconds = seconds < "10" ? "0" + seconds : seconds;
-    container.find(".countdown__tile--days").html(days + "<span class='countdown__span'>Tage</span>");
-    container.find(".countdown__tile--hours").html(hours + "<span class='countdown__span'>Stunden</span>");
-    container.find(".countdown__tile--minutes").html(minutes + "<span class='countdown__span'>Minuten</span>");
-    container.find(".countdown__tile--seconds").html(seconds + "<span class='countdown__span'>Sekunden</span>");
-  }, 1000);
+  $.get("/?async=1&getCountdownData=1", function (data) {
+    var endTime = new Date(data["date"]);
+    endTime = Date.parse(endTime) / 1000;
+    var container = $(selector);
+    container.append("<div class='countdown__tile countdown__tile--days'></div>");
+    container.append("<div class='countdown__tile countdown__tile--hours'></div>");
+    container.append("<div class='countdown__tile countdown__tile--minutes'></div>");
+    container.append("<div class='countdown__tile countdown__tile--seconds'></div>");
+    setInterval(function () {
+      var now = new Date();
+      now = Date.parse(now) / 1000;
+      var timeLeft = endTime - now;
+      var days = Math.floor(timeLeft / 86400);
+      var hours = Math.floor((timeLeft - days * 86400) / 3600);
+      var minutes = Math.floor((timeLeft - days * 86400 - hours * 3600) / 60);
+      var seconds = Math.floor(timeLeft - days * 86400 - hours * 3600 - minutes * 60);
+      hours = hours < "10" ? "0" + hours : hours;
+      minutes = minutes < "10" ? "0" + minutes : minutes;
+      seconds = seconds < "10" ? "0" + seconds : seconds;
+      container.find(".countdown__tile--days").html(days + "<span class='countdown__span'>Tage</span>");
+      container.find(".countdown__tile--hours").html(hours + "<span class='countdown__span'>Stunden</span>");
+      container.find(".countdown__tile--minutes").html(minutes + "<span class='countdown__span'>Minuten</span>");
+      container.find(".countdown__tile--seconds").html(seconds + "<span class='countdown__span'>Sekunden</span>");
+    }, 1000);
+  });
 }
