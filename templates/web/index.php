@@ -150,6 +150,9 @@
 				<a class="navigation__title" href="/">Fasnachtsverein Lostorf</a>
 				<ul class="navigation__list">
 					<?php
+
+						$headerImage = "media/headerimage/".$activeId."/".$_SESSION["lang"][1]."/header.jpg";
+
 						foreach ($navigationPoints as $nav) {
 							if($nav["is_invisible"] != 1 && $nav["is_active"]){
 								$class = "";
@@ -260,8 +263,8 @@
 			?>
 		</main>
 		<footer class="footer">
-			<span>Copyright - FaKo Lostorf 2018 &copy;</span>
-			<span><a class="footer__link" href="/de/impressum">Impressum</a></span>
+			<span>Copyright - FaKo Lostorf 2020 &copy;</span>
+			<span><a class="footer__link" href="/de/impressum">Impressum</a>&nbsp;&nbsp;<a class="footer__link" href="/?admin=1">Admin</a></span>
 		</footer>
 	</body>
 </html>

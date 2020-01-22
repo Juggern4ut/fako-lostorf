@@ -10,7 +10,7 @@
   .article {
     flex: 1;
     padding: 10px;
-    min-height: 400px;
+    min-height: 275px;
 
     @include respond-to("large") {
       display: block;

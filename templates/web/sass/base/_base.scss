@@ -13,3 +13,5 @@ body {
   background-color: $colorBackground;
   color: $colorText;
 }
+
+.slick-slider .slick-track, .slick-slider .slick-list { height: 100%; }
