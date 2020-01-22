@@ -236,8 +236,12 @@
 					echo "</section>";
 
 					if($primaryId === 1){
+
+						$q = $db->query("SELECT title FROM tbl_countdown WHERE countdown_id = 1 LIMIT 1");
+						$title = $q->fetch_row();
+
 						echo "<div class='countdown'>";
-							echo "<h1>Fasnachtsauftakt</h1>";
+							echo "<h1>".$title[0]."</h1>";
 						echo "</div>";
 						echo "<script>initCountdown('.countdown')</script>";
 					}
