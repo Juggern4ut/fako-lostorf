@@ -199,14 +199,33 @@ function initFormSubmit() {
 
 function initCountdown(selector) {
   $.get("/?async=1&getCountdownData=1", data => {
-    var endTime = new Date(data["date"]);
+    let tmpDate = data["date"].split(" ")[0].split("-");
+    let tmpTime = data["date"].split(" ")[1].split(":");
+
+    var endTime = new Date(
+      tmpDate[0],
+      tmpDate[1] - 1,
+      tmpDate[2],
+      tmpTime[0],
+      tmpTime[1],
+      tmpTime[2],
+      "00"
+    );
     endTime = Date.parse(endTime) / 1000;
 
     var container = $(selector);
-    container.append("<div class='countdown__tile countdown__tile--days'></div>");
-    container.append("<div class='countdown__tile countdown__tile--hours'></div>");
-    container.append("<div class='countdown__tile countdown__tile--minutes'></div>");
-    container.append("<div class='countdown__tile countdown__tile--seconds'></div>");
+    container.append(
+      "<div class='countdown__tile countdown__tile--days'></div>"
+    );
+    container.append(
+      "<div class='countdown__tile countdown__tile--hours'></div>"
+    );
+    container.append(
+      "<div class='countdown__tile countdown__tile--minutes'></div>"
+    );
+    container.append(
+      "<div class='countdown__tile countdown__tile--seconds'></div>"
+    );
     setInterval(function() {
       var now = new Date();
       now = Date.parse(now) / 1000;
@@ -216,7 +235,9 @@ function initCountdown(selector) {
       var days = Math.floor(timeLeft / 86400);
       var hours = Math.floor((timeLeft - days * 86400) / 3600);
       var minutes = Math.floor((timeLeft - days * 86400 - hours * 3600) / 60);
-      var seconds = Math.floor(timeLeft - days * 86400 - hours * 3600 - minutes * 60);
+      var seconds = Math.floor(
+        timeLeft - days * 86400 - hours * 3600 - minutes * 60
+      );
 
       hours = hours < "10" ? "0" + hours : hours;
       minutes = minutes < "10" ? "0" + minutes : minutes;

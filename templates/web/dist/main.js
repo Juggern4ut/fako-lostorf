@@ -159,7 +159,9 @@ function initFormSubmit() {
 
 function initCountdown(selector) {
   $.get("/?async=1&getCountdownData=1", function (data) {
-    var endTime = new Date(data["date"]);
+    var tmpDate = data["date"].split(" ")[0].split("-");
+    var tmpTime = data["date"].split(" ")[1].split(":");
+    var endTime = new Date(tmpDate[0], tmpDate[1] - 1, tmpDate[2], tmpTime[0], tmpTime[1], tmpTime[2], "00");
     endTime = Date.parse(endTime) / 1000;
     var container = $(selector);
     container.append("<div class='countdown__tile countdown__tile--days'></div>");
